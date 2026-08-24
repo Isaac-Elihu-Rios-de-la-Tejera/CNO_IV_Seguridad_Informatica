@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Técnico | Seguridad Informática</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- SDK de EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          // Reemplaza 'TU_PUBLIC_KEY' con la llave pública de tu cuenta de EmailJS
+          emailjs.init("TU_PUBLIC_KEY"); 
+       })();
+    </script>
+</head>
+<body>
+
+    <!-- 1. Encabezado (Header) -->
+    <header>
+        <div class="header-content">
+            <div class="student-info">
+                <h1>Isaac Elihu Rios de la Tejera</h1>
+                <h2>Universidad Politécnica de San Luis Potosí</h2>
+                <p>Ingeniería en Tecnologías de la Información</p>
+            </div>
+            <div class="course-info">
+                <p><strong>Asignatura:</strong> CNO IV – Seguridad Informática</p>
+                <p><strong>Periodo:</strong> Agosto - Diciembre 2026</p>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio" class="active">Inicio</a></li>
+                <li><a href="#evidencias">Evidencias (Próximamente)</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="inicio">
+        <!-- 2. Presentación del portafolio -->
+        <section class="card">
+            <h2>Presentación del Portafolio</h2>
+            <p><strong>Propósito:</strong> Este portafolio digital tiene como propósito centralizar y documentar de manera profesional las evidencias académicas y prácticas desarrolladas durante el curso.</p>
+            <p><strong>Enfoque:</strong> Los contenidos están orientados a la seguridad informática, abordando áreas como pruebas de penetración, análisis de vulnerabilidades y mitigación de riesgos.</p>
+            <p><strong>Importancia:</strong> Funciona como un registro tangible del proceso de aprendizaje, demostrando la aplicación práctica de los conocimientos teóricos adquirides en ciberseguridad.</p>
+        </section>
+
+        <!-- 3. Perfil del estudiante -->
+        <section class="card">
+            <h2>Perfil del Estudiante</h2>
+            <p><strong>Semblanza:</strong> Soy estudiante de Ingeniería en Tecnologías de la Información, con experiencia práctica en soporte a usuarios, gestión de sistemas y automatización de procesos. Me apasiona aplicar la tecnología para resolver problemas estructurales.</p>
+            <p><strong>Intereses:</strong> Seguridad Informática, Ciberseguridad, Desarrollo de Soluciones en la Nube (Cloud), e Investigación de Tecnologías Emergentes.</p>
+        </section>
+
+        <!-- 4. Información técnica básica -->
+        <section class="card technical-info">
+            <h2>Información Técnica del Sitio</h2>
+            <ul>
+                <li><strong>Tecnologías utilizadas:</strong> Desarrollo web nativo con HTML5, CSS3 y JavaScript.</li>
+                <li><strong>Plataforma de publicación:</strong> GitHub Pages.</li>
+                <li><strong>Control de versiones:</strong> Git y GitHub.</li>
+                <li><strong>Certificado SSL:</strong> HTTPS proveído automáticamente por GitHub Pages.</li>
+            </ul>
+        </section>
+
+        <!-- 5. Formulario de contacto -->
+        <section id="contacto" class="card">
+            <h2>Contacto</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="user_name">Nombre completo:</label>
+                    <input type="text" id="user_name" name="user_name" required placeholder="Ej. Juan Pérez">
+                </div>
+                <div class="form-group">
+                    <label for="user_email">Correo electrónico:</label>
+                    <input type="email" id="user_email" name="user_email" required placeholder="correo@ejemplo.com">
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje:</label>
+                    <textarea id="message" name="message" rows="4" required placeholder="Escribe tu mensaje aquí..."></textarea>
+                </div>
+                <button type="submit" id="btn-submit">Enviar Mensaje</button>
+                <p id="form-status"></p>
+            </form>
+        </section>
+    </main>
+
+    <!-- 6. Pie de página (Footer) -->
+    <footer>
+        <p>&copy; 2026 Isaac Elihu Rios de la Tejera. Portafolio de Seguridad Informática.</p>
+    </footer>
+
+    <!-- Lógica de EmailJS -->
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const btn = document.getElementById('btn-submit');
+            const status = document.getElementById('form-status');
+            
+            btn.innerText = 'Enviando...';
+
+            // Reemplaza 'TU_SERVICE_ID' y 'TU_TEMPLATE_ID' con los datos de EmailJS
+            emailjs.sendForm('TU_SERVICE_ID', 'TU_TEMPLATE_ID', this)
+                .then(function() {
+                    btn.innerText = 'Enviar Mensaje';
+                    status.style.color = '#4CAF50';
+                    status.innerText = '¡Mensaje enviado con éxito! Revisa tu correo para la confirmación.';
+                    document.getElementById('contact-form').reset();
+                }, function(error) {
+                    btn.innerText = 'Enviar Mensaje';
+                    status.style.color = '#F44336';
+                    status.innerText = 'Error al enviar: ' + JSON.stringify(error);
+                });
+        });
+    </script>
+</body>
+</html>
