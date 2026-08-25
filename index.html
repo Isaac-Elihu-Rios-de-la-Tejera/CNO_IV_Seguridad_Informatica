@@ -1,636 +1,120 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Isaac Rios | Portafolio de Seguridad Informática</title>
-
+    <title>Portafolio Técnico | Seguridad Informática</title>
     <link rel="stylesheet" href="style.css">
+    
+    <!-- SDK de EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          // Reemplaza 'TU_PUBLIC_KEY' con la llave pública de tu cuenta de EmailJS
+          emailjs.init("TU_PUBLIC_KEY"); 
+       })();
+    </script>
 </head>
-
 <body>
 
-    <!-- ENCABEZADO -->
-
-    <header class="encabezado">
-
-        <div class="marca">
-            <div class="iniciales">IR</div>
-
-            <div class="datos-encabezado">
-                <h1>ISAAC RIOS</h1>
-                <p>PORTAFOLIO DE SEGURIDAD INFORMÁTICA</p>
+    <!-- 1. Encabezado (Header) -->
+    <header>
+        <div class="header-content">
+            <div class="student-info">
+                <h1>Isaac Elihu Rios de la Tejera</h1>
+                <h2>Universidad Politécnica de San Luis Potosí</h2>
+                <p>Ingeniería en Tecnologías de la Información</p>
+            </div>
+            <div class="course-info">
+                <p><strong>Asignatura:</strong> CNO IV – Seguridad Informática</p>
+                <p><strong>Periodo:</strong> Agosto - Diciembre 2026</p>
             </div>
         </div>
-
-        <div class="datos-materia">
-
-            <span class="etiqueta">ASIGNATURA</span>
-
-            <strong>
-                CNO IV – SEGURIDAD INFORMÁTICA
-            </strong>
-
-            <span class="periodo">
-                [PERIODO / SEMESTRE]
-            </span>
-
-        </div>
-
+        <nav>
+            <ul>
+                <li><a href="#inicio" class="active">Inicio</a></li>
+                <li><a href="#evidencias">Evidencias (Próximamente)</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
     </header>
 
-
-    <!-- MENÚ -->
-
-    <nav class="navegacion">
-
-        <a href="#inicio">INICIO</a>
-
-        <a href="#sobre-mi">SOBRE MÍ</a>
-
-        <a href="#informacion">INFORMACIÓN TÉCNICA</a>
-
-        <a href="#evidencias">EVIDENCIAS</a>
-
-        <a href="#contacto">CONTACTO</a>
-
-    </nav>
-
-
-    <main>
-
-        <!-- ==============================
-             INICIO
-        =============================== -->
-
-        <section id="inicio" class="inicio">
-
-            <div class="marco-personaje">
-
-                <div class="pantalla-personaje">
-
-                    <div class="nombre-personaje">
-                        ISAAC
-                    </div>
-
-                    <div class="figura-personaje">
-
-                        <div class="cabeza"></div>
-
-                        <div class="cuerpo"></div>
-
-                        <div class="brazo izquierdo"></div>
-                        <div class="brazo derecho"></div>
-
-                        <div class="pierna izquierda"></div>
-                        <div class="pierna derecha"></div>
-
-                    </div>
-
-                </div>
-
-                <div class="estado">
-                    ● PORTAFOLIO ACTIVO
-                </div>
-
-            </div>
-
-
-            <div class="presentacion">
-
-                <div class="numero-seccion">
-                    01 / INICIO
-                </div>
-
-                <h2>
-                    MI PORTAFOLIO
-                </h2>
-
-                <div class="linea-azul"></div>
-
-                <h3>
-                    SEGURIDAD INFORMÁTICA
-                </h3>
-
-                <p>
-                    Este sitio web funciona como mi portafolio digital
-                    de evidencias para la asignatura
-                    <strong>CNO IV – Seguridad Informática</strong>.
-                </p>
-
-                <p>
-                    En este espacio se presentan de manera organizada
-                    las actividades y evidencias desarrolladas durante
-                    el curso.
-                </p>
-
-                <div class="datos-inicio">
-
-                    <div>
-                        <span>ESTUDIANTE</span>
-                        <strong>Isaac Elihu Rios de la Tejera</strong>
-                    </div>
-
-                    <div>
-                        <span>INSTITUCIÓN</span>
-                        <strong>Universidad Politécnica de San Luis Potosí</strong>
-                    </div>
-
-                    <div>
-                        <span>ÁREA</span>
-                        <strong>Ingeniería en Tecnologías de la Información</strong>
-                    </div>
-
-                </div>
-
-            </div>
-
+    <main id="inicio">
+        <!-- 2. Presentación del portafolio -->
+        <section class="card">
+            <h2>Presentación del Portafolio</h2>
+            <p><strong>Propósito:</strong> Este portafolio digital tiene como propósito centralizar y documentar de manera profesional las evidencias académicas y prácticas desarrolladas durante el curso.</p>
+            <p><strong>Enfoque:</strong> Los contenidos están orientados a la seguridad informática, abordando áreas como pruebas de penetración, análisis de vulnerabilidades y mitigación de riesgos.</p>
+            <p><strong>Importancia:</strong> Funciona como un registro tangible del proceso de aprendizaje, demostrando la aplicación práctica de los conocimientos teóricos adquirides en ciberseguridad.</p>
         </section>
 
-
-        <!-- ==============================
-             PRESENTACIÓN
-        =============================== -->
-
-        <section class="seccion">
-
-            <div class="titulo-seccion">
-                <span>02</span>
-                PRESENTACIÓN DEL PORTAFOLIO
-            </div>
-
-            <div class="panel">
-
-                <p>
-                    El propósito de este portafolio es recopilar,
-                    organizar y presentar las evidencias académicas
-                    correspondientes a la asignatura de Seguridad
-                    Informática.
-                </p>
-
-                <p>
-                    El contenido estará relacionado con temas de
-                    seguridad informática, pruebas de penetración,
-                    análisis de vulnerabilidades y otros conocimientos
-                    desarrollados durante el curso.
-                </p>
-
-                <p>
-                    Este portafolio permitirá mostrar de forma ordenada
-                    el proceso de aprendizaje y la evolución de los
-                    conocimientos adquiridos a lo largo de los tres
-                    parciales.
-                </p>
-
-            </div>
-
+        <!-- 3. Perfil del estudiante -->
+        <section class="card">
+            <h2>Perfil del Estudiante</h2>
+            <p><strong>Semblanza:</strong> Soy estudiante de Ingeniería en Tecnologías de la Información, con experiencia práctica en soporte a usuarios, gestión de sistemas y automatización de procesos. Me apasiona aplicar la tecnología para resolver problemas estructurales.</p>
+            <p><strong>Intereses:</strong> Seguridad Informática, Ciberseguridad, Desarrollo de Soluciones en la Nube (Cloud), e Investigación de Tecnologías Emergentes.</p>
         </section>
 
-
-        <!-- ==============================
-             SOBRE MÍ
-        =============================== -->
-
-        <section id="sobre-mi" class="seccion">
-
-            <div class="titulo-seccion">
-                <span>03</span>
-                SOBRE MÍ
-            </div>
-
-            <div class="perfil">
-
-                <div class="perfil-principal">
-
-                    <div class="perfil-icono">
-                        IR
-                    </div>
-
-                    <div>
-
-                        <h3>
-                            ISAAC ELIHU RIOS DE LA TEJERA
-                        </h3>
-
-                        <p class="puesto">
-                            ESTUDIANTE DE INGENIERÍA EN TECNOLOGÍAS
-                            DE LA INFORMACIÓN
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="perfil-texto">
-
-                    <p>
-                        Soy estudiante de Ingeniería en Tecnologías de
-                        la Información en la Universidad Politécnica de
-                        San Luis Potosí. Mi formación académica y
-                        experiencia se encuentran orientadas al área
-                        de tecnologías de la información, programación
-                        y soporte técnico.
-                    </p>
-
-                    <p>
-                        He desarrollado experiencia proporcionando
-                        soporte a usuarios, resolviendo incidentes
-                        relacionados con hardware, software y redes,
-                        además de realizar configuración y mantenimiento
-                        de equipos de cómputo.
-                    </p>
-
-                    <p>
-                        También cuento con experiencia en programación
-                        y desarrollo de soluciones mediante Power Apps,
-                        así como conocimientos relacionados con
-                        HTML, CSS, JavaScript y redes.
-                    </p>
-
-                    <p>
-                        Dentro de mi formación se encuentran
-                        certificaciones y conocimientos en Microsoft
-                        Office, HTML y CSS, JavaScript y
-                        CCNA: Introducción a las Redes.
-                    </p>
-
-                    <p>
-                        Actualmente busco continuar desarrollando mis
-                        conocimientos técnicos, especialmente en áreas
-                        relacionadas con seguridad informática,
-                        infraestructura tecnológica y solución de
-                        problemas.
-                    </p>
-
-                </div>
-
-
-                <div class="datos-perfil">
-
-                    <div class="dato">
-                        <span>FORMACIÓN</span>
-                        <strong>
-                            Ingeniería en Tecnologías de la Información
-                        </strong>
-                    </div>
-
-                    <div class="dato">
-                        <span>INSTITUCIÓN</span>
-                        <strong>
-                            Universidad Politécnica de San Luis Potosí
-                        </strong>
-                    </div>
-
-                    <div class="dato">
-                        <span>IDIOMA</span>
-                        <strong>
-                            Español — Nativo
-                        </strong>
-                    </div>
-
-                    <div class="dato">
-                        <span>INGLÉS</span>
-                        <strong>
-                            Intermedio — B1/B2
-                        </strong>
-                    </div>
-
-                </div>
-
-            </div>
-
+        <!-- 4. Información técnica básica -->
+        <section class="card technical-info">
+            <h2>Información Técnica del Sitio</h2>
+            <ul>
+                <li><strong>Tecnologías utilizadas:</strong> Desarrollo web nativo con HTML5, CSS3 y JavaScript.</li>
+                <li><strong>Plataforma de publicación:</strong> GitHub Pages.</li>
+                <li><strong>Control de versiones:</strong> Git y GitHub.</li>
+                <li><strong>Certificado SSL:</strong> HTTPS proveído automáticamente por GitHub Pages.</li>
+            </ul>
         </section>
 
-
-        <!-- ==============================
-             INFORMACIÓN TÉCNICA
-        =============================== -->
-
-        <section id="informacion" class="seccion">
-
-            <div class="titulo-seccion">
-                <span>04</span>
-                INFORMACIÓN TÉCNICA BÁSICA
-            </div>
-
-            <div class="informacion-tecnica">
-
-                <div class="dato-tecnico">
-
-                    <span>LENGUAJES Y TECNOLOGÍAS</span>
-
-                    <p>
-                        HTML, CSS, JavaScript, Power Apps,
-                        Microsoft Office y tecnologías relacionadas
-                        con soporte y redes.
-                    </p>
-
+        <!-- 5. Formulario de contacto -->
+        <section id="contacto" class="card">
+            <h2>Contacto</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="user_name">Nombre completo:</label>
+                    <input type="text" id="user_name" name="user_name" required placeholder="Ej. Juan Pérez">
                 </div>
-
-
-                <div class="dato-tecnico">
-
-                    <span>PLATAFORMA DE PUBLICACIÓN</span>
-
-                    <p>
-                        GitHub Pages
-                    </p>
-
+                <div class="form-group">
+                    <label for="user_email">Correo electrónico:</label>
+                    <input type="email" id="user_email" name="user_email" required placeholder="correo@ejemplo.com">
                 </div>
-
-
-                <div class="dato-tecnico">
-
-                    <span>CONTROL DE VERSIONES</span>
-
-                    <p>
-                        Git y GitHub
-                    </p>
-
+                <div class="form-group">
+                    <label for="message">Mensaje:</label>
+                    <textarea id="message" name="message" rows="4" required placeholder="Escribe tu mensaje aquí..."></textarea>
                 </div>
-
-            </div>
-
+                <button type="submit" id="btn-submit">Enviar Mensaje</button>
+                <p id="form-status"></p>
+            </form>
         </section>
-
-
-        <!-- ==============================
-             EVIDENCIAS
-        =============================== -->
-
-        <section id="evidencias" class="seccion">
-
-            <div class="titulo-seccion">
-                <span>05</span>
-                EVIDENCIAS
-            </div>
-
-
-            <!-- PARCIAL I -->
-
-            <div class="parcial">
-
-                <div class="titulo-parcial">
-                    <span>PARCIAL I</span>
-                    <small>01</small>
-                </div>
-
-                <div class="actividad disponible">
-
-                    <div class="numero-actividad">
-                        01
-                    </div>
-
-                    <div class="actividad-info">
-
-                        <span>ACTIVIDAD 01</span>
-
-                        <h3>
-                            AQUÍ EMPIEZA MI PORTAFOLIO
-                        </h3>
-
-                        <p>
-                            Diseño e implementación de la estructura
-                            inicial del portafolio digital de evidencias.
-                        </p>
-
-                    </div>
-
-                    <div class="estado-actividad">
-                        DISPONIBLE
-                    </div>
-
-                </div>
-
-                <div class="actividad pendiente">
-
-                    <div class="numero-actividad">
-                        02
-                    </div>
-
-                    <div class="actividad-info">
-
-                        <span>ACTIVIDAD 02</span>
-
-                        <h3>
-                            PRÓXIMAMENTE
-                        </h3>
-
-                        <p>
-                            Evidencia pendiente de agregar.
-                        </p>
-
-                    </div>
-
-                    <div class="estado-actividad">
-                        PENDIENTE
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- PARCIAL II -->
-
-            <div class="parcial">
-
-                <div class="titulo-parcial">
-                    <span>PARCIAL II</span>
-                    <small>02</small>
-                </div>
-
-                <div class="actividad pendiente">
-
-                    <div class="numero-actividad">
-                        01
-                    </div>
-
-                    <div class="actividad-info">
-
-                        <span>ACTIVIDAD 01</span>
-
-                        <h3>
-                            PRÓXIMAMENTE
-                        </h3>
-
-                        <p>
-                            Evidencia pendiente de agregar.
-                        </p>
-
-                    </div>
-
-                    <div class="estado-actividad">
-                        PENDIENTE
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- PARCIAL III -->
-
-            <div class="parcial">
-
-                <div class="titulo-parcial">
-                    <span>PARCIAL III</span>
-                    <small>03</small>
-                </div>
-
-                <div class="actividad pendiente">
-
-                    <div class="numero-actividad">
-                        01
-                    </div>
-
-                    <div class="actividad-info">
-
-                        <span>ACTIVIDAD 01</span>
-
-                        <h3>
-                            PRÓXIMAMENTE
-                        </h3>
-
-                        <p>
-                            Evidencia pendiente de agregar.
-                        </p>
-
-                    </div>
-
-                    <div class="estado-actividad">
-                        PENDIENTE
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ==============================
-             CONTACTO
-        =============================== -->
-
-        <section id="contacto" class="seccion">
-
-            <div class="titulo-seccion">
-                <span>06</span>
-                FORMULARIO DE CONTACTO
-            </div>
-
-            <div class="contacto">
-
-                <div class="contacto-info">
-
-                    <h3>
-                        ¿QUIERES CONTACTARME?
-                    </h3>
-
-                    <p>
-                        Puedes utilizar el siguiente formulario
-                        para enviar un mensaje.
-                    </p>
-
-                    <div class="dato-contacto">
-
-                        <span>CORREO</span>
-
-                        <strong>
-                            elihuriostjr@hotmail.com
-                        </strong>
-
-                    </div>
-
-                    <div class="dato-contacto">
-
-                        <span>UBICACIÓN</span>
-
-                        <strong>
-                            San Luis Potosí, México
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-                <form class="formulario">
-
-                    <label for="nombre">
-                        NOMBRE
-                    </label>
-
-                    <input
-                        type="text"
-                        id="nombre"
-                        name="nombre"
-                        placeholder="Escribe tu nombre"
-                        required
-                    >
-
-
-                    <label for="correo">
-                        CORREO ELECTRÓNICO
-                    </label>
-
-                    <input
-                        type="email"
-                        id="correo"
-                        name="correo"
-                        placeholder="Escribe tu correo"
-                        required
-                    >
-
-
-                    <label for="mensaje">
-                        MENSAJE
-                    </label>
-
-                    <textarea
-                        id="mensaje"
-                        name="mensaje"
-                        rows="6"
-                        placeholder="Escribe tu mensaje"
-                        required
-                    ></textarea>
-
-
-                    <button type="submit">
-                        ENVIAR MENSAJE
-                    </button>
-
-                </form>
-
-            </div>
-
-        </section>
-
     </main>
 
-
-    <!-- PIE DE PÁGINA -->
-
+    <!-- 6. Pie de página (Footer) -->
     <footer>
-
-        <div>
-            ISAAC ELIHU RIOS DE LA TEJERA
-        </div>
-
-        <div>
-            CNO IV – SEGURIDAD INFORMÁTICA
-        </div>
-
-        <div>
-            UNIVERSIDAD POLITÉCNICA DE SAN LUIS POTOSÍ
-        </div>
-
+        <p>&copy; 2026 Isaac Elihu Rios de la Tejera. Portafolio de Seguridad Informática.</p>
     </footer>
 
-</body>
+    <!-- Lógica de EmailJS -->
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const btn = document.getElementById('btn-submit');
+            const status = document.getElementById('form-status');
+            
+            btn.innerText = 'Enviando...';
 
+            // Reemplaza 'TU_SERVICE_ID' y 'TU_TEMPLATE_ID' con los datos de EmailJS
+            emailjs.sendForm('TU_SERVICE_ID', 'TU_TEMPLATE_ID', this)
+                .then(function() {
+                    btn.innerText = 'Enviar Mensaje';
+                    status.style.color = '#4CAF50';
+                    status.innerText = '¡Mensaje enviado con éxito! Revisa tu correo para la confirmación.';
+                    document.getElementById('contact-form').reset();
+                }, function(error) {
+                    btn.innerText = 'Enviar Mensaje';
+                    status.style.color = '#F44336';
+                    status.innerText = 'Error al enviar: ' + JSON.stringify(error);
+                });
+        });
+    </script>
+</body>
 </html>
