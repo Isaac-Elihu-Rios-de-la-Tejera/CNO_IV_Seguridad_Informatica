@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación: Keylogger en Python</title>
+    <style>
+        /* Estilos basados en el root proporcionado */
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #0284c7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 2rem;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 2px solid var(--accent);
+            padding: 2rem 10%;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        header h1 {
+            color: var(--accent);
+            font-size: 1.8rem;
+        }
+
+        header h2 {
+            font-size: 1.2rem;
+            font-weight: normal;
+            color: var(--text-muted);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: var(--accent);
+            color: #fff;
+        }
+
+        main {
+            padding: 2rem 10%;
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .card h2 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            margin-bottom: 0.8rem;
+        }
+
+        .parcial-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #334155;
+        }
+
+        .parcial-section h3 {
+            color: var(--text-main);
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+        }
+
+        .evidence-item {
+            background-color: #0f172a;
+            padding: 1.2rem;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .evidence-item h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-evidence {
+            display: inline-block;
+            margin-top: 0.8rem;
+            background-color: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn-evidence:hover {
+            background-color: var(--accent);
+            color: #fff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--card-bg);
+            margin-top: 2rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <h1>Actividad 3: Análisis de Keylogger</h1>
+        <h2>Presentación Técnica de Ciberseguridad</h2>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#punto1" class="active">Punto 1: Análisis</a></li>
+            <li><a href="#punto2">Punto 2: Ciberseguridad</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <!-- PUNTO 1 -->
+    <div class="card" id="punto1">
+        <h2>Punto 1: Análisis del Código (Funcionamiento)</h2>
+        <p>El script de Python mostrado en la evidencia (<em>Actividad_3.py</em>) utiliza la librería <strong>pynput</strong> para crear un listener global de eventos de teclado. Su funcionamiento técnico es el siguiente:</p>
+        
+        <div class="parcial-section">
+            <h3>Desglose de Funcionalidades</h3>
+            
+            <div class="evidence-item">
+                <h4>Captura de Eventos</h4>
+                <p>El programa monitorea constantemente el sistema operativo para detectar dos tipos de eventos: pulsación de teclas (<code>PRESS</code>) y liberación de teclas (<code>RELEASE</code>), incluyendo teclas especiales como <code>Key.backspace</code>, <code>Key.cmd</code> y <code>Key.shift</code>.</p>
+            </div>
+
+            <div class="evidence-item">
+                <h4>Registro Temporal (Timestamps)</h4>
+                <p>Como se observa en el <code>keylog.txt</code>, cada evento es registrado con una marca de tiempo precisa (año, mes, día, hora, minuto, segundo y microsegundo), lo que permite reconstruir la línea de tiempo exacta de la actividad del usuario.</p>
+            </div>
+
+            <div class="evidence-item">
+                <h4>Persistencia en Archivo</h4>
+                <p>Toda la información es volcada a un archivo de texto plano (<code>keylog.txt</code>) en tiempo real. Este método de registro es simple pero efectivo para almacenar datos sin necesidad de una base de datos compleja.</p>
+            </div>
+            
+            <a href="#" class="btn-evidence">Ver Evidencia (Imagen)</a>
+            <!-- Aquí insertarías tu imagen: <img src="captura_keylogger.png" style="width:100%; border-radius:4px; margin-top:10px;"> -->
+        </div>
+    </div>
+
+    <!-- PUNTO 2 -->
+    <div class="card" id="punto2">
+        <h2>Punto 2: Relevancia en Ciberseguridad</h2>
+        <p>Este tipo de herramienta se conoce comúnmente como <strong>Keylogger</strong>. En el ámbito de la ciberseguridad, tiene un doble filo (uso dual):</p>
+
+        <div class="parcial-section">
+            <h3>Impacto y Consideraciones de Seguridad</h3>
+
+            <div class="evidence-item">
+                <h4>Riesgo de Malware y Spyware</h4>
+                <p>Es un mecanismo clásico de malware sigiloso. Si este código se ejecuta sin el consentimiento del usuario, puede robar credenciales bancarias, contraseñas de correos, mensajes privados y otra información altamente sensible, violando la privacidad y las leyes de protección de datos.</p>
+            </div>
+
+            <div class="evidence-item">
+                <h4>Herramienta de Auditoría y Penetración (Pentesting)</h4>
+                <p>En el lado defensivo, es una herramienta legítima para pruebas de penetración. Los auditores la utilizan (con autorización explícita por escrito) para evaluar la seguridad de una empresa, verificar si los empleados caen en phishing o para realizar análisis forense digital en equipos comprometidos.</p>
+            </div>
+
+            <div class="evidence-item">
+                <h4>Detección y Mitigación</h4>
+                <p>La identificación de este código es sencilla para los antivirus modernos. Las defensas incluyen el uso de sistemas de detección de intrusiones (IDS), la monitorización de procesos extraños en el Administrador de Tareas, la educación del usuario para evitar descargas maliciosas y el uso de gestores de contraseñas con autenticación multifactor (que hace casi inútil el robo de contraseñas simples).</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>Proyecto académico de análisis de seguridad ofensiva y defensiva.</p>
+</footer>
+
+</body>
+</html>
