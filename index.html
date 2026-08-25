@@ -3,118 +3,556 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio Técnico | Seguridad Informática</title>
+
+    <title>Isaac Rios | CNO IV - Seguridad Informática</title>
+
     <link rel="stylesheet" href="style.css">
-    
-    <!-- SDK de EmailJS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-       (function(){
-          // Reemplaza 'TU_PUBLIC_KEY' con la llave pública de tu cuenta de EmailJS
-          emailjs.init("TU_PUBLIC_KEY"); 
-       })();
-    </script>
 </head>
+
 <body>
 
-    <!-- 1. Encabezado (Header) -->
-    <header>
-        <div class="header-content">
-            <div class="student-info">
-                <h1>Isaac Elihu Rios de la Tejera</h1>
-                <h2>Universidad Politécnica de San Luis Potosí</h2>
-                <p>Ingeniería en Tecnologías de la Información</p>
-            </div>
-            <div class="course-info">
-                <p><strong>Asignatura:</strong> CNO IV – Seguridad Informática</p>
-                <p><strong>Periodo:</strong> Agosto - Diciembre 2026</p>
-            </div>
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="header">
+
+        <div class="logo">
+            <span>IR</span>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#inicio" class="active">Inicio</a></li>
-                <li><a href="#evidencias">Evidencias (Próximamente)</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
+
+        <div class="header-info">
+            <h1>ISAAC RIOS</h1>
+            <p>INFORMATION TECHNOLOGY ENGINEER</p>
+        </div>
+
+        <div class="player">
+            <span>PLAYER</span>
+            <strong>01</strong>
+        </div>
+
     </header>
 
-    <main id="inicio">
-        <!-- 2. Presentación del portafolio -->
-        <section class="card">
-            <h2>Presentación del Portafolio</h2>
-            <p><strong>Propósito:</strong> Este portafolio digital tiene como propósito centralizar y documentar de manera profesional las evidencias académicas y prácticas desarrolladas durante el curso.</p>
-            <p><strong>Enfoque:</strong> Los contenidos están orientados a la seguridad informática, abordando áreas como pruebas de penetración, análisis de vulnerabilidades y mitigación de riesgos.</p>
-            <p><strong>Importancia:</strong> Funciona como un registro tangible del proceso de aprendizaje, demostrando la aplicación práctica de los conocimientos teóricos adquirides en ciberseguridad.</p>
+
+    <!-- =========================
+         NAVEGACIÓN
+    ========================== -->
+
+    <nav class="navbar">
+
+        <a href="#inicio">START</a>
+        <a href="#perfil">PROFILE</a>
+        <a href="#skills">SKILLS</a>
+        <a href="#logros">ACHIEVEMENTS</a>
+        <a href="#experiencia">EXPERIENCE</a>
+        <a href="#contacto">CONTACT</a>
+
+    </nav>
+
+
+    <main>
+
+        <!-- =========================
+             INICIO
+        ========================== -->
+
+        <section id="inicio" class="hero">
+
+            <div class="hero-character">
+
+                <div class="pixel-avatar">
+                    IR
+                </div>
+
+                <p class="status">
+                    ● ONLINE
+                </p>
+
+            </div>
+
+
+            <div class="hero-content">
+
+                <p class="small-title">
+                    CHARACTER SELECTED
+                </p>
+
+                <h2>
+                    ISAAC<br>
+                    <span>RIOS</span>
+                </h2>
+
+                <p class="career">
+                    INGENIERÍA EN TECNOLOGÍAS<br>
+                    DE LA INFORMACIÓN
+                </p>
+
+                <div class="stats">
+
+                    <div class="stat">
+                        <span>POWER</span>
+                        <div class="bar">
+                            <i style="width: 70%;"></i>
+                        </div>
+                    </div>
+
+                    <div class="stat">
+                        <span>CODING</span>
+                        <div class="bar">
+                            <i style="width: 80%;"></i>
+                        </div>
+                    </div>
+
+                    <div class="stat">
+                        <span>NETWORK</span>
+                        <div class="bar">
+                            <i style="width: 65%;"></i>
+                        </div>
+                    </div>
+
+                    <div class="stat">
+                        <span>SUPPORT</span>
+                        <div class="bar">
+                            <i style="width: 85%;"></i>
+                        </div>
+                    </div>
+
+                    <div class="stat">
+                        <span>SECURITY</span>
+                        <div class="bar">
+                            <i style="width: 60%;"></i>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
         </section>
 
-        <!-- 3. Perfil del estudiante -->
-        <section class="card">
-            <h2>Perfil del Estudiante</h2>
-            <p><strong>Semblanza:</strong> Soy estudiante de Ingeniería en Tecnologías de la Información, con formación en programación y conocimientos en desarrollo de software, bases de datos, desarrollo web y soporte de TI. Me interesa aplicar mis conocimientos en proyectos prácticos y continuar desarrollando habilidades que me permitan resolver problemas tecnológicos de manera eficiente.</p>
-            <p><strong>Intereses:</strong> Seguridad Informática, Ciberseguridad, Desarrollo de Soluciones en la Nube (Cloud), e Investigación de Tecnologías Emergentes.</p>
+
+        <!-- =========================
+             PRESENTACIÓN
+        ========================== -->
+
+        <section id="perfil" class="section">
+
+            <div class="section-title">
+                <span>01</span>
+                PLAYER PROFILE
+            </div>
+
+            <div class="panel">
+
+                <h3>ABOUT PLAYER</h3>
+
+                <p>
+                    Estudiante de Ingeniería en Tecnologías de la Información
+                    con experiencia en programación, soporte técnico y mejora
+                    de procesos empresariales.
+                </p>
+
+                <p>
+                    Mi experiencia incluye soporte a usuarios, atención de
+                    incidentes, configuración de equipos, administración de
+                    activos de TI y desarrollo de soluciones mediante Power Apps.
+                </p>
+
+                <div class="info-grid">
+
+                    <div>
+                        <span>CLASS</span>
+                        <strong>IT ENGINEER</strong>
+                    </div>
+
+                    <div>
+                        <span>INSTITUTION</span>
+                        <strong>UPSLP</strong>
+                    </div>
+
+                    <div>
+                        <span>LOCATION</span>
+                        <strong>SAN LUIS POTOSÍ</strong>
+                    </div>
+
+                    <div>
+                        <span>STATUS</span>
+                        <strong>STUDENT</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
         </section>
 
-        <!-- 4. Información técnica básica -->
-        <section class="card technical-info">
-            <h2>Información Técnica del Sitio</h2>
-            <ul>
-                <li><strong>Tecnologías utilizadas:</strong> Desarrollo web nativo con HTML5, CSS3 y JavaScript.</li>
-                <li><strong>Plataforma de publicación:</strong> GitHub Pages.</li>
-                <li><strong>Control de versiones:</strong> Git y GitHub.</li>
-                <li><strong>Certificado SSL:</strong> HTTPS proveído automáticamente por GitHub Pages.</li>
-            </ul>
+
+        <!-- =========================
+             SKILLS
+        ========================== -->
+
+        <section id="skills" class="section">
+
+            <div class="section-title">
+                <span>02</span>
+                SKILL TREE
+            </div>
+
+            <div class="skill-grid">
+
+                <div class="skill-card">
+                    <span class="skill-number">01</span>
+                    <h3>IT SUPPORT</h3>
+                    <p>★★★★☆</p>
+                </div>
+
+                <div class="skill-card">
+                    <span class="skill-number">02</span>
+                    <h3>PROGRAMMING</h3>
+                    <p>★★★★☆</p>
+                </div>
+
+                <div class="skill-card">
+                    <span class="skill-number">03</span>
+                    <h3>NETWORKING</h3>
+                    <p>★★★☆☆</p>
+                </div>
+
+                <div class="skill-card">
+                    <span class="skill-number">04</span>
+                    <h3>POWER APPS</h3>
+                    <p>★★★★☆</p>
+                </div>
+
+                <div class="skill-card">
+                    <span class="skill-number">05</span>
+                    <h3>HARDWARE</h3>
+                    <p>★★★★☆</p>
+                </div>
+
+                <div class="skill-card">
+                    <span class="skill-number">06</span>
+                    <h3>PROBLEM SOLVING</h3>
+                    <p>★★★★☆</p>
+                </div>
+
+            </div>
+
         </section>
 
-        <!-- 5. Formulario de contacto -->
-        <section id="contacto" class="card">
-            <h2>Contacto</h2>
-            <form id="contact-form">
-                <div class="form-group">
-                    <label for="user_name">Nombre completo:</label>
-                    <input type="text" id="user_name" name="user_name" required placeholder="Ej. Juan Pérez">
-                </div>
-                <div class="form-group">
-                    <label for="user_email">Correo electrónico:</label>
-                    <input type="email" id="user_email" name="user_email" required placeholder="correo@ejemplo.com">
-                </div>
-                <div class="form-group">
-                    <label for="message">Mensaje:</label>
-                    <textarea id="message" name="message" rows="4" required placeholder="Escribe tu mensaje aquí..."></textarea>
-                </div>
-                <button type="submit" id="btn-submit">Enviar Mensaje</button>
-                <p id="form-status"></p>
-            </form>
+
+        <!-- =========================
+             CERTIFICACIONES
+        ========================== -->
+
+        <section id="logros" class="section">
+
+            <div class="section-title">
+                <span>03</span>
+                ACHIEVEMENTS
+            </div>
+
+            <div class="achievements">
+
+                <article class="achievement">
+                    <span class="achievement-icon">★</span>
+                    <div>
+                        <h3>MICROSOFT OFFICE SPECIALIST</h3>
+                        <p>Associate - Office 2016 · 2023</p>
+                    </div>
+                </article>
+
+                <article class="achievement">
+                    <span class="achievement-icon">★</span>
+                    <div>
+                        <h3>HTML & CSS</h3>
+                        <p>Information Technology Specialist · 2024</p>
+                    </div>
+                </article>
+
+                <article class="achievement">
+                    <span class="achievement-icon">★</span>
+                    <div>
+                        <h3>JAVASCRIPT</h3>
+                        <p>Information Technology Specialist · 2025</p>
+                    </div>
+                </article>
+
+                <article class="achievement">
+                    <span class="achievement-icon">★</span>
+                    <div>
+                        <h3>CCNA</h3>
+                        <p>Introduction to Networks · 2026</p>
+                    </div>
+                </article>
+
+            </div>
+
         </section>
+
+
+        <!-- =========================
+             EXPERIENCIA
+        ========================== -->
+
+        <section id="experiencia" class="section">
+
+            <div class="section-title">
+                <span>04</span>
+                EXPERIENCE LOG
+            </div>
+
+            <div class="experience-list">
+
+                <article class="experience-card">
+
+                    <div class="exp-year">
+                        2026
+                    </div>
+
+                    <div class="exp-content">
+
+                        <h3>PDV</h3>
+
+                        <span>
+                            PROGRAMMER / PROJECT SUPERVISOR
+                        </span>
+
+                        <p>
+                            Desarrollo de tareas de programación,
+                            supervisión y apoyo a otros programadores,
+                            además de participación en la planificación
+                            y ejecución de soluciones técnicas.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="experience-card">
+
+                    <div class="exp-year">
+                        2023
+                    </div>
+
+                    <div class="exp-content">
+
+                        <h3>VOLEX</h3>
+
+                        <span>
+                            IT SUPPORT INTERN
+                        </span>
+
+                        <p>
+                            Soporte técnico a usuarios, atención de
+                            incidentes, configuración y despliegue de
+                            computadoras, administración de activos de TI
+                            y mantenimiento preventivo y correctivo.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="experience-card">
+
+                    <div class="exp-year">
+                        2022
+                    </div>
+
+                    <div class="exp-content">
+
+                        <h3>TRIBUNAL ESTATAL DE CONCILIACIÓN Y ARBITRAJE</h3>
+
+                        <span>
+                            ARCHIVIST / RECORDS ADMINISTRATOR
+                        </span>
+
+                        <p>
+                            Organización, clasificación y administración
+                            de registros, además de coordinación con
+                            diferentes departamentos para el control
+                            documental.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             QUEST LOG
+        ========================== -->
+
+        <section class="section">
+
+            <div class="section-title">
+                <span>05</span>
+                QUEST LOG
+            </div>
+
+            <div class="quests">
+
+                <div class="quest completed">
+                    <span class="quest-status">✓</span>
+                    <div>
+                        <h3>QUEST 01</h3>
+                        <p>Fundamentos de Ciberseguridad</p>
+                    </div>
+                    <strong>COMPLETED</strong>
+                </div>
+
+
+                <div class="quest locked">
+                    <span class="quest-status">?</span>
+                    <div>
+                        <h3>QUEST 02</h3>
+                        <p>Análisis de vulnerabilidades</p>
+                    </div>
+                    <strong>LOCKED</strong>
+                </div>
+
+
+                <div class="quest locked">
+                    <span class="quest-status">?</span>
+                    <div>
+                        <h3>QUEST 03</h3>
+                        <p>Pruebas de penetración</p>
+                    </div>
+                    <strong>LOCKED</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             INFORMACIÓN TÉCNICA
+        ========================== -->
+
+        <section class="section">
+
+            <div class="section-title">
+                <span>06</span>
+                SYSTEM INFO
+            </div>
+
+            <div class="panel system-info">
+
+                <div>
+                    <span>LANGUAGE</span>
+                    <strong>HTML / CSS</strong>
+                </div>
+
+                <div>
+                    <span>PLATFORM</span>
+                    <strong>GITHUB PAGES</strong>
+                </div>
+
+                <div>
+                    <span>VERSION</span>
+                    <strong>PORTFOLIO v1.0</strong>
+                </div>
+
+                <div>
+                    <span>PROTOCOL</span>
+                    <strong>HTTPS</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CONTACTO
+        ========================== -->
+
+        <section id="contacto" class="section">
+
+            <div class="section-title">
+                <span>07</span>
+                CONTACT PLAYER
+            </div>
+
+            <div class="contact-grid">
+
+                <div class="contact-info">
+
+                    <h3>PLAYER DATA</h3>
+
+                    <p>
+                        ¿Quieres contactar conmigo?
+                    </p>
+
+                    <p>
+                        <strong>EMAIL</strong><br>
+                        elihuriostjr@hotmail.com
+                    </p>
+
+                    <p>
+                        <strong>LOCATION</strong><br>
+                        San Luis Potosí, México
+                    </p>
+
+                </div>
+
+
+                <form class="contact-form">
+
+                    <input
+                        type="text"
+                        placeholder="YOUR NAME"
+                        required
+                    >
+
+                    <input
+                        type="email"
+                        placeholder="YOUR EMAIL"
+                        required
+                    >
+
+                    <textarea
+                        placeholder="YOUR MESSAGE"
+                        rows="6"
+                        required
+                    ></textarea>
+
+                    <button type="submit">
+                        SEND MESSAGE
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
     </main>
 
-    <!-- 6. Pie de página (Footer) -->
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
     <footer>
-        <p>&copy; 2026 Isaac Elihu Rios de la Tejera. Portafolio de Seguridad Informática.</p>
+
+        <p>
+            ISAAC RIOS © 2026
+        </p>
+
+        <p>
+            CNO IV — SEGURIDAD INFORMÁTICA
+        </p>
+
     </footer>
 
-    <!-- Lógica de EmailJS -->
-    <script>
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const btn = document.getElementById('btn-submit');
-            const status = document.getElementById('form-status');
-            
-            btn.innerText = 'Enviando...';
-
-            // Reemplaza 'TU_SERVICE_ID' y 'TU_TEMPLATE_ID' con los datos de EmailJS
-            emailjs.sendForm('TU_SERVICE_ID', 'TU_TEMPLATE_ID', this)
-                .then(function() {
-                    btn.innerText = 'Enviar Mensaje';
-                    status.style.color = '#4CAF50';
-                    status.innerText = '¡Mensaje enviado con éxito! Revisa tu correo para la confirmación.';
-                    document.getElementById('contact-form').reset();
-                }, function(error) {
-                    btn.innerText = 'Enviar Mensaje';
-                    status.style.color = '#F44336';
-                    status.innerText = 'Error al enviar: ' + JSON.stringify(error);
-                });
-        });
-    </script>
 </body>
 </html>
