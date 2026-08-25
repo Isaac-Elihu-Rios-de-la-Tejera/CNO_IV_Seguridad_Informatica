@@ -10,7 +10,6 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
        (function(){
-          // Reemplaza 'TU_PUBLIC_KEY' con la llave pública de tu cuenta de EmailJS
           emailjs.init("TU_PUBLIC_KEY"); 
        })();
     </script>
@@ -32,8 +31,8 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#inicio" class="active">Inicio</a></li>
-                <li><a href="#evidencias">Evidencias (Próximamente)</a></li>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#evidencias" class="active">Evidencias</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
@@ -45,25 +44,51 @@
             <h2>Presentación del Portafolio</h2>
             <p><strong>Propósito:</strong> Este portafolio digital tiene como propósito centralizar y documentar de manera profesional las evidencias académicas y prácticas desarrolladas durante el curso.</p>
             <p><strong>Enfoque:</strong> Los contenidos están orientados a la seguridad informática, abordando áreas como pruebas de penetración, análisis de vulnerabilidades y mitigación de riesgos.</p>
-            <p><strong>Importancia:</strong> Funciona como un registro tangible del proceso de aprendizaje, demostrando la aplicación práctica de los conocimientos teóricos adquirides en ciberseguridad.</p>
+            <p><strong>Importancia:</strong> Funciona como un registro tangible del proceso de aprendizaje, demostrando la aplicación práctica de los conocimientos técnicos.</p>
         </section>
 
-        <!-- 3. Perfil del estudiante -->
+        <!-- 3. Perfil del estudiante (Actualizado con tu CV) -->
         <section class="card">
             <h2>Perfil del Estudiante</h2>
-            <p><strong>Semblanza:</strong> Soy estudiante de Ingeniería en Tecnologías de la Información, con experiencia práctica en soporte a usuarios, gestión de sistemas y automatización de procesos. Me apasiona aplicar la tecnología para resolver problemas estructurales.</p>
-            <p><strong>Intereses:</strong> Seguridad Informática, Ciberseguridad, Desarrollo de Soluciones en la Nube (Cloud), e Investigación de Tecnologías Emergentes.</p>
+            <p><strong>Semblanza:</strong> Estudiante de Ingeniería en Tecnologías de la Información con una sólida formación en programación, soporte técnico y mejora de procesos empresariales[cite: 1]. Cuento con experiencia práctica en operaciones de soporte de TI, desarrollo de soluciones en Power Apps y asistencia a usuarios finales en entornos de manufactura[cite: 1].</p>
+            <p><strong>Intereses:</strong> Seguridad Informática, Ciberseguridad, Redes (CCNA)[cite: 1], y Automatización de Procesos.</p>
         </section>
 
         <!-- 4. Información técnica básica -->
         <section class="card technical-info">
             <h2>Información Técnica del Sitio</h2>
             <ul>
-                <li><strong>Tecnologías utilizadas:</strong> Desarrollo web nativo con HTML5, CSS3 y JavaScript.</li>
+                <li><strong>Tecnologías utilizadas:</strong> HTML5, CSS3 y JavaScript.</li>
                 <li><strong>Plataforma de publicación:</strong> GitHub Pages.</li>
                 <li><strong>Control de versiones:</strong> Git y GitHub.</li>
                 <li><strong>Certificado SSL:</strong> HTTPS proveído automáticamente por GitHub Pages.</li>
             </ul>
+        </section>
+
+        <!-- NUEVA SECCIÓN: Evidencias -->
+        <section id="evidencias" class="card">
+            <h2>Evidencias de Aprendizaje</h2>
+            
+            <div class="parcial-section">
+                <h3>Parcial 1: Fundamentos de Ciberseguridad</h3>
+                
+                <!-- Espacio para tu Actividad 01 -->
+                <div class="evidence-item">
+                    <h4>Actividad 01: (Nombre de tu primera actividad)</h4>
+                    <p><strong>Descripción:</strong> (Aquí escribe de qué trató tu primera actividad, por ejemplo: Investigación sobre conceptos básicos de ciberseguridad, CIA triad, etc.)</p>
+                    <p><strong>Tecnologías / Herramientas:</strong> Word, PDF, etc.</p>
+                    <!-- Reemplaza el # con el enlace a tu documento de la actividad 1 (puedes subir el PDF a GitHub y enlazarlo aquí) -->
+                    <a href="#" class="btn-evidence" target="_blank">Ver Evidencia (PDF)</a>
+                </div>
+
+                <!-- Espacio para la Actividad 02 actual -->
+                <div class="evidence-item">
+                    <h4>Actividad 02: Aquí empieza mi portafolio</h4>
+                    <p><strong>Descripción:</strong> Diseño, implementación y publicación de la estructura base del portafolio digital, aplicando principios de documentación técnica, orden lógico y presentación profesional mediante GitHub Pages.</p>
+                    <p><strong>Tecnologías / Herramientas:</strong> HTML, CSS, Git, GitHub Pages.</p>
+                    <a href="https://github.com/isaac-elihu-rios-de-la-tejera/CNO_IV_Seguridad_Informatica" class="btn-evidence" target="_blank">Ver Repositorio</a>
+                </div>
+            </div>
         </section>
 
         <!-- 5. Formulario de contacto -->
@@ -102,7 +127,6 @@
             
             btn.innerText = 'Enviando...';
 
-            // Reemplaza 'TU_SERVICE_ID' y 'TU_TEMPLATE_ID' con los datos de EmailJS
             emailjs.sendForm('TU_SERVICE_ID', 'TU_TEMPLATE_ID', this)
                 .then(function() {
                     btn.innerText = 'Enviar Mensaje';
