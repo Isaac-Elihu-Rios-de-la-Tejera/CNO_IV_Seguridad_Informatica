@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Presentación: Keylogger en Python</title>
+    <title>Actividad 3: No presiones Esc... todavia</title>
     <style>
-        /* Estilos basados en el root proporcionado */
+        /* Estilos basados en el root proporcionado (Intactos) */
         :root {
             --bg-color: #0f172a;
             --card-bg: #1e293b;
@@ -156,74 +156,78 @@
 
 <header>
     <div class="header-content">
-        <h1>Actividad 3: Análisis de Keylogger</h1>
-        <h2>Presentación Técnica de Ciberseguridad</h2>
+        <h1>Análisis Técnico: Keylogger en Python</h1>
+        <h2>Funcionamiento interno y mecánica de ejecución</h2>
     </div>
     <nav>
         <ul>
-            <li><a href="#punto1" class="active">Punto 1: Análisis</a></li>
-            <li><a href="#punto2">Punto 2: Ciberseguridad</a></li>
+            <li><a href="#mecanica" class="active">1. Mecánica Interna</a></li>
+            <li><a href="#so">2. Interacción con el SO</a></li>
         </ul>
     </nav>
 </header>
 
 <main>
-    <!-- PUNTO 1 -->
-    <div class="card" id="punto1">
-        <h2>Punto 1: Análisis del Código (Funcionamiento)</h2>
-        <p>El script de Python mostrado en la evidencia (<em>Actividad_3.py</em>) utiliza la librería <strong>pynput</strong> para crear un listener global de eventos de teclado. Su funcionamiento técnico es el siguiente:</p>
+    <!-- PUNTO 1: MECÁNICA INTERNA DEL CÓDIGO -->
+    <div class="card" id="mecanica">
+        <h2>Punto 1: Mecánica y Arquitectura del Código</h2>
+        <p>El script se basa en el uso de la librería <strong>pynput.keyboard</strong> de Python. Esta librería actúa como un "hook" (gancho) a nivel de sistema, registrando los eventos del teclado en segundo plano.</p>
         
         <div class="parcial-section">
-            <h3>Desglose de Funcionalidades</h3>
+            <h3>Desglose de Componentes</h3>
             
             <div class="evidence-item">
-                <h4>Captura de Eventos</h4>
-                <p>El programa monitorea constantemente el sistema operativo para detectar dos tipos de eventos: pulsación de teclas (<code>PRESS</code>) y liberación de teclas (<code>RELEASE</code>), incluyendo teclas especiales como <code>Key.backspace</code>, <code>Key.cmd</code> y <code>Key.shift</code>.</p>
+                <h4>1. El Listener (Hooks de Sistema)</h4>
+                <p>El núcleo del script es la clase <code>Listener</code>. Al iniciarse, se suscribe a los eventos globales del sistema operativo. Esto significa que capta las teclas presionadas sin importar en qué aplicación tengas el foco activo (navegador, editor de código, escritorio).</p>
             </div>
 
             <div class="evidence-item">
-                <h4>Registro Temporal (Timestamps)</h4>
-                <p>Como se observa en el <code>keylog.txt</code>, cada evento es registrado con una marca de tiempo precisa (año, mes, día, hora, minuto, segundo y microsegundo), lo que permite reconstruir la línea de tiempo exacta de la actividad del usuario.</p>
+                <h4>2. Callbacks (Funciones de Evento)</h4>
+                <p>El código define dos funciones: <code>on_press</code> y <code>on_release</code>. Cada vez que el usuario presiona una tecla, el sistema ejecuta la primera; al soltarla, ejecuta la segunda. Esto permite distinguir si el usuario mantiene una tecla presionada (para repetir caracteres) o si es una pulsación rápida.</p>
             </div>
 
             <div class="evidence-item">
-                <h4>Persistencia en Archivo</h4>
-                <p>Toda la información es volcada a un archivo de texto plano (<code>keylog.txt</code>) en tiempo real. Este método de registro es simple pero efectivo para almacenar datos sin necesidad de una base de datos compleja.</p>
+                <h4>3. Captura de Teclas Especiales</h4>
+                <p>El código no solo registra letras y números, sino también teclas de control como <code>Key.backspace</code>, <code>Key.cmd</code> (tecla Windows) o <code>Key.shift</code>. Esto es crucial para reconstruir con precisión combinaciones de teclado (como Ctrl+C).</p>
+            </div>
+
+            <div class="evidence-item">
+                <h4>4. Formato y Escritura de Datos</h4>
+                <p>Se utiliza la librería <code>datetime</code> para obtener la fecha y la hora exacta en milisegundos. Cada evento se convierte en una cadena de texto formateada (Ej: <code>2026-08-24 23:16:31.828 PRESS x</code>) y se escribe en un archivo de texto <code>.txt</code> en modo append (<code>'a'</code>) para no sobrescribir los registros anteriores.</p>
             </div>
             
-            <a href="#" class="btn-evidence">Ver Evidencia (Imagen)</a>
-            <img src="captura_keylogger.png" style="width:100%; border-radius:4px; margin-top:10px;">
+            <a href="reporte_keylogger.pdf" target="_blank" class="btn-evidence">Ver Reporte Técnico Extenso (PDF)</a>
         </div>
     </div>
 
-    <!-- PUNTO 2 -->
-    <div class="card" id="punto2">
-        <h2>Punto 2: Relevancia en Ciberseguridad</h2>
-        <p>Este tipo de herramienta se conoce comúnmente como <strong>Keylogger</strong>. En el ámbito de la ciberseguridad, tiene un doble filo (uso dual):</p>
+    <!-- PUNTO 2: INTERACCIÓN CON LA COMPUTADORA -->
+    <div class="card" id="so">
+        <h2>Punto 2: ¿Qué hace exactamente en la computadora?</h2>
+        <p>A nivel técnico, el script inyecta un listener de eventos de bajo nivel en el sistema operativo. Los procesos que ocurren son los siguientes:</p>
 
         <div class="parcial-section">
-            <h3>Impacto y Consideraciones de Seguridad</h3>
+            <h3>Procesos en segundo plano</h3>
 
             <div class="evidence-item">
-                <h4>Riesgo de Malware y Spyware</h4>
-                <p>Es un mecanismo clásico de malware sigiloso. Si este código se ejecuta sin el consentimiento del usuario, puede robar credenciales bancarias, contraseñas de correos, mensajes privados y otra información altamente sensible, violando la privacidad y las leyes de protección de datos.</p>
+                <h4>Consumo de recursos mínimo</h4>
+                <p>Al ser un script ligero en Python, no ocupa gran cantidad de memoria RAM ni CPU. Esto lo hace difícil de detectar para un usuario común, ya que no genera ventanas ni notificaciones visibles.</p>
             </div>
 
             <div class="evidence-item">
-                <h4>Herramienta de Auditoría y Penetración (Pentesting)</h4>
-                <p>En el lado defensivo, es una herramienta legítima para pruebas de penetración. Los auditores la utilizan (con autorización explícita por escrito) para evaluar la seguridad de una empresa, verificar si los empleados caen en phishing o para realizar análisis forense digital en equipos comprometidos.</p>
+                <h4>Análisis de la evidencia (keylog.txt)</h4>
+                <p>Al abrir el archivo generado, se puede ver la estructura exacta del registro: <strong>Timestamp → Tipo de Evento → Tecla</strong>. Los microsegundos registrados permiten trazar una línea de tiempo exacta de la actividad del usuario, lo que es vital en un análisis forense digital.</p>
             </div>
 
             <div class="evidence-item">
-                <h4>Detección y Mitigación</h4>
-                <p>La identificación de este código es sencilla para los antivirus modernos. Las defensas incluyen el uso de sistemas de detección de intrusiones (IDS), la monitorización de procesos extraños en el Administrador de Tareas, la educación del usuario para evitar descargas maliciosas y el uso de gestores de contraseñas con autenticación multifactor (que hace casi inútil el robo de contraseñas simples).</p>
+                <h4>Contexto de Ciberseguridad</h4>
+                <p>Aunque el código es legítimo para monitorización de equipos propios (auditorías internas, pruebas de pentesting con autorización), el mismo script ejecutado de forma encubierta se convierte en una herramienta de spyware. Entender su mecánica permite a los administradores de sistemas detectar procesos sospechosos y bloquear el uso de librerías de captura de teclado en entornos críticos.</p>
             </div>
         </div>
     </div>
 </main>
 
 <footer>
-    <p>Proyecto académico de análisis de seguridad ofensiva y defensiva.</p>
+    <p>Proyecto académico de análisis técnico de sistemas y seguridad ofensiva.</p>
 </footer>
 
 </body>
