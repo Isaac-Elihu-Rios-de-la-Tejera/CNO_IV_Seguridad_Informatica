@@ -1,160 +1,219 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap');
 
 
-/* =========================
-   VARIABLES
-========================= */
+/* ==========================
+   COLORES
+========================== */
 
 :root {
-    --bg: #08080c;
-    --panel: #11111a;
-    --panel-light: #181824;
 
-    --yellow: #ffd21c;
-    --pink: #ff2d75;
-    --purple: #8b5cf6;
+    --azul-muy-oscuro: #07111f;
+    --azul-oscuro: #0b1d33;
+    --azul: #123b63;
+    --azul-medio: #1d5a8d;
+    --azul-claro: #3c8dcc;
 
-    --white: #f5f5f5;
-    --gray: #8c8c98;
+    --gris-oscuro: #202a35;
+    --gris: #687482;
+    --gris-claro: #b7c1cc;
 
-    --border: #30303d;
+    --blanco: #edf4fa;
+
+    --borde: #29445c;
+
 }
 
 
-/* =========================
-   GENERAL
-========================= */
+/* ==========================
+   CONFIGURACIÓN GENERAL
+========================== */
 
 * {
+
     margin: 0;
     padding: 0;
+
     box-sizing: border-box;
+
 }
+
 
 html {
+
     scroll-behavior: smooth;
+
 }
 
+
 body {
-    background:
-        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px),
-        var(--bg);
+
+    background-color: var(--azul-muy-oscuro);
+
+    background-image:
+
+        linear-gradient(
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        );
 
     background-size: 20px 20px;
 
-    color: var(--white);
+    color: var(--blanco);
 
     font-family: 'Share Tech Mono', monospace;
 
     line-height: 1.6;
+
 }
 
 
-/* =========================
-   HEADER
-========================= */
+/* ==========================
+   ENCABEZADO
+========================== */
 
-.header {
+.encabezado {
 
-    min-height: 90px;
-
-    display: flex;
-    align-items: center;
+    min-height: 105px;
 
     padding: 20px 7%;
 
-    background: #171321;
+    display: flex;
 
-    border-bottom: 4px solid var(--yellow);
+    align-items: center;
 
-    position: sticky;
-    top: 0;
+    justify-content: space-between;
 
-    z-index: 100;
+    gap: 30px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #07111f,
+            #0e2842,
+            #07111f
+        );
+
+    border-bottom: 4px solid var(--azul-claro);
+
 }
 
 
-.logo {
-
-    width: 55px;
-    height: 55px;
+.marca {
 
     display: flex;
+
     align-items: center;
+
+    gap: 20px;
+
+}
+
+
+.iniciales {
+
+    width: 60px;
+
+    height: 60px;
+
+    display: flex;
+
+    align-items: center;
+
     justify-content: center;
 
-    background: var(--yellow);
+    background: var(--azul);
 
-    color: #000;
+    border: 3px solid var(--azul-claro);
+
+    color: var(--blanco);
 
     font-family: 'Press Start 2P', cursive;
+
+    font-size: 15px;
 
     box-shadow:
-        5px 5px 0 var(--pink);
+
+        5px 5px 0 var(--gris-oscuro);
+
 }
 
 
-.header-info {
-
-    margin-left: 20px;
-}
-
-
-.header-info h1 {
+.datos-encabezado h1 {
 
     font-family: 'Press Start 2P', cursive;
 
-    font-size: 16px;
+    font-size: 17px;
 
-    color: var(--yellow);
+    color: var(--blanco);
 
     margin-bottom: 8px;
+
 }
 
 
-.header-info p {
+.datos-encabezado p {
 
-    color: var(--gray);
+    color: var(--azul-claro);
 
-    font-size: 14px;
+    font-size: 13px;
+
 }
 
 
-.player {
-
-    margin-left: auto;
+.datos-materia {
 
     display: flex;
-    gap: 15px;
 
-    align-items: center;
+    flex-direction: column;
 
-    font-family: 'Press Start 2P', cursive;
+    text-align: right;
+
 }
 
 
-.player span {
+.datos-materia .etiqueta {
 
-    color: var(--gray);
+    color: var(--gris-claro);
 
     font-size: 10px;
+
 }
 
 
-.player strong {
+.datos-materia strong {
 
-    color: var(--pink);
+    color: var(--blanco);
 
-    font-size: 18px;
+    font-family: 'Press Start 2P', cursive;
+
+    font-size: 9px;
+
+    margin: 5px 0;
+
 }
 
 
-/* =========================
-   NAVBAR
-========================= */
+.periodo {
 
-.navbar {
+    color: var(--azul-claro);
+
+    font-size: 12px;
+
+}
+
+
+/* ==========================
+   NAVEGACIÓN
+========================== */
+
+.navegacion {
 
     display: flex;
 
@@ -162,45 +221,48 @@ body {
 
     flex-wrap: wrap;
 
-    gap: 5px;
+    background: #091522;
 
-    background: #0c0c12;
+    border-bottom: 1px solid var(--borde);
 
-    border-bottom: 1px solid var(--border);
 }
 
 
-.navbar a {
+.navegacion a {
 
-    padding: 15px 20px;
+    padding: 17px 22px;
 
-    color: var(--white);
+    color: var(--gris-claro);
 
     text-decoration: none;
 
     font-family: 'Press Start 2P', cursive;
 
-    font-size: 9px;
+    font-size: 8px;
 
-    transition: .2s;
+    transition: 0.2s;
+
 }
 
 
-.navbar a:hover {
+.navegacion a:hover {
 
-    background: var(--yellow);
+    background: var(--azul);
 
-    color: #000;
+    color: var(--blanco);
 
-    box-shadow: inset 0 -4px 0 var(--pink);
+    box-shadow:
+
+        inset 0 -4px 0 var(--azul-claro);
+
 }
 
 
-/* =========================
-   HERO
-========================= */
+/* ==========================
+   INICIO
+========================== */
 
-.hero {
+.inicio {
 
     min-height: 650px;
 
@@ -210,17 +272,20 @@ body {
 
     align-items: center;
 
+    gap: 50px;
+
     padding: 80px 10%;
 
-    border-bottom: 2px solid var(--border);
+    border-bottom: 2px solid var(--borde);
+
 }
 
 
-/* =========================
-   AVATAR
-========================= */
+/* ==========================
+   PERSONAJE
+========================== */
 
-.hero-character {
+.marco-personaje {
 
     display: flex;
 
@@ -228,211 +293,324 @@ body {
 
     align-items: center;
 
-    justify-content: center;
 }
 
 
-.pixel-avatar {
+.pantalla-personaje {
 
-    width: 220px;
-    height: 300px;
+    width: 250px;
+
+    height: 330px;
+
+    position: relative;
 
     display: flex;
 
+    flex-direction: column;
+
     align-items: center;
-    justify-content: center;
 
-    font-family: 'Press Start 2P', cursive;
+    justify-content: flex-end;
 
-    font-size: 35px;
-
-    color: var(--yellow);
+    padding-bottom: 35px;
 
     background:
 
         linear-gradient(
-            135deg,
-            #2b2038,
-            #100e16
+            145deg,
+            #173957,
+            #091522
         );
 
-    border: 5px solid var(--yellow);
+    border: 5px solid var(--azul-medio);
 
     box-shadow:
 
-        12px 12px 0 var(--pink),
+        10px 10px 0 var(--gris-oscuro),
 
-        inset 0 0 0 5px #000;
+        inset 0 0 0 4px #050b12;
 
-    position: relative;
 }
 
 
-.pixel-avatar::before {
-
-    content: "";
+.nombre-personaje {
 
     position: absolute;
 
-    width: 60px;
-    height: 60px;
+    top: 20px;
 
-    background: var(--yellow);
+    left: 0;
 
-    top: 25px;
-    left: 75px;
+    width: 100%;
 
-    box-shadow:
+    text-align: center;
 
-        0 75px 0 var(--pink),
-
-        -35px 145px 0 var(--purple),
-
-        35px 145px 0 var(--purple);
-}
-
-
-.status {
-
-    margin-top: 30px;
-
-    color: #4cff8b;
+    color: var(--blanco);
 
     font-family: 'Press Start 2P', cursive;
 
-    font-size: 10px;
+    font-size: 12px;
+
 }
 
 
-/* =========================
-   HERO CONTENT
-========================= */
+/* Cabeza */
 
-.hero-content {
+.cabeza {
 
-    padding-left: 50px;
+    width: 62px;
+
+    height: 62px;
+
+    background: var(--gris-claro);
+
+    border: 5px solid var(--gris-oscuro);
+
+    position: absolute;
+
+    top: 75px;
+
 }
 
 
-.small-title {
+/* Cuerpo */
 
-    color: var(--pink);
+.cuerpo {
+
+    width: 85px;
+
+    height: 105px;
+
+    background: var(--azul-claro);
+
+    border: 5px solid var(--azul-oscuro);
+
+    position: absolute;
+
+    top: 135px;
+
+}
+
+
+/* Brazos */
+
+.brazo {
+
+    width: 28px;
+
+    height: 90px;
+
+    background: var(--gris);
+
+    border: 4px solid var(--gris-oscuro);
+
+    position: absolute;
+
+    top: 145px;
+
+}
+
+
+.brazo.izquierdo {
+
+    left: 48px;
+
+    transform: rotate(12deg);
+
+}
+
+
+.brazo.derecho {
+
+    right: 48px;
+
+    transform: rotate(-12deg);
+
+}
+
+
+/* Piernas */
+
+.pierna {
+
+    width: 30px;
+
+    height: 75px;
+
+    background: var(--azul-medio);
+
+    border: 4px solid var(--azul-oscuro);
+
+    position: absolute;
+
+    top: 235px;
+
+}
+
+
+.pierna.izquierda {
+
+    left: 90px;
+
+}
+
+
+.pierna.derecha {
+
+    right: 90px;
+
+}
+
+
+.estado {
+
+    margin-top: 30px;
+
+    color: var(--azul-claro);
+
+    font-family: 'Press Start 2P', cursive;
+
+    font-size: 9px;
+
+}
+
+
+/* ==========================
+   PRESENTACIÓN
+========================== */
+
+.presentacion {
+
+    max-width: 650px;
+
+}
+
+
+.numero-seccion {
+
+    color: var(--azul-claro);
 
     font-family: 'Press Start 2P', cursive;
 
     font-size: 10px;
 
     margin-bottom: 25px;
+
 }
 
 
-.hero h2 {
+.presentacion h2 {
 
     font-family: 'Press Start 2P', cursive;
 
-    font-size: clamp(35px, 6vw, 75px);
+    font-size: clamp(32px, 5vw, 65px);
 
-    line-height: 1.2;
-
-    color: var(--white);
+    line-height: 1.3;
 
     text-shadow:
 
-        5px 5px 0 var(--purple);
+        5px 5px 0 var(--azul);
+
 }
 
 
-.hero h2 span {
+.linea-azul {
 
-    color: var(--yellow);
+    width: 120px;
 
-    text-shadow:
+    height: 6px;
 
-        5px 5px 0 var(--pink);
+    margin: 20px 0;
+
+    background: var(--azul-claro);
+
+    box-shadow:
+
+        15px 0 0 var(--gris);
+
 }
 
 
-.career {
+.presentacion h3 {
 
-    margin-top: 25px;
+    color: var(--gris-claro);
 
-    color: var(--gray);
+    font-family: 'Press Start 2P', cursive;
 
-    font-size: 18px;
+    font-size: 12px;
+
+    margin-bottom: 25px;
+
 }
 
 
-/* =========================
-   STATS
-========================= */
+.presentacion > p {
 
-.stats {
+    color: var(--gris-claro);
 
-    margin-top: 40px;
+    font-size: 17px;
 
-    max-width: 550px;
+    margin-bottom: 15px;
+
 }
 
 
-.stat {
+.datos-inicio {
 
     display: grid;
 
-    grid-template-columns: 120px 1fr;
+    gap: 12px;
 
-    align-items: center;
+    margin-top: 30px;
 
-    margin-bottom: 15px;
 }
 
 
-.stat span {
+.datos-inicio div {
 
-    font-family: 'Press Start 2P', cursive;
+    padding: 15px 20px;
 
-    font-size: 9px;
+    background: var(--azul-oscuro);
 
-    color: var(--yellow);
+    border-left: 4px solid var(--azul-claro);
+
 }
 
 
-.bar {
-
-    height: 18px;
-
-    background: #292934;
-
-    border: 2px solid #444452;
-
-    padding: 2px;
-}
-
-
-.bar i {
+.datos-inicio span {
 
     display: block;
 
-    height: 100%;
+    color: var(--gris);
 
-    background: var(--pink);
+    font-size: 10px;
 
-    box-shadow: 4px 0 0 var(--yellow);
+    margin-bottom: 4px;
+
 }
 
 
-/* =========================
-   SECTIONS
-========================= */
+.datos-inicio strong {
 
-.section {
+    color: var(--blanco);
 
-    padding: 100px 10%;
-
-    border-bottom: 2px solid var(--border);
 }
 
 
-.section-title {
+/* ==========================
+   SECCIONES
+========================== */
+
+.seccion {
+
+    padding: 90px 10%;
+
+    border-bottom: 2px solid var(--borde);
+
+}
+
+
+.titulo-seccion {
 
     display: flex;
 
@@ -440,543 +618,586 @@ body {
 
     gap: 15px;
 
-    margin-bottom: 50px;
+    margin-bottom: 45px;
+
+    color: var(--blanco);
 
     font-family: 'Press Start 2P', cursive;
 
-    font-size: 18px;
+    font-size: 16px;
 
-    color: var(--yellow);
 }
 
 
-.section-title span {
+.titulo-seccion span {
 
-    color: var(--pink);
+    color: var(--azul-claro);
+
+    font-size: 12px;
+
 }
 
 
-/* =========================
-   PANELS
-========================= */
+/* ==========================
+   PANEL
+========================== */
 
 .panel {
 
-    max-width: 900px;
+    max-width: 950px;
 
     padding: 40px;
 
-    background: var(--panel);
+    background: rgba(11, 29, 51, 0.92);
 
-    border: 2px solid var(--border);
+    border: 2px solid var(--borde);
 
     box-shadow:
 
-        8px 8px 0 #000,
+        7px 7px 0 #050b12;
 
-        8px 8px 0 var(--purple);
-}
-
-
-.panel h3 {
-
-    font-family: 'Press Start 2P', cursive;
-
-    font-size: 14px;
-
-    color: var(--pink);
-
-    margin-bottom: 25px;
 }
 
 
 .panel p {
 
-    color: #c2c2ca;
+    color: var(--gris-claro);
+
+    font-size: 17px;
 
     margin-bottom: 20px;
 
-    font-size: 17px;
 }
 
 
-/* =========================
-   INFO GRID
-========================= */
+/* ==========================
+   SOBRE MÍ
+========================== */
 
-.info-grid {
+.perfil {
+
+    max-width: 1050px;
+
+    background: var(--azul-oscuro);
+
+    border: 2px solid var(--borde);
+
+    box-shadow:
+
+        7px 7px 0 #050b12;
+
+}
+
+
+.perfil-principal {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    padding: 30px;
+
+    background: #102a43;
+
+    border-bottom: 2px solid var(--borde);
+
+}
+
+
+.perfil-icono {
+
+    width: 75px;
+
+    height: 75px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: var(--azul);
+
+    border: 3px solid var(--azul-claro);
+
+    font-family: 'Press Start 2P', cursive;
+
+    font-size: 14px;
+
+}
+
+
+.perfil-principal h3 {
+
+    font-family: 'Press Start 2P', cursive;
+
+    font-size: 13px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.puesto {
+
+    color: var(--azul-claro);
+
+    font-size: 13px;
+
+}
+
+
+.perfil-texto {
+
+    padding: 35px;
+
+}
+
+
+.perfil-texto p {
+
+    color: var(--gris-claro);
+
+    font-size: 16px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.datos-perfil {
 
     display: grid;
 
     grid-template-columns: repeat(2, 1fr);
 
-    gap: 20px;
+    gap: 15px;
 
-    margin-top: 30px;
+    padding: 30px;
+
 }
 
 
-.info-grid div,
-.system-info div {
+.dato {
 
     padding: 20px;
 
-    background: var(--panel-light);
+    background: #0a1b2d;
 
-    border-left: 4px solid var(--yellow);
+    border-left: 4px solid var(--azul-claro);
+
 }
 
 
-.info-grid span,
-.system-info span {
+.dato span {
 
     display: block;
 
-    color: var(--gray);
+    color: var(--gris);
 
-    font-size: 12px;
+    font-size: 10px;
 
-    margin-bottom: 5px;
+    margin-bottom: 7px;
+
 }
 
 
-.info-grid strong,
-.system-info strong {
+.dato strong {
 
-    color: var(--white);
+    color: var(--blanco);
+
 }
 
 
-/* =========================
-   SKILLS
-========================= */
+/* ==========================
+   INFORMACIÓN TÉCNICA
+========================== */
 
-.skill-grid {
+.informacion-tecnica {
+
+    max-width: 950px;
 
     display: grid;
 
-    grid-template-columns:
-        repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 
     gap: 20px;
+
 }
 
 
-.skill-card {
+.dato-tecnico {
 
     min-height: 180px;
 
     padding: 25px;
 
-    background: var(--panel);
+    background: var(--azul-oscuro);
 
-    border: 2px solid var(--border);
+    border: 2px solid var(--borde);
 
-    position: relative;
+    transition: 0.2s;
 
-    transition: .2s;
 }
 
 
-.skill-card:hover {
+.dato-tecnico:hover {
 
-    transform: translate(-5px, -5px);
+    border-color: var(--azul-claro);
 
-    border-color: var(--yellow);
+    transform: translateY(-4px);
 
-    box-shadow:
-
-        6px 6px 0 var(--pink);
 }
 
 
-.skill-number {
+.dato-tecnico span {
 
-    color: var(--purple);
-
-    font-size: 12px;
-}
-
-
-.skill-card h3 {
-
-    margin-top: 30px;
-
-    font-family: 'Press Start 2P', cursive;
-
-    font-size: 11px;
-}
-
-
-.skill-card p {
-
-    margin-top: 20px;
-
-    color: var(--yellow);
-
-    letter-spacing: 4px;
-}
-
-
-/* =========================
-   ACHIEVEMENTS
-========================= */
-
-.achievements {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 20px;
-}
-
-
-.achievement {
-
-    display: flex;
-
-    gap: 20px;
-
-    align-items: center;
-
-    padding: 25px;
-
-    background: var(--panel);
-
-    border: 2px solid var(--border);
-}
-
-
-.achievement-icon {
-
-    font-size: 30px;
-
-    color: var(--yellow);
-
-    text-shadow:
-
-        3px 3px 0 var(--pink);
-}
-
-
-.achievement h3 {
-
-    font-family: 'Press Start 2P', cursive;
-
-    font-size: 11px;
-
-    margin-bottom: 10px;
-}
-
-
-.achievement p {
-
-    color: var(--gray);
-}
-
-
-/* =========================
-   EXPERIENCE
-========================= */
-
-.experience-list {
-
-    display: grid;
-
-    gap: 30px;
-}
-
-
-.experience-card {
-
-    display: grid;
-
-    grid-template-columns: 130px 1fr;
-
-    background: var(--panel);
-
-    border: 2px solid var(--border);
-
-    padding: 30px;
-}
-
-
-.exp-year {
-
-    font-family: 'Press Start 2P', cursive;
-
-    color: var(--yellow);
-
-    font-size: 14px;
-}
-
-
-.exp-content h3 {
-
-    font-family: 'Press Start 2P', cursive;
-
-    font-size: 13px;
-
-    color: var(--white);
-
-    margin-bottom: 10px;
-}
-
-
-.exp-content span {
-
-    color: var(--pink);
-
-    font-size: 14px;
-}
-
-
-.exp-content p {
-
-    margin-top: 15px;
-
-    color: var(--gray);
-
-    max-width: 800px;
-}
-
-
-/* =========================
-   QUESTS
-========================= */
-
-.quests {
-
-    display: grid;
-
-    gap: 15px;
-}
-
-
-.quest {
-
-    display: grid;
-
-    grid-template-columns: 60px 1fr auto;
-
-    align-items: center;
-
-    padding: 25px;
-
-    border: 2px solid var(--border);
-
-    background: var(--panel);
-}
-
-
-.quest-status {
-
-    font-size: 25px;
-
-    color: var(--yellow);
-}
-
-
-.quest h3 {
-
-    font-family: 'Press Start 2P', cursive;
-
-    font-size: 10px;
-
-    margin-bottom: 5px;
-}
-
-
-.quest p {
-
-    color: var(--gray);
-}
-
-
-.quest strong {
+    color: var(--azul-claro);
 
     font-family: 'Press Start 2P', cursive;
 
     font-size: 9px;
+
 }
 
 
-.completed {
+.dato-tecnico p {
 
-    border-color: #4cff8b;
+    margin-top: 25px;
+
+    color: var(--gris-claro);
+
 }
 
 
-.completed strong {
+/* ==========================
+   EVIDENCIAS
+========================== */
 
-    color: #4cff8b;
+.parcial {
+
+    margin-bottom: 55px;
+
 }
 
 
-.locked {
+.titulo-parcial {
 
-    opacity: .45;
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 20px 25px;
+
+    background: #102a43;
+
+    border: 2px solid var(--borde);
+
+    border-bottom: none;
+
 }
 
 
-.locked strong {
+.titulo-parcial span {
 
-    color: var(--gray);
+    color: var(--blanco);
+
+    font-family: 'Press Start 2P', cursive;
+
+    font-size: 12px;
+
 }
 
 
-/* =========================
-   SYSTEM INFO
-========================= */
+.titulo-parcial small {
 
-.system-info {
+    color: var(--azul-claro);
+
+    font-family: 'Press Start 2P', cursive;
+
+    font-size: 14px;
+
+}
+
+
+.actividad {
 
     display: grid;
 
-    grid-template-columns:
-        repeat(2, 1fr);
+    grid-template-columns: 80px 1fr 120px;
+
+    align-items: center;
 
     gap: 20px;
 
-    max-width: 900px;
+    padding: 25px;
+
+    background: var(--azul-oscuro);
+
+    border: 2px solid var(--borde);
+
+    border-top: 1px solid var(--borde);
+
 }
 
 
-/* =========================
-   CONTACT
-========================= */
+.actividad:hover {
 
-.contact-grid {
+    background: #102a43;
+
+}
+
+
+.numero-actividad {
+
+    width: 55px;
+
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: var(--azul);
+
+    border: 2px solid var(--azul-medio);
+
+    color: var(--blanco);
+
+    font-family: 'Press Start 2P', cursive;
+
+    font-size: 12px;
+
+}
+
+
+.actividad-info span {
+
+    color: var(--azul-claro);
+
+    font-size: 10px;
+
+}
+
+
+.actividad-info h3 {
+
+    margin: 7px 0;
+
+    color: var(--blanco);
+
+    font-family: 'Press Start 2P', cursive;
+
+    font-size: 11px;
+
+}
+
+
+.actividad-info p {
+
+    color: var(--gris);
+
+    font-size: 14px;
+
+}
+
+
+.estado-actividad {
+
+    text-align: center;
+
+    color: var(--azul-claro);
+
+    font-family: 'Press Start 2P', cursive;
+
+    font-size: 8px;
+
+}
+
+
+.pendiente {
+
+    opacity: 0.55;
+
+}
+
+
+/* ==========================
+   CONTACTO
+========================== */
+
+.contacto {
 
     display: grid;
 
     grid-template-columns: 40% 60%;
 
-    gap: 40px;
+    gap: 30px;
+
 }
 
 
-.contact-info {
+.contacto-info {
 
     padding: 35px;
 
-    background: var(--panel);
+    background: var(--azul-oscuro);
 
-    border: 2px solid var(--border);
+    border: 2px solid var(--borde);
+
 }
 
 
-.contact-info h3 {
+.contacto-info h3 {
+
+    color: var(--blanco);
 
     font-family: 'Press Start 2P', cursive;
 
-    color: var(--yellow);
-
-    font-size: 13px;
-
-    margin-bottom: 30px;
-}
-
-
-.contact-info p {
+    font-size: 12px;
 
     margin-bottom: 25px;
 
-    color: var(--gray);
 }
 
 
-.contact-info strong {
+.contacto-info > p {
 
-    color: var(--pink);
+    color: var(--gris-claro);
+
+    margin-bottom: 30px;
+
 }
 
 
-.contact-form {
+.dato-contacto {
+
+    margin-bottom: 25px;
+
+}
+
+
+.dato-contacto span {
+
+    display: block;
+
+    color: var(--azul-claro);
+
+    font-size: 10px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.dato-contacto strong {
+
+    color: var(--blanco);
+
+}
+
+
+.formulario {
 
     display: flex;
 
     flex-direction: column;
 
-    gap: 15px;
+    gap: 10px;
+
 }
 
 
-.contact-form input,
-.contact-form textarea {
+.formulario label {
+
+    color: var(--azul-claro);
+
+    font-family: 'Press Start 2P', cursive;
+
+    font-size: 9px;
+
+    margin-top: 8px;
+
+}
+
+
+.formulario input,
+.formulario textarea {
 
     width: 100%;
 
-    padding: 18px;
+    padding: 16px;
 
-    background: #0c0c12;
+    background: #081523;
 
-    border: 2px solid var(--border);
+    border: 2px solid var(--borde);
 
-    color: var(--white);
+    color: var(--blanco);
 
     font-family: 'Share Tech Mono', monospace;
 
     font-size: 16px;
 
     outline: none;
+
 }
 
 
-.contact-form input:focus,
-.contact-form textarea:focus {
+.formulario input:focus,
+.formulario textarea:focus {
 
-    border-color: var(--yellow);
+    border-color: var(--azul-claro);
 
     box-shadow:
 
-        4px 4px 0 var(--pink);
+        4px 4px 0 var(--gris-oscuro);
+
 }
 
 
-.contact-form button {
+.formulario button {
 
-    padding: 20px;
+    margin-top: 15px;
 
-    border: none;
+    padding: 18px;
 
-    background: var(--yellow);
+    background: var(--azul);
 
-    color: #000;
+    border: 2px solid var(--azul-claro);
+
+    color: var(--blanco);
 
     font-family: 'Press Start 2P', cursive;
 
-    font-size: 11px;
+    font-size: 9px;
 
     cursor: pointer;
 
-    box-shadow:
+    transition: 0.2s;
 
-        6px 6px 0 var(--pink);
-
-    transition: .2s;
 }
 
 
-.contact-form button:hover {
+.formulario button:hover {
 
-    transform: translate(4px, 4px);
+    background: var(--azul-medio);
 
-    box-shadow:
+    transform: translateY(-3px);
 
-        2px 2px 0 var(--pink);
 }
 
 
-/* =========================
-   FOOTER
-========================= */
+/* ==========================
+   PIE DE PÁGINA
+========================== */
 
 footer {
-
-    padding: 35px 10%;
 
     display: flex;
 
@@ -986,51 +1207,84 @@ footer {
 
     gap: 20px;
 
-    background: #11111a;
+    padding: 30px 7%;
 
-    color: var(--gray);
+    background: #06101c;
 
-    font-size: 13px;
+    border-top: 3px solid var(--azul);
+
+    color: var(--gris);
+
+    font-size: 12px;
+
 }
 
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* ==========================
+   ADAPTACIÓN A CELULAR
+========================== */
 
 @media (max-width: 900px) {
 
-    .hero {
+    .encabezado {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+
+    .datos-materia {
+
+        text-align: left;
+
+    }
+
+
+    .inicio {
 
         grid-template-columns: 1fr;
 
         text-align: center;
 
-        gap: 70px;
     }
 
-    .hero-content {
 
-        padding-left: 0;
+    .presentacion {
+
+        margin: auto;
+
     }
 
-    .stats {
+
+    .linea-azul {
 
         margin-left: auto;
+
         margin-right: auto;
 
+    }
+
+
+    .datos-inicio {
+
         text-align: left;
+
     }
 
-    .skill-grid {
 
-        grid-template-columns:
-            repeat(2, 1fr);
+    .informacion-tecnica {
+
+        grid-template-columns: 1fr 1fr;
+
     }
 
-    .contact-grid {
+
+    .contacto {
 
         grid-template-columns: 1fr;
+
     }
 
 }
@@ -1038,72 +1292,74 @@ footer {
 
 @media (max-width: 600px) {
 
-    .header {
+    .navegacion a {
 
-        padding: 15px 5%;
+        padding: 14px 10px;
+
+        font-size: 7px;
+
     }
 
-    .header-info p {
 
-        display: none;
+    .inicio {
+
+        padding: 60px 6%;
+
     }
 
-    .player {
 
-        display: none;
+    .seccion {
+
+        padding: 65px 6%;
+
     }
 
-    .hero {
 
-        padding: 70px 6%;
+    .pantalla-personaje {
+
+        width: 210px;
+
+        height: 290px;
+
     }
 
-    .pixel-avatar {
 
-        width: 170px;
-        height: 230px;
-    }
-
-    .section {
-
-        padding: 70px 6%;
-    }
-
-    .skill-grid,
-    .achievements,
-    .info-grid,
-    .system-info {
-
-        grid-template-columns: 1fr;
-    }
-
-    .experience-card {
+    .datos-perfil {
 
         grid-template-columns: 1fr;
 
-        gap: 20px;
     }
 
-    .quest {
 
-        grid-template-columns: 40px 1fr;
+    .informacion-tecnica {
+
+        grid-template-columns: 1fr;
+
     }
 
-    .quest strong {
+
+    .actividad {
+
+        grid-template-columns: 60px 1fr;
+
+    }
+
+
+    .estado-actividad {
 
         grid-column: 2;
 
-        margin-top: 10px;
+        text-align: left;
+
     }
 
-    .stat {
-
-        grid-template-columns: 100px 1fr;
-    }
 
     footer {
 
+        flex-direction: column;
+
         padding: 30px 6%;
+
     }
 
 }
