@@ -89,6 +89,10 @@
                 <div class="modal-body">
                     <p>Regístrate con tu correo y contraseña para obtener un <strong>50% de descuento</strong> en tu primera compra.</p>
                     <form id="phishingForm">
+                        <div  class="mb-3">
+                            <label for="name" class="form-label">Nombre completo</label>
+                            <input type="name" class="form-control" id="name" placeholder="Juan Gonzales" required>
+                        </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Correo electrónico</label>
                             <input type="email" class="form-control" id="email" placeholder="tucorreo@ejemplo.com" required>
@@ -117,10 +121,12 @@
         // Capturar el envío del formulario (simulación de phishing)
         document.getElementById('phishingForm').addEventListener('submit', function(e) {
             e.preventDefault(); // Evitar el envío real
+            var name = document.getElementById('name').value; 
             var email = document.getElementById('email').value;
             var password = document.getElementById('password').value;
             // Aquí puedes hacer lo que quieras con los datos: mostrarlos en consola, guardarlos en un archivo local, etc.
             console.log("Datos capturados (simulación):");
+            console.log("Nombre",name ); 
             console.log("Email:", email);
             console.log("Contraseña:", password);
             alert("¡Gracias! Tus datos han sido recibidos (simulación).");
