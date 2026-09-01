@@ -6,28 +6,33 @@
     <title>Actividad 04 - Una Página Demasiado Convincente</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Estilo adicional específico para el botón de regreso */
         .btn-home {
             display: inline-block;
-            background-color: var(--accent);
+            background-color: var(--accent, #38bdf8);
             color: #ffffff;
             padding: 10px 20px;
             text-decoration: none;
             border-radius: 4px;
             font-weight: bold;
             transition: background 0.3s;
-            margin-bottom: 20px;
         }
         .btn-home:hover {
-            background-color: var(--accent-hover);
+            background-color: var(--accent-hover, #0284c7);
+        }
+        .pdf-container {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #334155;
+            border-radius: 4px;
+            margin-top: 15px;
         }
         .img-placeholder {
             background-color: #334155;
-            color: var(--text-muted);
+            color: var(--text-muted, #94a3b8);
             padding: 20px;
             text-align: center;
             border-radius: 4px;
-            border: 1px dashed var(--accent);
+            border: 1px dashed var(--accent, #38bdf8);
             margin: 15px 0;
             font-style: italic;
         }
@@ -42,8 +47,15 @@
             text-align: left;
         }
         th {
-            background-color: var(--accent);
+            background-color: var(--accent, #38bdf8);
             color: white;
+        }
+        .nav-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
     </style>
 </head>
@@ -53,120 +65,135 @@
     <header>
         <div class="header-content">
             <div class="student-info">
-                <h1>ACTIVIDAD 04 - UNA PÁGINA DEMASIADO CONVINCENTE[cite: 2]</h1>
-                <h2>SEGURIDAD INFORMÁTICA[cite: 2]</h2>
-                <p>ISAAC ELIHU RIOS DE LA TEJERA[cite: 2]</p>
-                <p>UNIVERSIDAD POLITÉCNICA DE SAN LUIS POTOSÍ[cite: 2]</p>
+                <h1>ACTIVIDAD 04 - UNA PÁGINA DEMASIADO CONVINCENTE</h1>
+                <h2>SEGURIDAD INFORMÁTICA</h2>
+                <p>ISAAC ELIHU RIOS DE LA TEJERA</p>
+                <p>UNIVERSIDAD POLITÉCNICA DE SAN LUIS POTOSÍ</p>
             </div>
             <div class="course-info">
-                <p><strong>Fecha:</strong> 31 DE AGOSTO DE 2026[cite: 2]</p>
-                <p><strong>Profesor:</strong> Mtro. Servando López Contreras[cite: 2]</p>
+                <p><strong>Fecha:</strong> 31 DE AGOSTO DE 2026</p>
+                <p><strong>Profesor:</strong> Mtro. Servando López Contreras</p>
             </div>
         </div>
     </header>
 
     <main>
-        <!-- Botón de regreso al Inicio -->
-        <a href="index.html" class="btn-home">⬅ Regresar al Inicio</a>
+        <!-- APARTADO 1: Panel de Navegación -->
+        <section class="card nav-section">
+            <div>
+                <h3 style="margin: 0 0 5px 0;">Navegación del Portafolio</h3>
+                <p style="margin: 0; color: var(--text-muted, #94a3b8);">Haz clic en el botón para volver al menú principal de actividades.</p>
+            </div>
+            <a href="index.html" class="btn-home">⬅ Regresar a index.html</a>
+        </section>
+
+        <!-- APARTADO 2: Visor del Documento PDF Original -->
+        <section class="card">
+            <h2>Documento PDF Original</h2>
+            <p>A continuación se adjunta la versión oficial en formato PDF de esta práctica:</p>
+            <iframe class="pdf-container" src="ACTIVIDAD 04—UNA PÁGINA DEMASIADO CONVINCENTE-184642.pdf" title="PDF de la Actividad 04">
+                <p>Tu navegador no soporta la visualización integrada de archivos PDF. Puedes <a href="ACTIVIDAD 04—UNA PÁGINA DEMASIADO CONVINCENTE-184642.pdf" target="_blank">descargar el archivo PDF aquí</a>.</p>
+            </iframe>
+        </section>
 
         <!-- 2. TABLA DE ÍNDICE -->
         <section class="card">
-            <h2>2. TABLA DE ÍNDICE[cite: 2]</h2>
+            <h2>2. TABLA DE ÍNDICE</h2>
             <ul style="list-style-type: none; padding-left: 0;">
-                <li>3. OBJETIVO DE LA ACTIVIDAD[cite: 2]</li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;Objetivo general[cite: 2]</li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;Objetivos específicos[cite: 2]</li>
-                <li>4. DESCRIPCIÓN DEL ESCENARIO[cite: 2]</li>
-                <li>5. CONFIGURACIÓN DEL LABORATORIO[cite: 2]</li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;5.1. Máquinas virtuales[cite: 2]</li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;5.2. Comunicación entre las máquinas[cite: 2]</li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;5.3. Página web utilizada[cite: 2]</li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;5.4. Social-Engineer Toolkit[cite: 2]</li>
-                <li>6. EVIDENCIAS Y DESCRIPCIÓN DEL FUNCIONAMIENTO[cite: 2]</li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;6.1. Formulario de autenticación[cite: 2]</li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;6.2. Introducción de datos ficticios[cite: 2]</li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;6.3. Recepción de la información[cite: 2]</li>
-                <li>7. EXPLICACIÓN DEL FLUJO DE CAPTURA DE INFORMACIÓN[cite: 2]</li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;7.1. ¿Qué es un Credential Harvester?[cite: 2]</li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;7.2. Flujo realizado en el laboratorio[cite: 2]</li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;7.3. Indicadores que permitirían detectar una página fraudulenta[cite: 2]</li>
-                <li>8. CONTROLES DE SEGURIDAD PROPUESTOS[cite: 2]</li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;8.1. Capacitación de usuarios[cite: 2]</li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;8.2. Verificación de la dirección web[cite: 2]</li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;8.3. Autenticación multifactor[cite: 2]</li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;8.4. Contraseñas únicas y seguras[cite: 2]</li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;8.5. Actualización de sistemas y navegadores[cite: 2]</li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;8.6. Revisión periódica de cuentas[cite: 2]</li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;8.7. No confiar únicamente en la apariencia[cite: 2]</li>
-                <li>9. CONCLUSIÓN[cite: 2]</li>
-                <li>10. Referencias[cite: 2]</li>
+                <li>3. OBJETIVO DE LA ACTIVIDAD</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;Objetivo general</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;Objetivos específicos</li>
+                <li>4. DESCRIPCIÓN DEL ESCENARIO</li>
+                <li>5. CONFIGURACIÓN DEL LABORATORIO</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;5.1. Máquinas virtuales</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;5.2. Comunicación entre las máquinas</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;5.3. Página web utilizada</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;5.4. Social-Engineer Toolkit</li>
+                <li>6. EVIDENCIAS Y DESCRIPCIÓN DEL FUNCIONAMIENTO</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;6.1. Formulario de autenticación</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;6.2. Introducción de datos ficticios</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;6.3. Recepción de la información</li>
+                <li>7. EXPLICACIÓN DEL FLUJO DE CAPTURA DE INFORMACIÓN</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;7.1. ¿Qué es un Credential Harvester?</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;7.2. Flujo realizado en el laboratorio</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;7.3. Indicadores que permitirían detectar una página fraudulenta</li>
+                <li>8. CONTROLES DE SEGURIDAD PROPUESTOS</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;8.1. Capacitación de usuarios</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;8.2. Verificación de la dirección web</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;8.3. Autenticación multifactor</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;8.4. Contraseñas únicas y seguras</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;8.5. Actualización de sistemas y navegadores</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;8.6. Revisión periódica de cuentas</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;8.7. No confiar únicamente en la apariencia</li>
+                <li>9. CONCLUSIÓN</li>
+                <li>10. Referencias</li>
             </ul>
         </section>
 
         <!-- 3. OBJETIVO DE LA ACTIVIDAD -->
         <section class="card">
-            <h2>3. OBJETIVO DE LA ACTIVIDAD[cite: 2]</h2>
-            <h3>Objetivo general[cite: 2]</h3>
-            <p>Implementar y analizar, dentro de un entorno de laboratorio controlado, una simulación de ingeniería social utilizando Social-Engineer Toolkit (SET) y una página web ficticia diseñada específicamente para la práctica, con la finalidad de comprender el funcionamiento de una técnica de captura de información y reconocer los elementos que pueden permitir identificar un intento de phishing.[cite: 2]</p>
+            <h2>3. OBJETIVO DE LA ACTIVIDAD</h2>
+            <h3>Objetivo general</h3>
+            <p>Implementar y analizar, dentro de un entorno de laboratorio controlado, una simulación de ingeniería social utilizando Social-Engineer Toolkit (SET) y una página web ficticia diseñada específicamente para la práctica, con la finalidad de comprender el funcionamiento de una técnica de captura de información y reconocer los elementos que pueden permitir identificar un intento de phishing.</p>
             
-            <h3>Objetivos específicos[cite: 2]</h3>
+            <h3>Objetivos específicos</h3>
             <ul>
-                <li>Configurar un escenario básico de ingeniería social utilizando Social-Engineer Toolkit (SET).[cite: 2]</li>
-                <li>Implementar una página web ficticia mediante el módulo Credential Harvester.[cite: 2]</li>
-                <li>Analizar el proceso mediante el cual la información introducida en un formulario web es transmitida y registrada por un servidor.[cite: 2]</li>
-                <li>Identificar indicadores técnicos y visuales que permitan reconocer una página potencialmente fraudulenta.[cite: 2]</li>
-                <li>Proponer controles de seguridad orientados a prevenir o reducir el impacto de ataques de phishing.[cite: 2]</li>
+                <li>Configurar un escenario básico de ingeniería social utilizando Social-Engineer Toolkit (SET).</li>
+                <li>Implementar una página web ficticia mediante el módulo Credential Harvester.</li>
+                <li>Analizar el proceso mediante el cual la información introducida en un formulario web es transmitida y registrada por un servidor.</li>
+                <li>Identificar indicadores técnicos y visuales que permitan reconocer una página potencialmente fraudulenta.</li>
+                <li>Proponer controles de seguridad orientados a prevenir o reducir el impacto de ataques de phishing.</li>
             </ul>
         </section>
 
         <!-- 4. DESCRIPCIÓN DEL ESCENARIO -->
         <section class="card">
-            <h2>4. DESCRIPCIÓN DEL ESCENARIO[cite: 2]</h2>
-            <p>La actividad plantea un escenario en el que una organización recibe reportes de empleados relacionados con un supuesto mensaje de actualización de credenciales.[cite: 2]</p>
-            <p>El mensaje dirige a la persona usuaria hacia un portal que aparenta pertenecer a una organización legítima.[cite: 2] La página contiene elementos que buscan generar confianza, como un nombre institucional, campos de usuario y contraseña y un mensaje relacionado con la expiración de una sesión.[cite: 2] Sin embargo, el portal utilizado en la simulación no pertenece realmente a la organización.[cite: 2]</p>
-            <p>Para realizar la práctica se construyó una página web ficticia denominada ShopTrend, diseñada específicamente para el laboratorio.[cite: 2] La página contiene un portal de acceso con los elementos solicitados:[cite: 2]</p>
+            <h2>4. DESCRIPCIÓN DEL ESCENARIO</h2>
+            <p>La actividad plantea un escenario en el que una organización recibe reportes de empleados relacionados con un supuesto mensaje de actualización de credenciales.</p>
+            <p>El mensaje dirige a la persona usuaria hacia un portal que aparenta pertenecer a una organización legítima. La página contiene elementos que buscan generar confianza, como un nombre institucional, campos de usuario y contraseña y un mensaje relacionado con la expiración de una sesión. Sin embargo, el portal utilizado en la simulación no pertenece realmente a la organización.</p>
+            <p>Para realizar la práctica se construyó una página web ficticia denominada ShopTrend, diseñada específicamente para el laboratorio. La página contiene un portal de acceso con los elementos solicitados:</p>
             <ul>
-                <li>Nombre del sistema.[cite: 2]</li>
-                <li>Campo de usuario.[cite: 2]</li>
-                <li>Campo de contraseña.[cite: 2]</li>
-                <li>Botón de ingreso.[cite: 2]</li>
-                <li>Mensaje indicando que la sesión ha expirado.[cite: 2]</li>
+                <li>Nombre del sistema.</li>
+                <li>Campo de usuario.</li>
+                <li>Campo de contraseña.</li>
+                <li>Botón de ingreso.</li>
+                <li>Mensaje indicando que la sesión ha expirado.</li>
             </ul>
             
             <!-- [Imagen: Máquina virtual mostrando la configuración de red y la página web ShopTrend] -->
             <div class="img-placeholder">[Espacio reservado para la Imagen: Máquina virtual mostrando la configuración de red y la página web ShopTrend]</div>
             
-            <p>La actividad se desarrolló exclusivamente dentro de un entorno virtual controlado, utilizando una máquina con Kali Linux y otra con Windows 10.[cite: 2] No se utilizaron páginas pertenecientes a servicios reales ni credenciales personales.[cite: 2]</p>
+            <p>La actividad se desarrolló exclusivamente dentro de un entorno virtual controlado, utilizando una máquina con Kali Linux y otra con Windows 10. No se utilizaron páginas pertenecientes a servicios reales ni credenciales personales.</p>
         </section>
 
         <!-- 5. CONFIGURACIÓN DEL LABORATORIO -->
         <section class="card">
-            <h2>5. CONFIGURACIÓN DEL LABORATORIO[cite: 2]</h2>
+            <h2>5. CONFIGURACIÓN DEL LABORATORIO</h2>
             
-            <h3>5.1. Máquinas virtuales[cite: 2]</h3>
-            <p>Para realizar la actividad se utilizaron dos máquinas virtuales:[cite: 2]</p>
+            <h3>5.1. Máquinas virtuales</h3>
+            <p>Para realizar la actividad se utilizaron dos máquinas virtuales:</p>
             <table>
                 <thead>
                     <tr>
-                        <th>Máquina[cite: 2]</th>
-                        <th>Sistema operativo[cite: 2]</th>
-                        <th>Función[cite: 2]</th>
+                        <th>Máquina</th>
+                        <th>Sistema operativo</th>
+                        <th>Función</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Máquina 1[cite: 2]</td>
-                        <td>Kali Linux[cite: 2]</td>
-                        <td>Servidor local y ejecución de SET[cite: 2]</td>
+                        <td>Máquina 1</td>
+                        <td>Kali Linux</td>
+                        <td>Servidor local y ejecución de SET</td>
                     </tr>
                     <tr>
-                        <td>Máquina 2[cite: 2]</td>
-                        <td>Windows 10[cite: 2]</td>
-                        <td>Cliente utilizado para acceder a la página ficticia[cite: 2]</td>
+                        <td>Máquina 2</td>
+                        <td>Windows 10</td>
+                        <td>Cliente utilizado para acceder a la página ficticia</td>
                     </tr>
                 </tbody>
             </table>
-            <p>La separación entre ambas máquinas permitió realizar la simulación dentro de una red virtual controlada.[cite: 2]</p>
+            <p>La separación entre ambas máquinas permitió realizar la simulación dentro de una red virtual controlada.</p>
             
             <!-- [Imagen: Configuración de red Adaptador 1 Kali Linux en VirtualBox] -->
             <div class="img-placeholder">[Espacio reservado para la Imagen: Configuración de red Adaptador 1 Kali Linux en VirtualBox]</div>
@@ -177,161 +204,163 @@
             <!-- [Imagen: Pantalla general de VirtualBox mostrando los adaptadores de red] -->
             <div class="img-placeholder">[Espacio reservado para la Imagen: Pantalla general de VirtualBox mostrando los adaptadores de red]</div>
             
-            <p><strong>Descripción:</strong> En esta evidencia se muestra la configuración de red de la máquina Kali Linux, utilizada como equipo servidor dentro del laboratorio.[cite: 2]</p>
+            <p><strong>Descripción:</strong> En esta evidencia se muestra la configuración de red de la máquina Kali Linux, utilizada como equipo servidor dentro del laboratorio.</p>
 
-            <h3>5.2. Comunicación entre las máquinas[cite: 2]</h3>
-            <p>Se verificó la comunicación entre Kali Linux y Windows 10 mediante el comando ping.[cite: 2] La prueba permitió comprobar que ambas máquinas podían comunicarse correctamente dentro de la red virtual antes de realizar la simulación.[cite: 2]</p>
+            <h3>5.2. Comunicación entre las máquinas</h3>
+            <p>Se verificó la comunicación entre Kali Linux y Windows 10 mediante el comando ping. La prueba permitió comprobar que ambas máquinas podían comunicarse correctamente dentro de la red virtual antes de realizar la simulación.</p>
             
             <!-- [Imagen: Terminal de Windows mostrando resultados exitosos del comando ping] -->
             <div class="img-placeholder">[Espacio reservado para la Imagen: Terminal de Windows mostrando resultados exitosos del comando ping]</div>
             
-            <p><strong>Descripción:</strong> La captura muestra las respuestas obtenidas al realizar una prueba de conectividad entre las máquinas virtuales, confirmando que existe comunicación dentro del entorno de laboratorio.[cite: 2]</p>
+            <p><strong>Descripción:</strong> La captura muestra las respuestas obtenidas al realizar una prueba de conectividad entre las máquinas virtuales, confirmando que existe comunicación dentro del entorno de laboratorio.</p>
 
-            <h3>5.3. Página web utilizada[cite: 2]</h3>
-            <p>Se desarrolló una página web ficticia denominada Shop Trend.[cite: 2] La página fue diseñada específicamente para la práctica y contiene una sección de inicio de sesión simulada.[cite: 2] El formulario contiene:[cite: 2]</p>
+            <h3>5.3. Página web utilizada</h3>
+            <p>Se desarrolló una página web ficticia denominada Shop Trend. La página fue diseñada específicamente para la práctica y contiene una sección de inicio de sesión simulada. El formulario contiene:</p>
             <ul>
-                <li>Usuario.[cite: 2]</li>
-                <li>Contraseña.[cite: 2]</li>
-                <li>Botón de ingreso.[cite: 2]</li>
-                <li>Mensaje de expiración de sesión.[cite: 2]</li>
+                <li>Usuario.</li>
+                <li>Contraseña.</li>
+                <li>Botón de ingreso.</li>
+                <li>Mensaje de expiración de sesión.</li>
             </ul>
-            <p>La página fue posteriormente utilizada de manera local dentro del laboratorio.[cite: 2]</p>
+            <p>La página fue posteriormente utilizada de manera local dentro del laboratorio.</p>
             
             <!-- [Imagen: Interfaz de la página web ficticia Shop Trend mostrando su inicio de sesión] -->
             <div class="img-placeholder">[Espacio reservado para la Imagen: Interfaz de la página web ficticia Shop Trend mostrando su inicio de sesión]</div>
             
-            <p><strong>Descripción:</strong> La evidencia muestra la página ficticia utilizada para realizar la simulación, accesible desde la máquina Windows 10 mediante el servidor local ejecutado en Kali Linux.[cite: 2]</p>
+            <p><strong>Descripción:</strong> La evidencia muestra la página ficticia utilizada para realizar la simulación, accesible desde la máquina Windows 10 mediante el servidor local ejecutado en Kali Linux.</p>
 
-            <h3>5.4. Social-Engineer Toolkit[cite: 2]</h3>
-            <p>En Kali Linux se inició Social-Engineer Toolkit (SET) y se accedió al apartado correspondiente a los ataques mediante sitios web.[cite: 2]</p>
-            <p>Posteriormente se seleccionó: Website Attack Vectors → Credential Harvester Attack Method Custom Import[cite: 2]</p>
-            <p>La opción Custom Import permitió utilizar la página web desarrollada específicamente para el laboratorio.[cite: 2]</p>
+            <h3>5.4. Social-Engineer Toolkit</h3>
+            <p>En Kali Linux se inició Social-Engineer Toolkit (SET) y se accedió al apartado correspondiente a los ataques mediante sitios web.</p>
+            <p>Posteriormente se seleccionó: Website Attack Vectors → Credential Harvester Attack Method → Custom Import</p>
+            <p>La opción Custom Import permitió utilizar la página web desarrollada específicamente para el laboratorio.</p>
             
             <!-- [Imagen: Terminal de Kali Linux ejecutando Social-Engineer Toolkit] -->
             <div class="img-placeholder">[Espacio reservado para la Imagen: Terminal de Kali Linux ejecutando Social-Engineer Toolkit]</div>
             
-            <p><strong>Descripción:</strong> La captura muestra la configuración de SET utilizada para implementar la página ficticia dentro del laboratorio.[cite: 2]</p>
+            <p><strong>Descripción:</strong> La captura muestra la configuración de SET utilizada para implementar la página ficticia dentro del laboratorio.</p>
         </section>
 
         <!-- 6. EVIDENCIAS Y DESCRIPCIÓN DEL FUNCIONAMIENTO -->
         <section class="card">
-            <h2>6. EVIDENCIAS Y DESCRIPCIÓN DEL FUNCIONAMIENTO[cite: 2]</h2>
-            <p>Una vez configurado SET, se utilizó el navegador de Windows 10 para acceder al servidor local donde se encontraba disponible la página ficticia.[cite: 2]</p>
-            <p>Al ingresar al sitio se mostró la interfaz de Shop Trend y posteriormente el formulario de autenticación.[cite: 2]</p>
+            <h2>6. EVIDENCIAS Y DESCRIPCIÓN DEL FUNCIONAMIENTO</h2>
+            <p>Una vez configurado SET, se utilizó el navegador de Windows 10 para acceder al servidor local donde se encontraba disponible la página ficticia.</p>
+            <p>Al ingresar al sitio se mostró la interfaz de Shop Trend y posteriormente el formulario de autenticación.</p>
             
             <!-- [Imagen: Navegador de Windows mostrando el formulario de autenticación falso de ShopTrend] -->
             <div class="img-placeholder">[Espacio reservado para la Imagen: Navegador de Windows mostrando el formulario de autenticación falso de ShopTrend]</div>
             
-            <p><strong>Descripción:</strong> Se observa la página ficticia ejecutándose desde el entorno local del laboratorio y siendo accesible desde la máquina Windows 10.[cite: 2]</p>
+            <p><strong>Descripción:</strong> Se observa la página ficticia ejecutándose desde el entorno local del laboratorio y siendo accesible desde la máquina Windows 10.</p>
             
-            <h3>6.1. Formulario de autenticación[cite: 2]</h3>
-            <p>El formulario utilizado durante la práctica simuló un portal de inicio de sesión.[cite: 2]</p>
-            <p>La interfaz presentó el mensaje: "Su sesión ha expirado. Por favor, ingrese sus credenciales nuevamente para continuar."[cite: 2]</p>
-            <p>Este elemento forma parte del escenario solicitado por la actividad, cuyo propósito es representar una situación capaz de generar confianza y urgencia en una persona usuaria.[cite: 2]</p>
+            <h3>6.1. Formulario de autenticación</h3>
+            <p>El formulario utilizado durante la práctica simuló un portal de inicio de sesión.</p>
+            <p>La interfaz presentó el mensaje: "Su sesión ha expirado. Por favor, ingrese sus credenciales nuevamente para continuar."</p>
+            <p>Este elemento forma parte del escenario solicitado por la actividad, cuyo propósito es representar una situación capaz de generar confianza y urgencia en una persona usuaria.</p>
             
             <!-- [Imagen: Vista cercana del formulario de autenticación solicitando usuario y contraseña] -->
             <div class="img-placeholder">[Espacio reservado para la Imagen: Vista cercana del formulario de autenticación solicitando usuario y contraseña]</div>
             
-            <p><strong>Descripción:</strong> La captura muestra el formulario utilizado durante la simulación, compuesto por los campos de usuario y contraseña y el botón de ingreso.[cite: 2]</p>
+            <p><strong>Descripción:</strong> La captura muestra el formulario utilizado durante la simulación, compuesto por los campos de usuario y contraseña y el botón de ingreso.</p>
             
-            <h3>6.2. Introducción de datos ficticios[cite: 2]</h3>
-            <p>Para realizar la prueba se utilizaron exclusivamente datos ficticios creados para el laboratorio.[cite: 2]</p>
-            <p>Ejemplo:[cite: 2]<br>
-            Usuario:alumno_lab[cite: 2]<br>
-            Contraseña: Prueba123![cite: 2]</p>
-            <p>No se utilizaron credenciales personales ni información perteneciente a terceros.[cite: 2]</p>
+            <h3>6.2. Introducción de datos ficticios</h3>
+            <p>Para realizar la prueba se utilizaron exclusivamente datos ficticios creados para el laboratorio.</p>
+            <p>Ejemplo:<br>
+            Usuario: alumno_lab<br>
+            Contraseña: Prueba123!</p>
+            <p>No se utilizaron credenciales personales ni información perteneciente a terceros.</p>
             
             <!-- [Imagen: Formulario llenado con los datos ficticios] -->
             <div class="img-placeholder">[Espacio reservado para la Imagen: Formulario llenado con los datos ficticios]</div>
             
-            <p><strong>Descripción:</strong> La evidencia muestra los datos de prueba introducidos en el formulario antes de realizar el envío.[cite: 2]</p>
+            <p><strong>Descripción:</strong> La evidencia muestra los datos de prueba introducidos en el formulario antes de realizar el envío.</p>
             
-            <h3>6.3. Recepción de la información[cite: 2]</h3>
-            <p>Después de enviar el formulario, la información introducida fue recibida y mostrada en la terminal de Kali Linux mediante el funcionamiento de Credential Harvester.[cite: 2]</p>
-            <p>Esto permitió comprobar de manera práctica que la información introducida en un formulario puede ser recibida por un servidor cuando la persona usuaria interactúa con una página diseñada para este propósito.[cite: 2]</p>
+            <h3>6.3. Recepción de la información</h3>
+            <p>Después de enviar el formulario, la información introducida fue recibida y mostrada en la terminal de Kali Linux mediante el funcionamiento de Credential Harvester.</p>
+            <p>Esto permitió comprobar de manera práctica que la información introducida en un formulario puede ser recibida por un servidor cuando la persona usuaria interactúa con una página diseñada para este propósito.</p>
             
             <!-- [Imagen: Terminal de Kali Linux mostrando las credenciales interceptadas] -->
             <div class="img-placeholder">[Espacio reservado para la Imagen: Terminal de Kali Linux mostrando las credenciales interceptadas]</div>
             
-            <p><strong>Descripción:</strong> La captura demuestra el resultado de la simulación y permite observar en Kali Linux la información introducida mediante el formulario de prueba.[cite: 2]</p>
+            <p><strong>Descripción:</strong> La captura demuestra el resultado de la simulación y permite observar en Kali Linux la información introducida mediante el formulario de prueba.</p>
         </section>
 
         <!-- 7. EXPLICACIÓN DEL FLUJO DE CAPTURA DE INFORMACIÓN -->
         <section class="card">
-            <h2>7. EXPLICACIÓN DEL FLUJO DE CAPTURA DE INFORMACIÓN[cite: 2]</h2>
+            <h2>7. EXPLICACIÓN DEL FLUJO DE CAPTURA DE INFORMACIÓN</h2>
             
-            <h3>7.1. ¿Qué es un Credential Harvester?[cite: 2]</h3>
-            <p>Un Credential Harvester es una técnica utilizada para capturar información introducida por una persona usuaria en un formulario web.[cite: 2] Dentro de una campaña de phishing, puede utilizarse como mecanismo para obtener información de autenticación cuando una persona introduce sus datos en una página fraudulenta.[cite: 2] Su función dentro de una campaña de phishing consiste en aprovechar una página que aparenta ser legítima para inducir a la persona usuaria a proporcionar información, generalmente mediante campos de autenticación.[cite: 2]</p>
-            <p>La actividad busca precisamente analizar esta situación mediante una página ficticia y un entorno controlado.[cite: 2]</p>
+            <h3>7.1. ¿Qué es un Credential Harvester?</h3>
+            <p>Un Credential Harvester es una técnica utilizada para capturar información introducida por una persona usuaria en un formulario web. Dentro de una campaña de phishing, puede utilizarse como mecanismo para obtener información de autenticación cuando una persona introduce sus datos en una página fraudulenta. Su función dentro de una campaña de phishing consiste en aprovechar una página que aparenta ser legítima para inducir a la persona usuaria a proporcionar información, generalmente mediante campos de autenticación.</p>
+            <p>La actividad busca precisamente analizar esta situación mediante una página ficticia y un entorno controlado.</p>
             
-            <h3>7.2. Flujo realizado en el laboratorio[cite: 2]</h3>
-            <p>El flujo de la práctica fue el siguiente:[cite: 2]</p>
+            <h3>7.2. Flujo realizado en el laboratorio</h3>
+            <p>El flujo de la práctica fue el siguiente:</p>
             <ul>
-                <li>En primer lugar, Windows 10 accedió mediante el navegador a la dirección correspondiente al servidor local de Kali Linux.[cite: 2]</li>
-                <li>Posteriormente se mostró la página web ficticia desarrollada para la actividad. La interfaz contenía el formulario de autenticación.[cite: 2]</li>
-                <li>Al introducir los datos de prueba y enviar el formulario, se generó una solicitud hacia el servidor que ejecutaba SET.[cite: 2]</li>
-                <li>Credential Harvester procesó dicha interacción y permitió observar la información recibida en la terminal de Kali Linux.[cite: 2]</li>
+                <li>En primer lugar, Windows 10 accedió mediante el navegador a la dirección correspondiente al servidor local de Kali Linux.</li>
+                <li>Posteriormente se mostró la página web ficticia desarrollada para la actividad. La interfaz contenía el formulario de autenticación.</li>
+                <li>Al introducir los datos de prueba y enviar el formulario, se generó una solicitud hacia el servidor que ejecutaba SET.</li>
+                <li>Credential Harvester procesó dicha interacción y permitió observar la información recibida en la terminal de Kali Linux.</li>
             </ul>
-            <p>La práctica permitió comprobar que el elemento más importante del proceso no es únicamente la apariencia de la página, sino también el comportamiento que ocurre detrás del formulario.[cite: 2]</p>
+            <p>La práctica permitió comprobar que el elemento más importante del proceso no es únicamente la apariencia de la página, sino también el comportamiento que ocurre detrás del formulario.</p>
 
-            <h3>7.3. Indicadores que permitirían detectar una página fraudulenta[cite: 2]</h3>
-            <p>A partir de la simulación se pueden identificar diferentes indicadores que una persona usuaria debería revisar antes de proporcionar información.[cite: 2]</p>
+            <h3>7.3. Indicadores que permitirían detectar una página fraudulenta</h3>
+            <p>A partir de la simulación se pueden identificar diferentes indicadores que una persona usuaria debería revisar antes de proporcionar información.</p>
             <ul>
-                <li><strong>Dirección del sitio:</strong> La dirección del navegador debe revisarse cuidadosamente.[cite: 2] Una página visualmente idéntica a una organización legítima puede utilizar una dirección diferente.[cite: 2]</li>
-                <li><strong>Solicitudes inesperadas:</strong> Un mensaje que indique que una sesión expiró y solicite volver a ingresar las credenciales puede utilizarse para generar urgencia.[cite: 2]</li>
-                <li><strong>Certificado y conexión:</strong> El uso de HTTPS es importante para proteger la comunicación, pero por sí solo no garantiza que un sitio sea legítimo.[cite: 2] El material de la asignatura señala específicamente que HTTPS no autentica que un sitio sea oficial.[cite: 2]</li>
-                <li><strong>Apariencia visual:</strong> Elementos como logotipos, colores, formularios y mensajes pueden utilizarse para generar confianza.[cite: 2] Por ello, la apariencia de un sitio no debe considerarse suficiente para comprobar su autenticidad.[cite: 2]</li>
-                <li><strong>Solicitud de credenciales:</strong> Una solicitud inesperada de usuario y contraseña debe considerarse un indicador de riesgo y debe verificarse antes de introducir información.[cite: 2]</li>
+                <li><strong>Dirección del sitio:</strong> La dirección del navegador debe revisarse cuidadosamente. Una página visualmente idéntica a una organización legítima puede utilizar una dirección diferente.</li>
+                <li><strong>Solicitudes inesperadas:</strong> Un mensaje que indique que una sesión expiró y solicite volver a ingresar las credenciales puede utilizarse para generar urgencia.</li>
+                <li><strong>Certificado y conexión:</strong> El uso de HTTPS es importante para proteger la comunicación, pero por sí solo no garantiza que un sitio sea legítimo. El material de la asignatura señala específicamente que HTTPS no autentica que un sitio sea oficial.</li>
+                <li><strong>Apariencia visual:</strong> Elementos como logotipos, colores, formularios y mensajes pueden utilizarse para generar confianza. Por ello, la apariencia de un sitio no debe considerarse suficiente para comprobar su autenticidad.</li>
+                <li><strong>Solicitud de credenciales:</strong> Una solicitud inesperada de usuario y contraseña debe considerarse un indicador de riesgo y debe verificarse antes de introducir información.</li>
             </ul>
         </section>
 
         <!-- 8. CONTROLES DE SEGURIDAD PROPUESTOS -->
         <section class="card">
-            <h2>8. CONTROLES DE SEGURIDAD PROPUESTOS[cite: 2]</h2>
-            <p>La simulación permite observar cómo una persona usuaria puede ser engañada mediante una página que visualmente parece legítima.[cite: 2] Por ello, es necesario combinar controles técnicos con medidas de concientización.[cite: 2]</p>
+            <h2>8. CONTROLES DE SEGURIDAD PROPUESTOS</h2>
+            <p>La simulación permite observar cómo una persona usuaria puede ser engañada mediante una página que visualmente parece legítima. Por ello, es necesario combinar controles técnicos con medidas de concientización.</p>
             
-            <h3>8.1. Capacitación de usuarios[cite: 2]</h3>
-            <p>Las organizaciones deben capacitar periódicamente a sus usuarios para reconocer mensajes sospechosos, páginas falsas y solicitudes inesperadas de credenciales.[cite: 2] La capacitación debe incluir ejemplos prácticos de phishing e ingeniería social.[cite: 2]</p>
+            <h3>8.1. Capacitación de usuarios</h3>
+            <p>Las organizaciones deben capacitar periódicamente a sus usuarios para reconocer mensajes sospechosos, páginas falsas y solicitudes inesperadas de credenciales. La capacitación debe incluir ejemplos prácticos de phishing e ingeniería social.</p>
             
-            <h3>8.2. Verificación de la dirección web[cite: 2]</h3>
-            <p>Antes de introducir información confidencial, la persona usuaria debe verificar cuidadosamente la dirección del sitio.[cite: 2] Una recomendación presentada en el material de la asignatura consiste en acceder directamente al espacio personal desde la URL conocida, en lugar de hacerlo mediante enlaces recibidos inesperadamente.[cite: 2]</p>
+            <h3>8.2. Verificación de la dirección web</h3>
+            <p>Antes de introducir información confidencial, la persona usuaria debe verificar cuidadosamente la dirección del sitio. Una recomendación presentada en el material de la asignatura consiste en acceder directamente al espacio personal desde la URL conocida, en lugar de hacerlo mediante enlaces recibidos inesperadamente.</p>
             
-            <h3>8.3. Autenticación multifactor[cite: 2]</h3>
-            <p>La autenticación multifactor agrega una capa adicional de protección.[cite: 2] De esta manera, incluso si una contraseña llegara a ser obtenida mediante phishing, el atacante tendría una dificultad adicional para acceder a la cuenta.[cite: 2]</p>
+            <h3>8.3. Autenticación multifactor</h3>
+            <p>La autenticación multifactor agrega una capa adicional de protección. De esta manera, incluso si una contraseña llegara a ser obtenida mediante phishing, el atacante tendría una dificultad adicional para acceder a la cuenta.</p>
             
-            <h3>8.4. Contraseñas únicas y seguras[cite: 2]</h3>
-            <p>Las personas usuarias deben evitar reutilizar la misma contraseña en diferentes servicios.[cite: 2] El material de la asignatura recomienda utilizar contraseñas fuertes y diversificadas y evitar utilizar la misma contraseña para servicios diferentes.[cite: 2]</p>
+            <h3>8.4. Contraseñas únicas y seguras</h3>
+            <p>Las personas usuarias deben evitar reutilizar la misma contraseña en diferentes servicios. El material de la asignatura recomienda utilizar contraseñas fuertes y diversificadas y evitar utilizar la misma contraseña para servicios diferentes.</p>
             
-            <h3>8.5. Actualización de sistemas y navegadores[cite: 2]</h3>
-            <p>Los sistemas operativos y navegadores deben mantenerse actualizados para reducir la exposición a vulnerabilidades conocidas.[cite: 2] El material de la asignatura también recomienda mantener actualizados tanto el sistema operativo como el navegador web.[cite: 2]</p>
+            <h3>8.5. Actualización de sistemas y navegadores</h3>
+            <p>Los sistemas operativos y navegadores deben mantenerse actualizados para reducir la exposición a vulnerabilidades conocidas. El material de la asignatura también recomienda mantener actualizados tanto el sistema operativo como el navegador web.</p>
             
-            <h3>8.6. Revisión periódica de cuentas[cite: 2]</h3>
-            <p>Es recomendable revisar periódicamente las cuentas para detectar actividades inusuales o accesos que no hayan sido realizados por la persona propietaria.[cite: 2] Esta recomendación también forma parte del material de la asignatura.[cite: 2]</p>
+            <h3>8.6. Revisión periódica de cuentas</h3>
+            <p>Es recomendable revisar periódicamente las cuentas para detectar actividades inusuales o accesos que no hayan sido realizados por la persona propietaria. Esta recomendación también forma parte del material de la asignatura.</p>
             
-            <h3>8.7. No confiar únicamente en la apariencia[cite: 2]</h3>
-            <p>La simulación demuestra que una página puede presentar una apariencia convincente y aun así representar un riesgo.[cite: 2] Por ello, la revisión debe considerar elementos técnicos, dirección web, contexto del mensaje y comportamiento de la página, y no únicamente su diseño visual.[cite: 2]</p>
+            <h3>8.7. No confiar únicamente en la apariencia</h3>
+            <p>La simulación demuestra que una página puede presentar una apariencia convincente y aun así representar un riesgo. Por ello, la revisión debe considerar elementos técnicos, dirección web, contexto del mensaje y comportamiento de la página, y no únicamente su diseño visual.</p>
         </section>
 
         <!-- 9. CONCLUSIÓN -->
         <section class="card">
-            <h2>9. CONCLUSIÓN[cite: 2]</h2>
-            <p>La realización de esta actividad permitió comprender de manera práctica cómo funciona una simulación de ingeniería social mediante Social-Engineer Toolkit (SET) y una página web ficticia.[cite: 2] A través del laboratorio fue posible observar cómo la interacción con un formulario aparentemente legítimo puede provocar que la información introducida por el usuario sea recibida por el servidor.[cite: 2]</p>
-            <p>Además, la práctica permitió identificar algunos de los riesgos asociados al phishing, especialmente cuando una página utiliza elementos visuales y mensajes que buscan generar confianza o urgencia en el usuario.[cite: 2] Por ello, es importante verificar la dirección del sitio antes de introducir información y no confiar únicamente en la apariencia de una página.[cite: 2]</p>
-            <p>Finalmente, se pudo comprobar la importancia de combinar medidas técnicas, como la autenticación multifactor y el uso de contraseñas seguras, con la capacitación de los usuarios para reconocer posibles intentos de phishing.[cite: 2] De esta manera, es posible reducir la probabilidad de que este tipo de ataques tenga éxito.[cite: 2]</p>
+            <h2>9. CONCLUSIÓN</h2>
+            <p>La realización de esta actividad permitió comprender de manera práctica cómo funciona una simulación de ingeniería social mediante Social-Engineer Toolkit (SET) y una página web ficticia. A través del laboratorio fue posible observar cómo la interacción con un formulario aparentemente legítimo puede provocar que la información introducida por el usuario sea recibida por el servidor.</p>
+            <p>Además, la práctica permitió identificar algunos de los riesgos asociados al phishing, especialmente cuando una página utiliza elementos visuales y mensajes que buscan generar confianza o urgencia en el usuario. Por ello, es importante verificar la dirección del sitio antes de introducir información y no confiar únicamente en la apariencia de una página.</p>
+            <p>Finalmente, se pudo comprobar la importancia de combinar medidas técnicas, como la autenticación multifactor y el uso de contraseñas seguras, con la capacitación de los usuarios para reconocer posibles intentos de phishing. De esta manera, es posible reducir la probabilidad de que este tipo de ataques tenga éxito.</p>
         </section>
 
         <!-- 10. Referencias -->
         <section class="card">
-            <h2>10. Referencias[cite: 2]</h2>
+            <h2>10. Referencias</h2>
             <ul>
-                <li>Kali. (2026 de 08 de 25). Obtenido de Kali: https://www-kali-org.translate.goog/tools/set/?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc[cite: 2]</li>
-                <li>Microsoft. (s.f.). Descarga Windows 10. Obtenido de Descarga Windows 10: https://www.microsoft.com/es-mx/software-download/windows10[cite: 2]</li>
-                <li>Potter, S. K. (2026 de 05 de 19). Configuración de máquinas virtuales: Uso de laC para implementar máquinas virtuales consistentes y reducir la complejidad. Obtenido de Configuración de máquinas virtuales: Uso de laC para implementar máquinas virtuales consistentes y reducir la complejidad.: https://www-puppet-com.translate.goog/blog/vm-configuration?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc[cite: 2]</li>
+                <li>Kali. (2026 de 08 de 25). Obtenido de Kali: https://www-kali-org.translate.goog/tools/set/?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc</li>
+                <li>Microsoft. (s.f.). Descarga Windows 10. Obtenido de Descarga Windows 10: https://www.microsoft.com/es-mx/software-download/windows10</li>
+                <li>Potter, S. K. (2026 de 05 de 19). Configuración de máquinas virtuales: Uso de laC para implementar máquinas virtuales consistentes y reducir la complejidad. Obtenido de Configuración de máquinas virtuales: Uso de laC para implementar máquinas virtuales consistentes y reducir la complejidad.: https://www-puppet-com.translate.goog/blog/vm-configuration?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc</li>
             </ul>
         </section>
 
-        <!-- Botón de regreso al Inicio (Pie de página) -->
-        <a href="index.html" class="btn-home">⬅ Regresar al Inicio</a>
+        <!-- Botón de regreso al Inicio al final de la página -->
+        <section style="text-align: center; margin-top: 20px;">
+            <a href="index.html" class="btn-home">⬅ Regresar al Inicio (index.html)</a>
+        </section>
     </main>
 
 </body>
