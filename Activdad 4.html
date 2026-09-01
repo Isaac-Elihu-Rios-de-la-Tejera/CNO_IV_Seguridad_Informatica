@@ -6,6 +6,15 @@
     <title>Actividad 04 - Una Página Demasiado Convincente</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        /* Ajuste de imágenes responsivas */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+            margin: 15px auto;
+        }
+
         .btn-home {
             display: inline-block;
             background-color: var(--accent, #38bdf8);
@@ -160,7 +169,6 @@
                 <li>Mensaje indicando que la sesión ha expirado.</li>
             </ul>
             
-            <!-- [Imagen: Máquina virtual mostrando la configuración de red y la página web ShopTrend] -->
             <div class="img-placeholder">[Espacio reservado para la Imagen: Máquina virtual mostrando la configuración de red y la página web ShopTrend]</div>
 
             <p>La actividad se desarrolló exclusivamente dentro de un entorno virtual controlado, utilizando una máquina con Kali Linux y otra con Windows 10. No se utilizaron páginas pertenecientes a servicios reales ni credenciales personales.</p>
@@ -195,21 +203,19 @@
             </table>
             <p>La separación entre ambas máquinas permitió realizar la simulación dentro de una red virtual controlada.</p>
             
-            <!-- [Imagen: Configuración de red Adaptador 1 Kali Linux en VirtualBox] -->
             <div class="img-placeholder">[Espacio reservado para la Imagen: Configuración de red Adaptador 1 Kali Linux en VirtualBox]</div>
-            <img src="04Imagen1.png" alt="Configuracion de red kali style="width:100%; border-radius:4px; margin-top:10px;">
-            <!-- [Imagen: Configuración de red Adaptador 2 Windows 10 en VirtualBox] -->
+            <img src="04Imagen1.png" alt="Configuración de red Kali Linux">
+            
             <div class="img-placeholder">[Espacio reservado para la Imagen: Configuración de red Adaptador 2 Windows 10 en VirtualBox]</div>
-            <img src="04Imagen2.png" alt="Configuracion de red windows style="width:100%; border-radius:4px; margin-top:10px;">
+            <img src="04Imagen2.png" alt="Configuración de red Windows 10">
 
             <p><strong>Descripción:</strong> En esta evidencia se muestra la configuración de red de la máquina Kali Linux, utilizada como equipo servidor dentro del laboratorio.</p>
 
             <h3>5.2. Comunicación entre las máquinas</h3>
             <p>Se verificó la comunicación entre Kali Linux y Windows 10 mediante el comando ping. La prueba permitió comprobar que ambas máquinas podían comunicarse correctamente dentro de la red virtual antes de realizar la simulación.</p>
             
-            <!-- [Imagen: Terminal de Windows mostrando resultados exitosos del comando ping] -->
             <div class="img-placeholder">[Espacio reservado para la Imagen: Terminal de Windows mostrando resultados exitosos del comando ping]</div>
-            <img src="04Imagen3.png" alt="Configuracion de red windows style="width:100%; border-radius:4px; margin-top:10px;">
+            <img src="04Imagen3.png" alt="Prueba de ping en Windows 10">
 
             <p><strong>Descripción:</strong> La captura muestra las respuestas obtenidas al realizar una prueba de conectividad entre las máquinas virtuales, confirmando que existe comunicación dentro del entorno de laboratorio.</p>
 
@@ -223,9 +229,8 @@
             </ul>
             <p>La página fue posteriormente utilizada de manera local dentro del laboratorio.</p>
             
-            <!-- [Imagen: Interfaz de la página web ficticia Shop Trend mostrando su inicio de sesión] -->
             <div class="img-placeholder">[Espacio reservado para la Imagen: Interfaz de la página web ficticia Shop Trend mostrando su inicio de sesión]</div>
-            <img src="04Imagen4.png" alt="Configuracion de red windows style="width:100%; border-radius:4px; margin-top:10px;">
+            <img src="04Imagen4.png" alt="Interfaz página ficticia ShopTrend">
 
             <p><strong>Descripción:</strong> La evidencia muestra la página ficticia utilizada para realizar la simulación, accesible desde la máquina Windows 10 mediante el servidor local ejecutado en Kali Linux.</p>
 
@@ -234,9 +239,8 @@
             <p>Posteriormente se seleccionó: Website Attack Vectors → Credential Harvester Attack Method → Custom Import</p>
             <p>La opción Custom Import permitió utilizar la página web desarrollada específicamente para el laboratorio.</p>
             
-            <!-- [Imagen: Terminal de Kali Linux ejecutando Social-Engineer Toolkit] -->
             <div class="img-placeholder">[Espacio reservado para la Imagen: Terminal de Kali Linux ejecutando Social-Engineer Toolkit]</div>
-            <img src="04Imagen6.png" alt="Configuracion de red windows style="width:100%; border-radius:4px; margin-top:10px;">
+            <img src="04Imagen6.png" alt="Terminal Kali Linux ejecutando SET">
 
             <p><strong>Descripción:</strong> La captura muestra la configuración de SET utilizada para implementar la página ficticia dentro del laboratorio.</p>
         </section>
@@ -254,7 +258,6 @@
             <p>La interfaz presentó el mensaje: "Su sesión ha expirado. Por favor, ingrese sus credenciales nuevamente para continuar."</p>
             <p>Este elemento forma parte del escenario solicitado por la actividad, cuyo propósito es representar una situación capaz de generar confianza y urgencia en una persona usuaria.</p>
             
-            <!-- [Imagen: Vista cercana del formulario de autenticación solicitando usuario y contraseña] -->
             <div class="img-placeholder">[Espacio reservado para la Imagen: Vista cercana del formulario de autenticación solicitando usuario y contraseña]</div>
             
             <p><strong>Descripción:</strong> La captura muestra el formulario utilizado durante la simulación, compuesto por los campos de usuario y contraseña y el botón de ingreso.</p>
@@ -266,9 +269,8 @@
             Contraseña: Prueba123!</p>
             <p>No se utilizaron credenciales personales ni información perteneciente a terceros.</p>
             
-            <!-- [Imagen: Formulario llenado con los datos ficticios] -->
             <div class="img-placeholder">[Espacio reservado para la Imagen: Formulario llenado con los datos ficticios]</div>
-            <img src="04Imagen5.png" alt="Configuracion de red windows style="width:100%; border-radius:4px; margin-top:10px;">
+            <img src="04Imagen5.png" alt="Formulario con datos ficticios">
 
             <p><strong>Descripción:</strong> La evidencia muestra los datos de prueba introducidos en el formulario antes de realizar el envío.</p>
             
@@ -276,9 +278,8 @@
             <p>Después de enviar el formulario, la información introducida fue recibida y mostrada en la terminal de Kali Linux mediante el funcionamiento de Credential Harvester.</p>
             <p>Esto permitió comprobar de manera práctica que la información introducida en un formulario puede ser recibida por un servidor cuando la persona usuaria interactúa con una página diseñada para este propósito.</p>
             
-            <!-- [Imagen: Terminal de Kali Linux mostrando las credenciales interceptadas] -->
             <div class="img-placeholder">[Espacio reservado para la Imagen: Terminal de Kali Linux mostrando las credenciales interceptadas]</div>
-            <img src="04Imagen7.png" alt="Configuracion de red windows style="width:100%; border-radius:4px; margin-top:10px;">
+            <img src="04Imagen7.png" alt="Credenciales capturadas en Kali Linux">
 
             <p><strong>Descripción:</strong> La captura demuestra el resultado de la simulación y permite observar en Kali Linux la información introducida mediante el formulario de prueba.</p>
         </section>
