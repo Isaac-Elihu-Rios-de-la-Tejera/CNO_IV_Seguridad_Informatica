@@ -3,243 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Road to Hall of Fame - Portafolio de Evidencias</title>
-    <!-- Recuerda enlazar tu hoja de estilos principal aquí -->
-    <!-- <link rel="stylesheet" href="estilos.css"> -->
-
+    <title>Actividad 06 - Road to Hall of Fame</title>
     <style>
-        /* Estilos específicos para el Roadmap / Ruta de progreso */
-        .roadmap-container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 20px;
-            font-family: sans-serif;
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #0284c7;
         }
 
-        .roadmap-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .roadmap-header h1 {
-            color: #333;
-            text-transform: uppercase;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        .btn-descarga {
-            display: inline-block;
-            background-color: #ffb700; /* Color amarillo similar a la presentación */
-            color: #000;
-            padding: 12px 24px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            margin-top: 20px;
-            transition: background-color 0.3s;
-        }
-
-        .btn-descarga:hover {
-            background-color: #e0a100;
-        }
-
-        /* Contenedor principal de la línea de tiempo */
-        .timeline {
-            position: relative;
-            max-width: 100%;
-            margin: 0 auto;
-        }
-
-        /* La línea vertical central */
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            background-color: #2b1f4c; /* Color oscuro de la presentación */
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-        }
-
-        /* Contenedor de cada laboratorio */
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            background-color: inherit;
-            width: 50%;
+        * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Círculos en la línea de tiempo */
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            right: -12px;
-            background-color: white;
-            border: 4px solid #ffb700;
-            top: 15px;
-            border-radius: 50%;
-            z-index: 1;
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
         }
 
-        /* Lado izquierdo */
-        .left {
-            left: 0;
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 2px solid var(--accent);
+            padding: 2rem 10%;
         }
 
-        /* Lado derecho */
-        .right {
-            left: 50%;
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
-        /* Ajuste del círculo para el lado derecho */
-        .right::after {
-            left: -13px;
+        header h1 {
+            color: var(--accent);
+            font-size: 1.8rem;
         }
 
-        /* Tarjeta de contenido del laboratorio */
-        .content {
-            padding: 20px;
-            background-color: #f9f9f9;
-            position: relative;
-            border-radius: 6px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-left: 5px solid #d81b60; /* Color rosa de la presentación */
+        header h2 {
+            font-size: 1.2rem;
+            font-weight: normal;
+            color: var(--text-muted);
         }
 
-        .content img {
-            width: 100%;
-            height: auto;
-            border-radius: 4px;
-            margin-bottom: 15px;
-            background-color: #eaeaea; /* Fondo para cuando no hay imagen */
-            min-height: 150px;
-            object-fit: cover;
+        /* Navegación */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
 
-        .content h3 {
-            margin-top: 0;
-            color: #2b1f4c;
-        }
-
-        .content p {
-            font-size: 0.95em;
-            line-height: 1.5;
-            color: #555;
-        }
-
-        .evidencia-link {
-            display: inline-block;
-            margin-top: 10px;
-            color: #d81b60;
+        nav a {
+            color: var(--text-main);
             text-decoration: none;
             font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background 0.3s;
         }
 
-        .evidencia-link:hover {
-            text-decoration: underline;
+        nav a:hover, nav a.active {
+            background-color: var(--accent);
+            color: #fff;
         }
 
-        /* Diseño responsivo para pantallas pequeñas */
-        @media screen and (max-width: 768px) {
-            .timeline::after {
-                left: 31px;
-            }
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            .timeline-item::after {
-                left: 15px;
-            }
-            .right {
-                left: 0%;
-            }
+        /* Main Content */
+        main {
+            padding: 2rem 10%;
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .card h2 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .card p, .card li {
+            margin-bottom: 0.8rem;
+        }
+
+        .card ul {
+            margin-left: 1.5rem;
+        }
+
+        /* SECCIÓN EVIDENCIAS */
+        .parcial-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #334155;
+        }
+
+        .parcial-section h3 {
+            color: var(--text-main);
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+        }
+
+        .evidence-item {
+            background-color: #0f172a;
+            padding: 1.2rem;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .evidence-item h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-evidence {
+            display: inline-block;
+            margin-top: 0.8rem;
+            background-color: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn-evidence:hover {
+            background-color: var(--accent);
+            color: #fff;
+        }
+
+        .btn-download {
+            display: inline-block;
+            background-color: var(--accent);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+            margin-top: 1rem;
+        }
+
+        .btn-download:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--card-bg);
+            margin-top: 2rem;
+            color: var(--text-muted);
         }
     </style>
 </head>
 <body>
 
-    <!-- MENÚ DE NAVEGACIÓN (Asegúrate de agregar este enlace en tu nav principal) -->
-    <!-- <nav>
-        <a href="index.html">Inicio</a>
-        <a href="road-to-hall-of-fame.html" class="active">ROAD TO HALL OF FAME</a>
-    </nav> -->
-
-    <main class="roadmap-container">
-        
-        <div class="roadmap-header">
-            <h1>ROAD TO HALL OF FAME</h1>
-            <p>Documentación técnica y evidencias de laboratorios de Ciberseguridad.</p>
-            
-            <!-- Botón de descarga funcional -->
-            <a href="ruta_a_tu_archivo/documento_completo.pdf" download="Evidencias_Road_To_Hall_Of_Fame.pdf" class="btn-descarga">
-                📄 Descargar Documento Completo PDF
-            </a>
+    <header>
+        <div class="header-content">
+            <div>
+                <h1>ACTIVIDAD 06 - ROAD TO HALL OF FAME</h1>
+                <h2>SEGURIDAD INFORMÁTICA | ISAAC ELIHU RIOS DE LA TEJERA</h2>
+            </div>
         </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="actividad06.html" class="active">Road to Hall of Fame</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <div class="timeline">
+    <main>
+        <!-- OBJETIVOS Y DESCRIPCIÓN -->
+        <section class="card">
+            <h2>Objetivos de la Actividad</h2>
+            <p><strong>Objetivo general:</strong> Diseñar e integrar en el Portafolio Digital un nuevo módulo web denominado <strong>ROAD TO HALL OF FAME</strong>, que estructure y presente de forma visual, organizada y profesional los laboratorios, incorporando evidencias técnicas, navegación funcional y un botón de descarga del documento completo.</p>
             
-            <!-- LABORATORIO 1 (Marcador de posición) -->
-            <div class="timeline-item left">
-                <div class="content">
-                    <!-- Imagen del laboratorio -->
-                    <img src="ruta/a/imagen_placeholder.jpg" alt="Imagen del Laboratorio 1">
-                    
-                    <!-- Título -->
-                    <h3>Laboratorio 01: [Título Pendiente]</h3>
-                    
-                    <!-- Descripción técnica breve -->
-                    <p><strong>Descripción técnica:</strong> [Aquí redactarás una breve descripción técnica de lo que se realizó en el laboratorio, herramientas utilizadas y objetivos cumplidos].</p>
-                    
-                    <!-- Evidencia -->
-                    <a href="#" class="evidencia-link">Ver evidencia completa &rarr;</a>
+            <p><strong>Objetivos específicos:</strong></p>
+            <ul>
+                <li><strong>Estructurar e implementar</strong> dentro del sitio web del Portafolio Digital un nuevo apartado de navegación denominado <em>ROAD TO HALL OF FAME</em>, asegurando coherencia arquitectónica, usabilidad y correcta funcionalidad de enlaces.</li>
+                <li><strong>Organizar y presentar</strong> los laboratorios que incluyan imagen, título, descripción técnica breve y evidencia, garantizando fidelidad al contenido original y claridad en la documentación.</li>
+            </ul>
+            <p><strong>Duración aproximada:</strong> 07 horas y 30 minutos.</p>
+            
+            <div class="parcial-section">
+                <h3>Documento Completo</h3>
+                <p>Descarga la versión oficial en formato PDF de esta actividad:</p>
+                <a href="documento_completo.pdf" class="btn-download" download>📄 Descargar Documento PDF</a>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE LABORATORIOS (MARCADORES DE POSICIÓN) -->
+        <section class="card">
+            <h2>Roadmap de Laboratorios</h2>
+            <p>A continuación se enlistan los espacios reservados para integrar los laboratorios conforme se vayan desarrollando:</p>
+
+            <div class="parcial-section">
+                <!-- Laboratorio 1 (Marcador) -->
+                <div class="evidence-item">
+                    <h4>Laboratorio 01: [Título Pendiente]</h4>
+                    <p><strong>Descripción técnica:</strong> [Espacio reservado para la descripción técnica breve del laboratorio, herramientas utilizadas y objetivos cumplidos].</p>
+                    <p style="color: var(--text-muted); font-style: italic; margin-top: 0.5rem;">[Espacio reservado para la inserción de imagen de evidencia]</p>
+                    <a href="#" class="btn-evidence">Ver evidencia completa</a>
+                </div>
+
+                <!-- Laboratorio 2 (Marcador) -->
+                <div class="evidence-item">
+                    <h4>Laboratorio 02: [Título Pendiente]</h4>
+                    <p><strong>Descripción técnica:</strong> [Espacio reservado para la descripción técnica breve del laboratorio, herramientas utilizadas y objetivos cumplidos].</p>
+                    <p style="color: var(--text-muted); font-style: italic; margin-top: 0.5rem;">[Espacio reservado para la inserción de imagen de evidencia]</p>
+                    <a href="#" class="btn-evidence">Ver evidencia completa</a>
+                </div>
+
+                <!-- Laboratorio 3 (Marcador) -->
+                <div class="evidence-item">
+                    <h4>Laboratorio 03: [Título Pendiente]</h4>
+                    <p><strong>Descripción técnica:</strong> [Espacio reservado para la descripción técnica breve del laboratorio, herramientas utilizadas y objetivos cumplidos].</p>
+                    <p style="color: var(--text-muted); font-style: italic; margin-top: 0.5rem;">[Espacio reservado para la inserción de imagen de evidencia]</p>
+                    <a href="#" class="btn-evidence">Ver evidencia completa</a>
                 </div>
             </div>
-
-            <!-- LABORATORIO 2 (Marcador de posición) -->
-            <div class="timeline-item right">
-                <div class="content">
-                    <!-- Imagen del laboratorio -->
-                    <img src="ruta/a/imagen_placeholder.jpg" alt="Imagen del Laboratorio 2">
-                    
-                    <!-- Título -->
-                    <h3>Laboratorio 02: [Título Pendiente]</h3>
-                    
-                    <!-- Descripción técnica breve -->
-                    <p><strong>Descripción técnica:</strong> [Aquí redactarás una breve descripción técnica de lo que se realizó en el laboratorio, herramientas utilizadas y objetivos cumplidos].</p>
-                    
-                    <!-- Evidencia -->
-                    <a href="#" class="evidencia-link">Ver evidencia completa &rarr;</a>
-                </div>
-            </div>
-
-            <!-- LABORATORIO 3 (Marcador de posición) -->
-            <div class="timeline-item left">
-                <div class="content">
-                    <!-- Imagen del laboratorio -->
-                    <img src="ruta/a/imagen_placeholder.jpg" alt="Imagen del Laboratorio 3">
-                    
-                    <!-- Título -->
-                    <h3>Laboratorio 03: [Título Pendiente]</h3>
-                    
-                    <!-- Descripción técnica breve -->
-                    <p><strong>Descripción técnica:</strong> [Aquí redactarás una breve descripción técnica de lo que se realizó en el laboratorio, herramientas utilizadas y objetivos cumplidos].</p>
-                    
-                    <!-- Evidencia -->
-                    <a href="#" class="evidencia-link">Ver evidencia completa &rarr;</a>
-                </div>
-            </div>
-
-            <!-- Puedes copiar y pegar el bloque "timeline-item right" o "left" para agregar más laboratorios -->
-
-        </div>
+        </section>
     </main>
+
+    <footer>
+        <p>&copy; 2026 Isaac Elihu Rios de la Tejera. Universidad Politécnica de San Luis Potosí.</p>
+    </footer>
 
 </body>
 </html>
