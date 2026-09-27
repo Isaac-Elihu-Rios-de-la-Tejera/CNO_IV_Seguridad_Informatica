@@ -24,13 +24,17 @@
     </div>
 
     <nav aria-label="Navegación principal">
-        <ul>
-            <li><a href="index.html">← Regresar al Index</a></li>
-            <li><a href="#reporte" class="active">Reporte</a></li>
-            <li><a href="#evidencias">Evidencias</a></li>
-            <li><a href="#mitigacion">Mitigación</a></li>
-        </ul>
-    </nav>
+    <ul>
+        <li><a href="index.html">← Regresar al Index</a></li>
+        <li><a href="#reporte" class="active">Reporte</a></li>
+        <li><a href="#evidencias">Evidencias</a></li>
+        <li><a href="#mitigacion">Mitigación</a></li>
+
+        <li>
+            <a href="Reporte_actividad11.pdf" target="_blank">📄 Ver reporte PDF</a>
+        </li>
+    </ul>
+</nav>
 </header>
 
 <main id="reporte">
@@ -209,7 +213,7 @@
                 </p>
 
                 <figure>
-                    <img src="img/estado-inicial.png"
+                    <img src="11Imagen1.png"
                          alt="Estado inicial del laboratorio mostrando Not solved"
                          loading="lazy">
                     <figcaption>Estado inicial del laboratorio antes de realizar la explotación.</figcaption>
@@ -225,7 +229,7 @@
                 <pre><code>GET /image?filename=/var/www/images/34.jpg</code></pre>
 
                 <figure>
-                    <img src="img/request-interceptado.png"
+                    <img src="11Imagen2.png"
                          alt="Request original interceptado en Burp Suite"
                          loading="lazy">
                     <figcaption>Solicitud original utilizada por la aplicación para recuperar la imagen.</figcaption>
@@ -240,7 +244,7 @@
                 </p>
 
                 <figure>
-                    <img src="img/request-original-repeater.png"
+                    <img src="11Imagen3.png"
                          alt="Petición original en Burp Repeater"
                          loading="lazy">
                     <figcaption>Solicitud original enviada desde Burp Repeater.</figcaption>
@@ -262,7 +266,7 @@
                 <pre><code>root:x:0:0:root:/root:/bin/bash</code></pre>
 
                 <figure>
-                    <img src="img/payload-respuesta-vulnerable.png"
+                    <img src="11Imagen4.png"
                          alt="Payload de Path Traversal y respuesta vulnerable"
                          loading="lazy">
                     <figcaption>Payload utilizado y evidencia del acceso al archivo /etc/passwd.</figcaption>
@@ -278,7 +282,7 @@
                 </p>
 
                 <figure>
-                    <img src="img/lab-solved.png"
+                    <img src="11Imagen5.png"
                          alt="Confirmación del laboratorio marcado como Solved"
                          loading="lazy">
                     <figcaption>Confirmación final de que el laboratorio fue resuelto.</figcaption>
