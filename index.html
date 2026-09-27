@@ -127,17 +127,17 @@
                     <h4>Actividad 10: "descripcion de la actividad"</h4>
                     <a href="Actividad 10.html">Ir a la actividad 10</a></p>
                     <!--<p><a href="Sitio_Phishing.html">Este es una sitio de prueba</a></p>-->
-                    <p><strong>Descripción:</strong>{Poner la descripcion de la actividad}</p>
-                    <p><strong>Tecnologías / Herramientas:</strong>{Poner las herramientas que se van a utilizar}</p>
-                    <a href="" class="btn-evidence" target="_blank">Ver evidencia en PDF</a>
+                    <p><strong>Descripción:</strong>En esta actividad se explotó una vulnerabilidad de Path Traversal en una aplicación web de PortSwigger. El laboratorio implementaba un filtro que intentaba eliminar las secuencias ../, pero podía ser evadido utilizando doble codificación URL. Mediante Burp Suite se modificó el parámetro filename para acceder al archivo /etc/passwd, demostrando cómo una validación incorrecta puede permitir el acceso a archivos fuera del directorio autorizado.</p>
+                    <p><strong>Tecnologías / Herramientas:</strong>PortSwigger Web Security Academy, Burp Suite, Burp Proxy, Burp Repeater, HTTP/HTTPS, URL Encoding / Double URL Encoding, Sistema de archivos Linux</p>
+                    <a href="Reporte_actividad10.pdf" class="btn-evidence" target="_blank">Ver evidencia en PDF</a>
                 </div>
                 <div class="evidence-item">
                     <h4>Actividad 11: "descripcion de la actividad"</h4>
                     <a href="Actividad 11.html">Ir a la actividad 11</a></p>
                     <!--<p><a href="Sitio_Phishing.html">Este es una sitio de prueba</a></p>-->
-                    <p><strong>Descripción:</strong>{Poner la descripcion de la actividad}</p>
-                    <p><strong>Tecnologías / Herramientas:</strong>{Poner las herramientas que se van a utilizar}</p>
-                    <a href="" class="btn-evidence" target="_blank">Ver evidencia en PDF</a>
+                    <p><strong>Descripción:</strong>En esta actividad se analizó una aplicación que verificaba únicamente que la ruta solicitada comenzara con /var/www/images/. Esta validación resultó insuficiente, ya que fue posible conservar dicho prefijo e introducir secuencias ../ para recorrer la estructura de directorios. Utilizando Burp Suite se modificó la solicitud hasta acceder nuevamente al archivo /etc/passwd, demostrando la importancia de normalizar y validar la ruta final.</p>
+                    <p><strong>Tecnologías / Herramientas:</strong>PortSwigger Web Security Academy, Burp Suite, Burp Proxy, Burp Repeater, HTTP/HTTPS, URL Encoding / Double URL Encoding, Path Traversal / Directory Traversal, Normalización de rutas, Sistema de archivos Linux</p>
+                    <a href="Reporte_actividad11.pdf" class="btn-evidence" target="_blank">Ver evidencia en PDF</a>
                 </div>
             </div>
         </section>
