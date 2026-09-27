@@ -25,13 +25,17 @@
         </div>
 
         <nav aria-label="Navegación principal">
-            <ul>
-                <li><a href="index.html">← Regresar al Index</a></li>
-                <li><a href="#reporte" class="active">Reporte</a></li>
-                <li><a href="#evidencias">Evidencias</a></li>
-                <li><a href="#mitigacion">Mitigación</a></li>
-            </ul>
-        </nav>
+    <ul>
+        <li><a href="index.html">← Regresar al Index</a></li>
+        <li><a href="#reporte" class="active">Reporte</a></li>
+        <li><a href="#evidencias">Evidencias</a></li>
+        <li><a href="#mitigacion">Mitigación</a></li>
+
+        <li>
+            <a href="Reporte_actividad10.pdf" target="_blank">📄 Ver reporte PDF</a>
+        </li>
+    </ul>
+</nav>
     </header>
 
     <!-- CONTENIDO PRINCIPAL -->
@@ -182,21 +186,31 @@
                 <h3>Evidencias del laboratorio</h3>
 
                 <article class="evidence-item">
-                    <h4>Figura 1. Request original interceptado</h4>
+                    <h4>Figura 1. Acceso al laboratorio 10</h4>
+                    <figure>
+                        <img src="10Imagen1.png"
+                             alt="Captura del Acceso al laboratorio 10"
+                             loading="lazy">
+                        <figcaption>Acceso al laboratorio 10.</figcaption>
+                    </figure>
+                </article>
+                
+                <article class="evidence-item">
+                    <h4>Figura 2. Request original interceptado</h4>
                     <p>
                         Petición original donde se observa el parámetro <code>filename</code>.
                     </p>
                     <pre><code>GET /image?filename=55.jpg</code></pre>
 
                     <figure>
-                        <img src="img/request-interceptado.png"
+                        <img src="10Imagen2.png"
                              alt="Captura del request original interceptado en Burp Suite"
                              loading="lazy">
                         <figcaption>Request original antes de modificar el parámetro filename.</figcaption>
                     </figure>
                 </article>
 
-                <article class="evidence-item">
+                <!--<article class="evidence-item">
                     <h4>Figura 2. Payload utilizado</h4>
                     <p>
                         Petición modificada en Burp Repeater utilizando doble codificación URL.
@@ -209,7 +223,7 @@
                              loading="lazy">
                         <figcaption>Inyección del payload con doble codificación URL.</figcaption>
                     </figure>
-                </article>
+                </article>-->
 
                 <article class="evidence-item">
                     <h4>Figura 3. Respuesta vulnerable</h4>
@@ -222,7 +236,7 @@
 root:x:0:0:root:/root:/bin/bash</code></pre>
 
                     <figure>
-                        <img src="img/respuesta-vulnerable.png"
+                        <img src="10Imagen3.png"
                              alt="Captura de la respuesta vulnerable mostrando el contenido de etc passwd"
                              loading="lazy">
                         <figcaption>Respuesta del servidor que confirma el acceso al archivo solicitado.</figcaption>
@@ -236,7 +250,7 @@ root:x:0:0:root:/root:/bin/bash</code></pre>
                     </p>
 
                     <figure>
-                        <img src="img/lab-solved.png"
+                        <img src="10Imagen4.png"
                              alt="Captura del laboratorio marcado como Solved"
                              loading="lazy">
                         <figcaption>Confirmación final del laboratorio resuelto.</figcaption>
