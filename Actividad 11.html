@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reporte del laboratorio File Path Traversal - Validation of start of path.">
+    <title>Reporte | File Path Traversal - Validation of Start of Path</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header>
+    <div class="header-content">
+        <div>
+            <h1>File Path Traversal</h1>
+            <h2>Validation of start of path</h2>
+        </div>
+
+        <div class="lab-badge">
+            <span>PortSwigger Web Security Academy</span>
+            <strong>Nivel: Apprentice</strong>
+        </div>
+    </div>
+
+    <nav aria-label="Navegación principal">
+        <ul>
+            <li><a href="index.html">← Regresar al Index</a></li>
+            <li><a href="#reporte" class="active">Reporte</a></li>
+            <li><a href="#evidencias">Evidencias</a></li>
+            <li><a href="#mitigacion">Mitigación</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main id="reporte">
+
+    <section class="card">
+        <h2>1. Nombre del laboratorio</h2>
+        <p><strong>File path traversal, validation of start of path</strong></p>
+        <p class="muted">Traducción: Salto de ruta de archivos con validación del inicio de la ruta.</p>
+    </section>
+
+    <section class="card">
+        <h2>2. Nivel</h2>
+        <p><strong>Apprentice (Aprendiz)</strong></p>
+    </section>
+
+    <section class="card technical-info">
+        <h2>3. Tipo de explotación</h2>
+        <p>
+            <strong>Path Traversal / Directory Traversal (Salto de directorios).</strong>
+        </p>
+        <p>
+            La explotación consiste en manipular una ruta controlada por el usuario mediante el parámetro
+            <code>filename</code>, conservando el prefijo requerido por la aplicación pero agregando
+            secuencias <code>../</code> para salir del directorio autorizado.
+        </p>
+    </section>
+
+    <section class="card">
+        <h2>4. Objetivo del laboratorio</h2>
+        <p>
+            Explotar una vulnerabilidad de <strong>Path Traversal</strong> presente en el parámetro
+            <code>filename</code>, utilizado por la aplicación para cargar imágenes desde el servidor.
+        </p>
+
+        <p>El archivo objetivo es:</p>
+
+        <pre><code>/etc/passwd</code></pre>
+
+        <p>
+            Aunque la aplicación comprueba que la ruta comience con:
+        </p>
+
+        <pre><code>/var/www/images/</code></pre>
+
+        <p>
+            la validación es insuficiente porque permite introducir secuencias de recorrido de directorios como:
+        </p>
+
+        <pre><code>../</code></pre>
+    </section>
+
+    <section class="card technical-info">
+        <h2>5. Explicación técnica de la vulnerabilidad</h2>
+
+        <p>
+            La aplicación utiliza el parámetro <code>filename</code> para determinar qué archivo debe recuperar.
+            Una solicitud legítima puede tener la siguiente forma:
+        </p>
+
+        <pre><code>GET /image?filename=/var/www/images/34.jpg</code></pre>
+
+        <p>
+            El servidor comprueba que la ruta recibida comience con el directorio autorizado:
+        </p>
+
+        <pre><code>/var/www/images/</code></pre>
+
+        <p>
+            Sin embargo, la aplicación no comprueba de forma segura la ubicación final del archivo después
+            de resolver las secuencias de recorrido.
+        </p>
+
+        <p>Un atacante puede enviar:</p>
+
+        <pre><code>/var/www/images/../../../etc/passwd</code></pre>
+
+        <p>
+            La cadena sigue comenzando con el prefijo permitido, por lo que puede superar la validación inicial.
+            Las secuencias <code>../</code> hacen que el sistema de archivos avance hacia directorios superiores.
+        </p>
+
+        <div class="path-flow">
+            <div>
+                <span>/var/www/images/</span>
+                <small>Directorio inicial permitido</small>
+            </div>
+
+            <span class="arrow">↓</span>
+
+            <div>
+                <span>../ → /var/www/</span>
+                <small>Primer retroceso</small>
+            </div>
+
+            <span class="arrow">↓</span>
+
+            <div>
+                <span>../ → /var/</span>
+                <small>Segundo retroceso</small>
+            </div>
+
+            <span class="arrow">↓</span>
+
+            <div>
+                <span>../ → /</span>
+                <small>Tercer retroceso</small>
+            </div>
+
+            <span class="arrow">↓</span>
+
+            <div>
+                <span>/etc/passwd</span>
+                <small>Archivo final solicitado</small>
+            </div>
+        </div>
+
+        <p>
+            La vulnerabilidad existe porque la aplicación valida únicamente el comienzo de la cadena,
+            pero no comprueba correctamente la <strong>ruta canónica o normalizada resultante</strong>.
+        </p>
+    </section>
+
+    <section class="card">
+        <h2>6. Procedimiento paso a paso</h2>
+
+        <ol class="steps">
+            <li>Acceder al laboratorio de PortSwigger Web Security Academy.</li>
+            <li>Iniciar Burp Suite y utilizar el navegador configurado con el proxy de Burp.</li>
+            <li>Seleccionar un producto para generar una solicitud de carga de imagen.</li>
+
+            <li>
+                Localizar en <strong>Proxy → HTTP history</strong> una solicitud similar a:
+                <pre><code>GET /image?filename=/var/www/images/34.jpg</code></pre>
+            </li>
+
+            <li>Enviar la petición a <strong>Burp Repeater</strong>.</li>
+
+            <li>
+                Enviar primero la solicitud original para comprobar el comportamiento normal de la aplicación.
+            </li>
+
+            <li>
+                Modificar el parámetro <code>filename</code> por:
+                <pre><code>/var/www/images/../../../etc/passwd</code></pre>
+            </li>
+
+            <li>Presionar <strong>Send</strong> para enviar la petición modificada.</li>
+
+            <li>
+                Comprobar que la respuesta contiene información correspondiente al archivo
+                <code>/etc/passwd</code>.
+            </li>
+
+            <li>
+                Regresar al navegador y verificar que el laboratorio cambia de
+                <strong>Not solved</strong> a <strong>Solved</strong>.
+            </li>
+        </ol>
+    </section>
+
+    <section class="card" id="evidencias">
+        <h2>7. Capturas de pantalla obligatorias</h2>
+
+        <p class="section-description">
+            Sustituye las imágenes dentro de la carpeta <code>img</code> por tus capturas reales.
+            Conserva exactamente los mismos nombres para que aparezcan automáticamente.
+        </p>
+
+        <div class="parcial-section">
+            <h3>Evidencias del laboratorio</h3>
+
+            <article class="evidence-item">
+                <h4>Figura 1. Estado inicial del laboratorio</h4>
+                <p>
+                    Captura del navegador mostrando la tienda y el estado inicial
+                    <strong>Not solved</strong>.
+                </p>
+
+                <figure>
+                    <img src="img/estado-inicial.png"
+                         alt="Estado inicial del laboratorio mostrando Not solved"
+                         loading="lazy">
+                    <figcaption>Estado inicial del laboratorio antes de realizar la explotación.</figcaption>
+                </figure>
+            </article>
+
+            <article class="evidence-item">
+                <h4>Figura 2. Request original interceptado</h4>
+                <p>
+                    Captura de Burp Suite mostrando la petición original:
+                </p>
+
+                <pre><code>GET /image?filename=/var/www/images/34.jpg</code></pre>
+
+                <figure>
+                    <img src="img/request-interceptado.png"
+                         alt="Request original interceptado en Burp Suite"
+                         loading="lazy">
+                    <figcaption>Solicitud original utilizada por la aplicación para recuperar la imagen.</figcaption>
+                </figure>
+            </article>
+
+            <article class="evidence-item">
+                <h4>Figura 3. Petición original en Repeater</h4>
+                <p>
+                    Evidencia opcional recomendada para mostrar el comportamiento normal antes de modificar
+                    el parámetro <code>filename</code>.
+                </p>
+
+                <figure>
+                    <img src="img/request-original-repeater.png"
+                         alt="Petición original en Burp Repeater"
+                         loading="lazy">
+                    <figcaption>Solicitud original enviada desde Burp Repeater.</figcaption>
+                </figure>
+            </article>
+
+            <article class="evidence-item">
+                <h4>Figura 4. Payload utilizado y respuesta vulnerable</h4>
+
+                <p>Petición modificada:</p>
+
+                <pre><code>GET /image?filename=/var/www/images/../../../etc/passwd</code></pre>
+
+                <p>
+                    En la respuesta debe observarse información correspondiente al archivo
+                    <code>/etc/passwd</code>, por ejemplo:
+                </p>
+
+                <pre><code>root:x:0:0:root:/root:/bin/bash</code></pre>
+
+                <figure>
+                    <img src="img/payload-respuesta-vulnerable.png"
+                         alt="Payload de Path Traversal y respuesta vulnerable"
+                         loading="lazy">
+                    <figcaption>Payload utilizado y evidencia del acceso al archivo /etc/passwd.</figcaption>
+                </figure>
+            </article>
+
+            <article class="evidence-item">
+                <h4>Figura 5. Confirmación de Lab Solved</h4>
+
+                <p>
+                    Captura del navegador mostrando el mensaje:
+                    <strong>Congratulations, you solved the lab!</strong>
+                </p>
+
+                <figure>
+                    <img src="img/lab-solved.png"
+                         alt="Confirmación del laboratorio marcado como Solved"
+                         loading="lazy">
+                    <figcaption>Confirmación final de que el laboratorio fue resuelto.</figcaption>
+                </figure>
+            </article>
+        </div>
+    </section>
+
+    <section class="card technical-info">
+        <h2>8. Explicación del payload</h2>
+
+        <p>El payload utilizado fue:</p>
+
+        <pre><code>/var/www/images/../../../etc/passwd</code></pre>
+
+        <h3 class="subheading">Directorio requerido por la aplicación</h3>
+
+        <pre><code>/var/www/images/</code></pre>
+
+        <p>
+            Esta parte se conserva porque la aplicación comprueba que el valor de
+            <code>filename</code> comience con dicho prefijo.
+        </p>
+
+        <h3 class="subheading">Secuencias de recorrido</h3>
+
+        <pre><code>../../../</code></pre>
+
+        <p>
+            Cada secuencia <code>../</code> indica al sistema de archivos que debe acceder al directorio padre.
+        </p>
+
+        <div class="payload-grid">
+            <div>
+                <strong>Ruta inicial</strong>
+                <code>/var/www/images/</code>
+            </div>
+            <div>
+                <strong>1.er ../</strong>
+                <code>/var/www/</code>
+            </div>
+            <div>
+                <strong>2.º ../</strong>
+                <code>/var/</code>
+            </div>
+            <div>
+                <strong>3.er ../</strong>
+                <code>/</code>
+            </div>
+        </div>
+
+        <h3 class="subheading">Archivo objetivo</h3>
+
+        <pre><code>etc/passwd</code></pre>
+
+        <p>Por lo tanto, la ruta:</p>
+
+        <pre><code>/var/www/images/../../../etc/passwd</code></pre>
+
+        <p>se normaliza conceptualmente como:</p>
+
+        <pre><code>/etc/passwd</code></pre>
+    </section>
+
+    <section class="card technical-info" id="mitigacion">
+        <h2>9. Mitigación recomendada</h2>
+
+        <ul class="mitigation-list">
+            <li>
+                <strong>Evitar recibir rutas completas desde el cliente:</strong>
+                utilizar identificadores internos como <code>id=34</code> y asociarlos en el servidor con
+                archivos previamente definidos.
+            </li>
+
+            <li>
+                <strong>Aplicar listas blancas:</strong>
+                permitir únicamente archivos o nombres expresamente autorizados.
+            </li>
+
+            <li>
+                <strong>Rechazar secuencias peligrosas:</strong>
+                bloquear patrones como <code>../</code>, <code>..\</code>, <code>/</code> o <code>\</code>
+                cuando no sean necesarios.
+            </li>
+
+            <li>
+                <strong>Normalizar o canonicalizar la ruta:</strong>
+                resolver primero la ubicación real del archivo antes de comprobar si está permitido.
+            </li>
+
+            <li>
+                <strong>Validar la ruta final:</strong>
+                comprobar que la ruta normalizada siga perteneciendo al directorio autorizado
+                <code>/var/www/images/</code>.
+            </li>
+
+            <li>
+                <strong>Aplicar el principio de menor privilegio:</strong>
+                limitar los permisos del proceso del servidor web.
+            </li>
+        </ul>
+
+        <div class="security-note">
+            <strong>Conclusión de seguridad:</strong>
+            validar únicamente el inicio de una ruta no garantiza que el archivo final pertenezca al
+            directorio permitido. La aplicación debe comprobar la ubicación final después de normalizar
+            la ruta completa.
+        </div>
+    </section>
+
+    <section class="card final-navigation">
+        <h2>Reporte finalizado</h2>
+        <p>
+            Puedes regresar al índice principal o volver al comienzo de este reporte.
+        </p>
+
+        <div class="buttons-row">
+            <a class="btn-evidence" href="index.html">← Regresar al Index</a>
+            <a class="btn-evidence" href="#reporte">↑ Volver al inicio del reporte</a>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>Reporte de laboratorio de Seguridad Web — PortSwigger Web Security Academy</p>
+</footer>
+
+</body>
+</html>
