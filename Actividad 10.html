@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reporte del laboratorio File Path Traversal de PortSwigger Web Security Academy.">
+    <title>Reporte | File Path Traversal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- ENCABEZADO -->
+    <header>
+        <div class="header-content">
+            <div>
+                <h1>File Path Traversal</h1>
+                <h2>Traversal sequences stripped with superfluous URL-decode</h2>
+            </div>
+
+            <div class="lab-badge">
+                <span>PortSwigger Web Security Academy</span>
+                <strong>Nivel: Apprentice</strong>
+            </div>
+        </div>
+
+        <nav aria-label="Navegación principal">
+            <ul>
+                <li><a href="index.html">← Regresar al Index</a></li>
+                <li><a href="#reporte" class="active">Reporte</a></li>
+                <li><a href="#evidencias">Evidencias</a></li>
+                <li><a href="#mitigacion">Mitigación</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main id="reporte">
+
+        <!-- 1 -->
+        <section class="card">
+            <h2>1. Nombre del laboratorio</h2>
+            <p>
+                <strong>File path traversal, traversal sequences stripped with superfluous URL-decode</strong>
+            </p>
+        </section>
+
+        <!-- 2 -->
+        <section class="card">
+            <h2>2. Nivel</h2>
+            <p><strong>Apprentice (Aprendiz)</strong></p>
+        </section>
+
+        <!-- 3 -->
+        <section class="card technical-info">
+            <h2>3. Tipo de explotación</h2>
+            <p>
+                <strong>Path Traversal (Directory Traversal)</strong> mediante evasión de filtros
+                utilizando doble codificación URL.
+            </p>
+            <p>
+                La explotación consiste en manipular el parámetro utilizado por la aplicación para
+                solicitar archivos, permitiendo salir del directorio autorizado y acceder a archivos
+                ubicados en otras rutas del sistema.
+            </p>
+        </section>
+
+        <!-- 4 -->
+        <section class="card">
+            <h2>4. Objetivo del laboratorio</h2>
+            <p>
+                Explotar una vulnerabilidad de <strong>Path Traversal</strong> para acceder a un archivo
+                ubicado fuera del directorio destinado al almacenamiento de imágenes.
+            </p>
+
+            <p>El archivo objetivo es:</p>
+
+            <pre><code>/etc/passwd</code></pre>
+
+            <p>
+                Para conseguirlo, se debe evadir el mecanismo de seguridad que intenta eliminar las
+                secuencias convencionales de recorrido de directorios:
+            </p>
+
+            <pre><code>../</code></pre>
+
+            <p>
+                La evasión se realiza utilizando <strong>doble codificación URL</strong>.
+            </p>
+        </section>
+
+        <!-- 5 -->
+        <section class="card technical-info">
+            <h2>5. Explicación técnica de la vulnerabilidad</h2>
+
+            <p>
+                La aplicación utiliza el parámetro <code>filename</code> para determinar qué archivo debe
+                recuperar y mostrar al usuario. Una petición normal puede verse de la siguiente forma:
+            </p>
+
+            <pre><code>GET /image?filename=55.jpg</code></pre>
+
+            <p>
+                El problema aparece porque el valor proporcionado en <code>filename</code> no se valida
+                de manera segura antes de utilizarse para acceder al sistema de archivos.
+            </p>
+
+            <p>
+                La aplicación intenta protegerse eliminando secuencias como <code>../</code>. Sin embargo,
+                este filtro puede evadirse usando una barra codificada dos veces:
+            </p>
+
+            <pre><code>..%252f</code></pre>
+
+            <div class="decode-flow">
+                <div>
+                    <span>%252f</span>
+                    <small>Entrada enviada</small>
+                </div>
+                <span class="arrow">→</span>
+                <div>
+                    <span>%2f</span>
+                    <small>Primera decodificación</small>
+                </div>
+                <span class="arrow">→</span>
+                <div>
+                    <span>/</span>
+                    <small>Segunda decodificación</small>
+                </div>
+            </div>
+
+            <p>
+                Por lo tanto, <code>..%252f</code> termina convirtiéndose en <code>../</code>.
+                Como el filtro inicial no reconoce la secuencia completa, una decodificación posterior
+                reconstruye el patrón de recorrido de directorios.
+            </p>
+
+            <p>
+                Esto permite desplazarse hacia directorios superiores del sistema y solicitar archivos
+                que deberían encontrarse fuera del alcance de la aplicación.
+            </p>
+        </section>
+
+        <!-- 6 -->
+        <section class="card">
+            <h2>6. Procedimiento paso a paso</h2>
+
+            <ol class="steps">
+                <li>Acceder al laboratorio de PortSwigger Web Security Academy.</li>
+                <li>Iniciar Burp Suite y utilizar el navegador configurado con el proxy de Burp.</li>
+                <li>Seleccionar un producto para generar una solicitud relacionada con una imagen.</li>
+                <li>
+                    Identificar en <strong>Proxy → HTTP history</strong> una petición similar a:
+                    <pre><code>GET /image?filename=55.jpg</code></pre>
+                </li>
+                <li>Enviar la petición a <strong>Burp Repeater</strong>.</li>
+                <li>
+                    Sustituir el valor original de <code>filename</code> por:
+                    <pre><code>..%252f..%252f..%252fetc%252fpasswd</code></pre>
+                </li>
+                <li>Enviar la petición modificada mediante el botón <strong>Send</strong>.</li>
+                <li>
+                    Comprobar que el servidor responde con <code>HTTP/2 200 OK</code> y que el cuerpo
+                    contiene información correspondiente a <code>/etc/passwd</code>.
+                </li>
+                <li>
+                    Regresar al navegador y confirmar que el laboratorio aparece marcado como
+                    <strong>Solved</strong>.
+                </li>
+            </ol>
+        </section>
+
+        <!-- 7 -->
+        <section class="card" id="evidencias">
+            <h2>7. Capturas de pantalla obligatorias</h2>
+            <p class="section-description">
+                Sustituye las imágenes ubicadas dentro de la carpeta <code>img</code> por tus capturas reales.
+                Mantén los mismos nombres para que aparezcan automáticamente en la página.
+            </p>
+
+            <div class="parcial-section">
+                <h3>Evidencias del laboratorio</h3>
+
+                <article class="evidence-item">
+                    <h4>Figura 1. Request original interceptado</h4>
+                    <p>
+                        Petición original donde se observa el parámetro <code>filename</code>.
+                    </p>
+                    <pre><code>GET /image?filename=55.jpg</code></pre>
+
+                    <figure>
+                        <img src="img/request-interceptado.png"
+                             alt="Captura del request original interceptado en Burp Suite"
+                             loading="lazy">
+                        <figcaption>Request original antes de modificar el parámetro filename.</figcaption>
+                    </figure>
+                </article>
+
+                <article class="evidence-item">
+                    <h4>Figura 2. Payload utilizado</h4>
+                    <p>
+                        Petición modificada en Burp Repeater utilizando doble codificación URL.
+                    </p>
+                    <pre><code>GET /image?filename=..%252f..%252f..%252fetc%252fpasswd</code></pre>
+
+                    <figure>
+                        <img src="img/payload-utilizado.png"
+                             alt="Captura del payload utilizado en Burp Repeater"
+                             loading="lazy">
+                        <figcaption>Inyección del payload con doble codificación URL.</figcaption>
+                    </figure>
+                </article>
+
+                <article class="evidence-item">
+                    <h4>Figura 3. Respuesta vulnerable</h4>
+                    <p>
+                        Respuesta del servidor mostrando un estado exitoso y contenido del archivo
+                        <code>/etc/passwd</code>.
+                    </p>
+                    <pre><code>HTTP/2 200 OK
+
+root:x:0:0:root:/root:/bin/bash</code></pre>
+
+                    <figure>
+                        <img src="img/respuesta-vulnerable.png"
+                             alt="Captura de la respuesta vulnerable mostrando el contenido de etc passwd"
+                             loading="lazy">
+                        <figcaption>Respuesta del servidor que confirma el acceso al archivo solicitado.</figcaption>
+                    </figure>
+                </article>
+
+                <article class="evidence-item">
+                    <h4>Figura 4. Confirmación de Lab Solved</h4>
+                    <p>
+                        Captura del navegador mostrando que el laboratorio fue resuelto correctamente.
+                    </p>
+
+                    <figure>
+                        <img src="img/lab-solved.png"
+                             alt="Captura del laboratorio marcado como Solved"
+                             loading="lazy">
+                        <figcaption>Confirmación final del laboratorio resuelto.</figcaption>
+                    </figure>
+                </article>
+            </div>
+        </section>
+
+        <!-- 8 -->
+        <section class="card technical-info">
+            <h2>8. Explicación del payload</h2>
+
+            <p>El payload utilizado fue:</p>
+
+            <pre><code>..%252f..%252f..%252fetc%252fpasswd</code></pre>
+
+            <h3 class="subheading">Secuencia de recorrido</h3>
+
+            <p>
+                La secuencia <code>..%252f</code> representa <code>../</code> después de dos procesos
+                de decodificación.
+            </p>
+
+            <ul>
+                <li><code>%25</code> representa el carácter <code>%</code> codificado.</li>
+                <li><code>%252f</code> pasa a <code>%2f</code> en la primera decodificación.</li>
+                <li><code>%2f</code> se convierte en <code>/</code> en la siguiente decodificación.</li>
+                <li>Por lo tanto, <code>..%252f</code> termina siendo <code>../</code>.</li>
+            </ul>
+
+            <p>
+                Al repetirse tres veces, se intenta avanzar hacia niveles superiores del sistema de archivos:
+            </p>
+
+            <pre><code>..%252f..%252f..%252f</code></pre>
+
+            <h3 class="subheading">Archivo solicitado</h3>
+
+            <p>
+                La última parte del payload:
+            </p>
+
+            <pre><code>etc%252fpasswd</code></pre>
+
+            <p>
+                termina representando:
+            </p>
+
+            <pre><code>etc/passwd</code></pre>
+
+            <p>Por lo tanto, conceptualmente el payload equivale a:</p>
+
+            <pre><code>../../../etc/passwd</code></pre>
+        </section>
+
+        <!-- 9 -->
+        <section class="card technical-info" id="mitigacion">
+            <h2>9. Mitigación recomendada</h2>
+
+            <ul class="mitigation-list">
+                <li>
+                    <strong>Utilizar listas blancas:</strong>
+                    permitir únicamente nombres de archivos previamente autorizados.
+                </li>
+                <li>
+                    <strong>Decodificar antes de validar:</strong>
+                    realizar las operaciones necesarias de URL decoding antes de aplicar filtros de seguridad.
+                </li>
+                <li>
+                    <strong>Canonicalizar las rutas:</strong>
+                    resolver la ruta absoluta del archivo y verificar que permanezca dentro del directorio permitido.
+                </li>
+                <li>
+                    <strong>Evitar filtros basados únicamente en cadenas:</strong>
+                    eliminar solamente patrones como <code>../</code> no es suficiente.
+                </li>
+                <li>
+                    <strong>Aplicar el principio de menor privilegio:</strong>
+                    limitar los permisos de la cuenta utilizada por el servidor web.
+                </li>
+                <li>
+                    <strong>No utilizar directamente entradas del usuario como rutas:</strong>
+                    es preferible asociar identificadores internos con archivos previamente definidos.
+                </li>
+            </ul>
+
+            <div class="security-note">
+                <strong>Conclusión de seguridad:</strong>
+                una validación correcta debe comprobar que la ruta final solicitada permanezca estrictamente
+                dentro del directorio autorizado por la aplicación.
+            </div>
+        </section>
+
+        <!-- NAVEGACIÓN FINAL -->
+        <section class="card final-navigation">
+            <h2>Reporte finalizado</h2>
+            <p>
+                Utiliza los botones siguientes para regresar al índice principal o volver al inicio del reporte.
+            </p>
+
+            <div class="buttons-row">
+                <a class="btn-evidence" href="index.html">← Regresar al Index</a>
+                <a class="btn-evidence" href="#reporte">↑ Volver al inicio del reporte</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Reporte de laboratorio de Seguridad Web — PortSwigger Web Security Academy</p>
+    </footer>
+
+</body>
+</html>
