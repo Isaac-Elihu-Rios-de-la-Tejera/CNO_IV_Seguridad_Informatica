@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reporte del laboratorio File Path Traversal con validación de extensión y null byte bypass.">
+    <title>Reporte | Path Traversal - Null Byte Bypass</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <div>
+            <h1>File Path Traversal</h1>
+            <h2>Validation of file extension with null byte bypass</h2>
+        </div>
+        <div class="lab-badge">
+            <span>PortSwigger Web Security Academy</span>
+            <strong>Nivel: Apprentice</strong>
+        </div>
+    </div>
+
+    <nav aria-label="Navegación principal">
+        <ul>
+            <li><a href="index.html">← Regresar al Index</a></li>
+            <li><a href="#reporte" class="active">Reporte</a></li>
+            <li><a href="#evidencias">Evidencias</a></li>
+            <li><a href="#mitigacion">Mitigación</a></li>
+            <li><a href="Reporte_actividad12.pdf" target="_blank">📄 Ver reporte PDF</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main id="reporte">
+
+    <section class="card">
+        <h2>1. Nombre del laboratorio</h2>
+        <p><strong>File path traversal, validation of file extension with null byte bypass</strong></p>
+        <p class="muted">Traducción: Salto de ruta de archivos con validación de extensión evadida mediante byte nulo.</p>
+        <p>Laboratorio perteneciente a <strong>PortSwigger Web Security Academy</strong>.</p>
+    </section>
+
+    <section class="card">
+        <h2>2. Nivel</h2>
+        <p><strong>Apprentice (Aprendiz)</strong></p>
+    </section>
+
+    <section class="card technical-info">
+        <h2>3. Tipo de explotación</h2>
+        <p><strong>Path Traversal / Directory Traversal mediante Null Byte Injection.</strong></p>
+        <p>La explotación combina secuencias de recorrido de directorios como <code>../</code> con la inyección de un byte nulo, representado mediante URL Encoding como <code>%00</code>.</p>
+        <p>El objetivo es evadir una validación que exige que el nombre solicitado termine con una extensión de imagen válida, como <code>.jpg</code>.</p>
+    </section>
+
+    <section class="card">
+        <h2>4. Objetivo del laboratorio</h2>
+        <p>Explotar una vulnerabilidad de <strong>Path Traversal</strong> presente en el parámetro <code>filename</code>, utilizado por la aplicación para recuperar imágenes almacenadas en el servidor.</p>
+        <p>La aplicación exige que el nombre solicitado termine con:</p>
+        <pre><code>.jpg</code></pre>
+        <p>Para superar esta validación se utiliza un <strong>Null Byte Bypass</strong>, permitiendo solicitar el archivo:</p>
+        <pre><code>/etc/passwd</code></pre>
+        <p>El laboratorio demuestra que una validación basada únicamente en la extensión puede ser insuficiente cuando diferentes capas de una aplicación procesan una misma cadena de forma distinta.</p>
+    </section>
+
+    <section class="card technical-info">
+        <h2>5. Explicación técnica de la vulnerabilidad</h2>
+        <p>La aplicación utiliza el parámetro <code>filename</code> para indicar qué archivo debe recuperar. Una petición legítima puede verse así:</p>
+        <pre><code>GET /image?filename=51.jpg HTTP/2</code></pre>
+        <p>Como mecanismo de seguridad, la aplicación comprueba que el valor recibido termine en una extensión de imagen permitida, por ejemplo <code>.jpg</code>.</p>
+        <p>Sin embargo, permite introducir secuencias de recorrido de directorios:</p>
+        <pre><code>../</code></pre>
+        <p>y también procesa un carácter nulo representado como:</p>
+        <pre><code>%00</code></pre>
+        <p>En determinados entornos vulnerables, la lógica de validación y la capa que finalmente accede al sistema de archivos pueden interpretar la misma cadena de forma diferente.</p>
+        <pre><code>../../../etc/passwd%00.jpg</code></pre>
+
+        <div class="null-flow">
+            <div>
+                <span>../../../etc/passwd%00.jpg</span>
+                <small>Cadena recibida por la aplicación</small>
+            </div>
+            <span class="arrow">↓</span>
+            <div>
+                <span>.jpg</span>
+                <small>La validación detecta una extensión permitida</small>
+            </div>
+            <span class="arrow">↓</span>
+            <div>
+                <span>%00</span>
+                <small>El carácter NUL actúa como terminador en una capa vulnerable</small>
+            </div>
+            <span class="arrow">↓</span>
+            <div>
+                <span>../../../etc/passwd</span>
+                <small>Ruta procesada por el componente vulnerable</small>
+            </div>
+        </div>
+
+        <p>El resultado es el acceso a un archivo situado fuera del directorio autorizado, a pesar de que la cadena original aparentemente cumple con la validación de extensión.</p>
+    </section>
+
+    <section class="card">
+        <h2>6. Procedimiento paso a paso</h2>
+        <ol class="steps">
+            <li>Acceder al laboratorio desde PortSwigger Web Security Academy.</li>
+            <li>Iniciar Burp Suite y utilizar el navegador configurado con el proxy de Burp.</li>
+            <li>Seleccionar un producto para generar una solicitud de carga de imagen.</li>
+            <li>Localizar en <strong>Proxy → HTTP history</strong> una petición similar a:
+                <pre><code>GET /image?filename=51.jpg HTTP/2</code></pre>
+            </li>
+            <li>Enviar la solicitud a <strong>Burp Repeater</strong>.</li>
+            <li>Enviar primero la petición original para verificar el comportamiento normal de la aplicación.</li>
+            <li>Modificar el parámetro <code>filename</code> utilizando:
+                <pre><code>../../../../etc/passwd%00.jpg</code></pre>
+            </li>
+            <li>Enviar la solicitud modificada:
+                <pre><code>GET /image?filename=../../../../etc/passwd%00.jpg HTTP/2</code></pre>
+            </li>
+            <li>Comprobar en la respuesta que aparece contenido correspondiente a <code>/etc/passwd</code>.</li>
+            <li>Regresar al navegador y verificar que el laboratorio cambia de <strong>Not solved</strong> a <strong>Solved</strong>.</li>
+        </ol>
+
+        <div class="security-note">
+            <strong>Nota:</strong>
+            la cantidad exacta de secuencias <code>../</code> depende de la ubicación desde la que la aplicación resuelve originalmente los archivos. En esta práctica se documentan cuatro porque corresponden al payload utilizado.
+        </div>
+    </section>
+
+    <section class="card" id="evidencias">
+        <h2>7. Capturas de pantalla obligatorias</h2>
+        <p class="section-description">Las siguientes evidencias documentan el proceso completo, desde el estado inicial hasta la confirmación de que el laboratorio fue resuelto.</p>
+
+        <div class="parcial-section">
+            <h3>Evidencias del laboratorio</h3>
+
+            <article class="evidence-item">
+                <h4>Figura 1. Estado inicial del laboratorio</h4>
+                <p>Captura del navegador mostrando el laboratorio antes de realizar la explotación. Debe observarse el estado <strong>Not solved</strong>.</p>
+                <figure>
+                    <img src="12Imagen1.png" alt="Estado inicial del laboratorio mostrando Not solved" loading="lazy">
+                    <figcaption>Estado inicial del laboratorio antes de realizar la explotación.</figcaption>
+                </figure>
+            </article>
+
+            <article class="evidence-item">
+                <h4>Figura 2. Request original interceptado</h4>
+                <p>Captura de Burp Suite mostrando la petición legítima utilizada para solicitar una imagen.</p>
+                <pre><code>GET /image?filename=51.jpg HTTP/2</code></pre>
+                <figure>
+                    <img src="12Imagen2.png" alt="Request original interceptado en Burp Suite" loading="lazy">
+                    <figcaption>Petición original donde se identifica el parámetro filename.</figcaption>
+                </figure>
+            </article>
+
+            <article class="evidence-item">
+                <h4>Figura 3. Payload utilizado</h4>
+                <p>Captura de Burp Repeater mostrando la petición modificada con el payload:</p>
+                <pre><code>GET /image?filename=../../../../etc/passwd%00.jpg HTTP/2</code></pre>
+                <figure>
+                    <img src="12Imagen3.png" alt="Payload con Path Traversal y Null Byte Injection" loading="lazy">
+                    <figcaption>Petición modificada utilizando recorrido de directorios y byte nulo.</figcaption>
+                </figure>
+            </article>
+
+            <article class="evidence-item">
+                <h4>Figura 4. Respuesta vulnerable</h4>
+                <p>Captura de la sección <strong>Response</strong> de Burp Repeater mostrando contenido correspondiente al archivo <code>/etc/passwd</code>.</p>
+                <pre><code>root:x:0:0:root:/root:/bin/bash</code></pre>
+                <figure>
+                    <img src="12Imagen4.png" alt="Respuesta vulnerable mostrando contenido de etc passwd" loading="lazy">
+                    <figcaption>Evidencia del acceso al archivo /etc/passwd.</figcaption>
+                </figure>
+            </article>
+
+            <article class="evidence-item">
+                <h4>Figura 5. Confirmación de Lab Solved</h4>
+                <p>Captura final del navegador mostrando el mensaje <strong>Congratulations, you solved the lab!</strong> y el estado <strong>Solved</strong>.</p>
+                <figure>
+                    <img src="12Imagen5.png" alt="Confirmación del laboratorio marcado como Solved" loading="lazy">
+                    <figcaption>Confirmación final de que el laboratorio fue resuelto.</figcaption>
+                </figure>
+            </article>
+        </div>
+    </section>
+
+    <section class="card technical-info">
+        <h2>8. Explicación del payload</h2>
+        <p>El payload utilizado fue:</p>
+        <pre><code>../../../../etc/passwd%00.jpg</code></pre>
+
+        <h3 class="subheading">Secuencia de recorrido de directorios</h3>
+        <pre><code>../../../../</code></pre>
+        <p>Cada secuencia <code>../</code> indica que se debe acceder al directorio padre. Al repetirla varias veces se intenta salir del directorio destinado a las imágenes.</p>
+
+        <h3 class="subheading">Archivo objetivo</h3>
+        <pre><code>etc/passwd</code></pre>
+        <p>Corresponde al archivo que se pretende leer en el sistema Linux.</p>
+
+        <h3 class="subheading">Byte nulo</h3>
+        <pre><code>%00</code></pre>
+        <p>Es la representación mediante URL Encoding del carácter NUL. En una capa vulnerable puede actuar como terminador de cadena, haciendo que la parte posterior no sea utilizada al acceder al sistema de archivos.</p>
+
+        <h3 class="subheading">Extensión de imagen</h3>
+        <pre><code>.jpg</code></pre>
+        <p>La extensión se conserva para cumplir con la validación superficial implementada por la aplicación.</p>
+
+        <div class="payload-grid">
+            <div><strong>Path Traversal</strong><code>../../../../</code></div>
+            <div><strong>Archivo</strong><code>etc/passwd</code></div>
+            <div><strong>Null Byte</strong><code>%00</code></div>
+            <div><strong>Extensión</strong><code>.jpg</code></div>
+        </div>
+
+        <p>Conceptualmente:</p>
+        <pre><code>../../../../etc/passwd%00.jpg
+                  ↓
+        ../../../../etc/passwd</code></pre>
+    </section>
+
+    <section class="card technical-info" id="mitigacion">
+        <h2>9. Mitigación recomendada</h2>
+        <ul class="mitigation-list">
+            <li><strong>Evitar utilizar rutas proporcionadas directamente por el usuario:</strong> utilizar identificadores internos y asociarlos con archivos previamente autorizados.</li>
+            <li><strong>Aplicar listas blancas:</strong> aceptar únicamente archivos o nombres expresamente permitidos.</li>
+            <li><strong>Normalizar y canonicalizar la ruta:</strong> resolver la ubicación final del archivo antes de comprobar si está autorizado.</li>
+            <li><strong>Rechazar caracteres NUL:</strong> bloquear caracteres nulos y representaciones como <code>%00</code>.</li>
+            <li><strong>Validar después de decodificar:</strong> realizar la decodificación y normalización antes de aplicar los controles de seguridad.</li>
+            <li><strong>Mantener actualizado el entorno de ejecución:</strong> utilizar versiones modernas y soportadas del lenguaje, framework y bibliotecas.</li>
+            <li><strong>Aplicar el principio de menor privilegio:</strong> limitar los permisos del proceso del servidor web.</li>
+        </ul>
+
+        <div class="security-note">
+            <strong>Conclusión de seguridad:</strong>
+            no es suficiente comprobar únicamente la extensión del archivo. La aplicación debe decodificar, normalizar y validar la ruta final antes de realizar cualquier acceso al sistema de archivos.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>Conclusión</h2>
+        <p>Este laboratorio demuestra que validar únicamente la extensión de un archivo no es suficiente para proteger una aplicación frente a ataques de Path Traversal.</p>
+        <p>La combinación de secuencias <code>../</code> con el byte nulo <code>%00</code> permite aprovechar diferencias en el procesamiento de la entrada entre distintas capas de una aplicación vulnerable.</p>
+        <p>El payload utilizado:</p>
+        <pre><code>../../../../etc/passwd%00.jpg</code></pre>
+        <p>mantiene aparentemente la extensión requerida, pero permite que un componente vulnerable procese únicamente la ruta correspondiente a <code>/etc/passwd</code>.</p>
+    </section>
+
+    <section class="card final-navigation">
+        <h2>Reporte finalizado</h2>
+        <div class="buttons-row">
+            <a class="btn-evidence" href="index.html">← Regresar al Index</a>
+            <a class="btn-evidence" href="#reporte">↑ Volver al inicio del reporte</a>
+            <a class="btn-evidence" href="reporte-null-byte-path-traversal.pdf" target="_blank">📄 Abrir reporte PDF</a>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 Isaac Elihu Rios de la Tejera. Portafolio de Seguridad Informática.</p>
+</footer>
+
+</body>
+</html>
