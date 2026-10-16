@@ -1,11 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actividad 7</title>
+    <meta name="description" content="Reporte del laboratorio File path traversal, simple case, de PortSwigger Web Security Academy.">
+    <meta name="theme-color" content="#0f172a">
+    <title>Reporte | File Path Traversal — Simple Case</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <!-- Encabezado y navegación compatibles con el diseño de reportes anterior -->
+    <header class="site-header" id="inicio">
+        <div class="header-content">
+            <div class="header-title">
+                <p class="eyebrow">REPORTE DE LABORATORIO · SEGURIDAD WEB</p>
+                <h1>File Path Traversal</h1>
+                <h2>Simple Case</h2>
+                <p class="header-summary">PortSwigger Web Security Academy</p>
+            </div>
+            <div class="lab-badge">
+                <span>PortSwigger Web Security Academy</span>
+                <strong>Nivel: Apprentice</strong>
+            </div>
+        </div>
+        <nav aria-label="Navegación principal">
+            <ul>
+                <li><a href="index.html">← Regresar al Index</a></li>
+                <li><a class="active" href="#reporte">Reporte</a></li>
+                <li><a href="#evidencias">Evidencias</a></li>
+                <li><a href="#mitigacion">Mitigación</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="reporte" class="report-main">
+        <!-- 1. Nombre del laboratorio -->
+        <section class="card" aria-labelledby="titulo-1">
+            <h2 id="titulo-1">1. Nombre del laboratorio</h2>
+            <p><strong>File path traversal, simple case</strong> — PortSwigger Web Security Academy.</p>
+        </section>
+
+        <!-- 2. Nivel -->
+        <section class="card" aria-labelledby="titulo-2">
+            <h2 id="titulo-2">2. Nivel</h2>
+            <p><strong>Apprentice (Aprendiz).</strong></p>
+        </section>
+
+        <!-- 3. Tipo de explotación -->
+        <section class="card technical-info" aria-labelledby="titulo-3">
+            <h2 id="titulo-3">3. Tipo de explotación</h2>
+            <p><strong>Path Traversal (Directory Traversal)</strong> o salto de directorios.</p>
+        </section>
+
+        <!-- 4. Objetivo del laboratorio -->
+        <section class="card" aria-labelledby="titulo-4">
+            <h2 id="titulo-4">4. Objetivo del laboratorio</h2>
+            <p>Explotar una vulnerabilidad de Path Traversal en una aplicación web para acceder a archivos ubicados fuera del directorio autorizado del servidor.</p>
+            <p>El objetivo principal es recuperar el contenido del archivo <code>/etc/passwd</code>, utilizado en sistemas Linux para almacenar información sobre las cuentas de usuario del sistema.</p>
+        </section>
+
+        <!-- 5. Explicación técnica de la vulnerabilidad -->
+        <section class="card technical-info" aria-labelledby="titulo-5">
+            <h2 id="titulo-5">5. Explicación técnica de la vulnerabilidad</h2>
+            <p>La vulnerabilidad <strong>Path Traversal</strong> ocurre cuando una aplicación web permite utilizar rutas de archivos proporcionadas por el usuario sin aplicar las validaciones de seguridad necesarias.</p>
+            <p>En este laboratorio, la aplicación utiliza el parámetro <code>filename</code> de una petición HTTP GET para recuperar imágenes de productos.</p>
+            <p>Debido a la falta de validación, es posible modificar este parámetro e introducir secuencias <code>../</code>, que permiten retroceder entre directorios del servidor y acceder a archivos que normalmente no deberían estar disponibles desde la aplicación web.</p>
+        </section>
+
+        <!-- 6. Procedimiento paso a paso -->
+        <section class="card" aria-labelledby="titulo-6">
+            <h2 id="titulo-6">6. Procedimiento paso a paso</h2>
+            <ol class="steps">
+                <li>Se ingresó al laboratorio de PortSwigger Web Security Academy y se verificó que su estado inicial fuera <strong>"Not solved"</strong>.</li>
+                <li>Se abrió la aplicación web del laboratorio y se seleccionó un producto para generar una solicitud HTTP relacionada con la carga de una imagen.</li>
+                <li>Mediante <strong>Burp Suite</strong>, se identificó la petición <code>GET /image?filename=49.jpg</code> y se envió a la herramienta <strong>Repeater</strong> para analizarla.</li>
+                <li>Dentro de Repeater, se presionó el botón <strong>Send</strong> sin modificar la petición original, comprobando que el servidor respondía con el recurso solicitado.</li>
+                <li>Posteriormente, se modificó el parámetro <code>filename</code>, reemplazando el nombre de la imagen por el siguiente payload: <code>../../../../etc/passwd</code>.</li>
+                <li>Se envió nuevamente la petición mediante <strong>Send</strong>. El servidor respondió con el código HTTP <strong>200 OK</strong>, mostrando información del archivo <code>/etc/passwd</code>, incluyendo registros de usuarios como <code>root</code>.</li>
+                <li>Finalmente, se regresó al navegador y se verificó que el laboratorio había cambiado su estado a <strong>"Solved"</strong>, confirmando que la vulnerabilidad fue explotada exitosamente.</li>
+            </ol>
+        </section>
+
+        <!-- 7. Evidencias y capturas de pantalla -->
+        <section class="card" id="evidencias" aria-labelledby="titulo-7">
+            <h2 id="titulo-7">7. Evidencias y capturas de pantalla</h2>
+            <div class="parcial-section">
+                <article class="evidence-item" aria-labelledby="evidencia-1">
+                    <h3 id="evidencia-1">Captura 1. Estado inicial del laboratorio</h3>
+                    <p>En la primera captura se observa la página del laboratorio en PortSwigger Web Security Academy, donde aparece el estado <strong>"Not solved"</strong>. Esto demuestra que el laboratorio todavía no había sido completado antes de realizar las pruebas de seguridad.</p>
+                    <figure class="evidence-figure">
+                        <img src="img/01-laboratorio-no-resuelto.png" alt="Laboratorio de PortSwigger con estado Not solved" loading="lazy" onerror="this.hidden=true; this.nextElementSibling.hidden=false">
+                        <div class="image-placeholder" hidden aria-label="Espacio reservado para la captura 1">Captura 1 · Laboratorio sin resolver</div>
+                        <figcaption>Insertar captura 1: Laboratorio sin resolver.</figcaption>
+                    </figure>
+                </article>
+
+                <article class="evidence-item" aria-labelledby="evidencia-2">
+                    <h3 id="evidencia-2">Captura 2. Análisis de la petición GET original</h3>
+                    <p>En la segunda captura se muestra la herramienta <strong>Repeater</strong> de Burp Suite, donde se encuentra la petición HTTP original <code>GET /image?filename=49.jpg</code>.</p>
+                    <p>Se presionó el botón <strong>Send</strong> para enviar la solicitud al servidor sin realizar modificaciones, permitiendo analizar la respuesta original y comprobar el funcionamiento normal de la aplicación.</p>
+                    <figure class="evidence-figure">
+                        <img src="img/02-repeater-request-original.png" alt="Burp Suite Repeater mostrando la petición GET original y su respuesta" loading="lazy" onerror="this.hidden=true; this.nextElementSibling.hidden=false">
+                        <div class="image-placeholder" hidden aria-label="Espacio reservado para la captura 2">Captura 2 · Petición GET original</div>
+                        <figcaption>Insertar captura 2: Petición GET original y su respuesta en Repeater.</figcaption>
+                    </figure>
+                </article>
+
+                <article class="evidence-item" aria-labelledby="evidencia-3">
+                    <h3 id="evidencia-3">Captura 3. Modificación de la petición y explotación de la vulnerabilidad</h3>
+                    <p>En la tercera captura se observa cómo se modificó el parámetro <code>filename</code> de la petición GET, introduciendo el payload <code>../../../../etc/passwd</code>.</p>
+                    <p>Al presionar <strong>Send</strong>, el servidor devolvió el contenido del archivo solicitado, mostrando información correspondiente a las cuentas del sistema Linux, incluyendo entradas como <code>root</code>.</p>
+                    <p>Esta respuesta confirma la existencia de una vulnerabilidad de Path Traversal, ya que fue posible acceder a un archivo ubicado fuera del directorio destinado a las imágenes.</p>
+                    <figure class="evidence-figure">
+                        <img src="img/03-repeater-payload-respuesta.png" alt="Petición GET modificada en Burp Suite Repeater y respuesta con contenido de etc passwd" loading="lazy" onerror="this.hidden=true; this.nextElementSibling.hidden=false">
+                        <div class="image-placeholder" hidden aria-label="Espacio reservado para la captura 3">Captura 3 · Payload y respuesta vulnerable</div>
+                        <figcaption>Insertar captura 3: Petición GET modificada y respuesta con el contenido de /etc/passwd.</figcaption>
+                    </figure>
+                </article>
+
+                <article class="evidence-item" aria-labelledby="evidencia-4">
+                    <h3 id="evidencia-4">Captura 4. Confirmación del laboratorio resuelto</h3>
+                    <p>En la cuarta captura se muestra la página del laboratorio después de realizar la explotación, donde aparece el mensaje <strong>"Congratulations, you solved the lab!"</strong> y el estado <strong>"Solved"</strong>.</p>
+                    <p>Esto confirma que se cumplió el objetivo establecido y que el laboratorio fue completado correctamente.</p>
+                    <figure class="evidence-figure">
+                        <img src="img/04-laboratorio-resuelto.png" alt="Laboratorio de PortSwigger marcado como Solved" loading="lazy" onerror="this.hidden=true; this.nextElementSibling.hidden=false">
+                        <div class="image-placeholder" hidden aria-label="Espacio reservado para la captura 4">Captura 4 · Laboratorio resuelto</div>
+                        <figcaption>Insertar captura 4: Laboratorio resuelto exitosamente.</figcaption>
+                    </figure>
+                </article>
+            </div>
+        </section>
+
+        <!-- 8. Explicación del payload -->
+        <section class="card technical-info" aria-labelledby="titulo-8">
+            <h2 id="titulo-8">8. Explicación del payload</h2>
+            <p>El payload utilizado fue:</p>
+            <pre><code>../../../../etc/passwd</code></pre>
+            <h3 class="subheading">Funcionamiento:</h3>
+            <ul>
+                <li><code>../</code>: Permite retroceder un nivel dentro de la estructura de directorios.</li>
+                <li><code>../../../../</code>: Repite el desplazamiento cuatro veces para salir del directorio donde se almacenan las imágenes y alcanzar la raíz del sistema de archivos.</li>
+                <li><code>etc/passwd</code>: Identifica el archivo del sistema Linux al que se desea acceder.</li>
+            </ul>
+            <p>La vulnerabilidad se presenta porque el servidor procesa la ruta proporcionada sin comprobar adecuadamente si el archivo solicitado se encuentra dentro del directorio autorizado.</p>
+            <p>Como resultado, la aplicación devuelve el contenido de <code>/etc/passwd</code> en lugar de una imagen.</p>
+        </section>
+
+        <!-- 9. Mitigación recomendada -->
+        <section class="card technical-info" id="mitigacion" aria-labelledby="titulo-9">
+            <h2 id="titulo-9">9. Mitigación recomendada</h2>
+            <p>Para prevenir vulnerabilidades de Path Traversal, se recomiendan las siguientes medidas:</p>
+            <ol class="mitigation-list">
+                <li><strong>Validación de entradas:</strong> Evitar que los parámetros proporcionados por el usuario incluyan rutas no autorizadas.</li>
+                <li><strong>Listas de archivos permitidos:</strong> Restringir el acceso únicamente a archivos previamente autorizados por la aplicación.</li>
+                <li><strong>Validación de rutas canónicas:</strong> Resolver la ruta real del archivo y comprobar que permanezca dentro del directorio permitido.</li>
+                <li><strong>Control de permisos:</strong> Limitar los privilegios del proceso que ejecuta la aplicación para reducir el acceso a archivos sensibles.</li>
+                <li><strong>Identificadores seguros:</strong> Utilizar identificadores internos para recuperar archivos, evitando que los usuarios manipulen directamente las rutas del servidor.</li>
+            </ol>
+        </section>
+
+        <section class="card final-navigation" aria-label="Navegación final">
+            <div class="buttons-row">
+                <a class="btn-evidence" href="index.html">← Regresar al Index</a>
+                <a class="btn-evidence" href="#inicio">↑ Volver al inicio del reporte</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Reporte de laboratorio de Seguridad Web — PortSwigger Web Security Academy</p>
+    </footer>
 </body>
 </html>
