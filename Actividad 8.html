@@ -1,11 +1,529 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <meta name="description"
+          content="Reporte del laboratorio Path Traversal mediante Absolute Path Bypass de PortSwigger Web Security Academy.">
+
+    <title>Reporte | Path Traversal - Absolute Path Bypass</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+
+    <!-- ENCABEZADO -->
+    <header>
+        <div class="header-content">
+            <div>
+                <h1>File Path Traversal</h1>
+                <h2>Traversal sequences blocked with absolute path bypass</h2>
+            </div>
+
+            <div class="lab-badge">
+                <span>PortSwigger Web Security Academy</span>
+                <strong>Nivel: Apprentice</strong>
+            </div>
+        </div>
+
+        <!-- NAVEGACIÓN -->
+        <nav aria-label="Navegación principal">
+            <ul>
+                <li>
+                    <a href="index.html">← Regresar al Index</a>
+                </li>
+                <li>
+                    <a href="#reporte" class="active">Reporte</a>
+                </li>
+                <li>
+                    <a href="#evidencias">Evidencias</a>
+                </li>
+                <li>
+                    <a href="#mitigacion">Mitigación</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main id="reporte">
+
+        <!-- SECCIÓN 1 -->
+        <section class="card">
+            <h2>1. Nombre del laboratorio</h2>
+
+            <p>
+                <strong>
+                    File path traversal, traversal sequences
+                    blocked with absolute path bypass
+                </strong>
+                — PortSwigger Web Security Academy.
+            </p>
+        </section>
+
+        <!-- SECCIÓN 2 -->
+        <section class="card">
+            <h2>2. Nivel</h2>
+
+            <p>
+                <strong>Apprentice (Aprendiz).</strong>
+            </p>
+        </section>
+
+        <!-- SECCIÓN 3 -->
+        <section class="card technical-info">
+            <h2>3. Tipo de explotación</h2>
+
+            <p>
+                <strong>Path Traversal (Directory Traversal)</strong>
+                mediante evasión de filtros utilizando rutas
+                absolutas (Absolute Path Bypass).
+            </p>
+        </section>
+
+        <!-- SECCIÓN 4 -->
+        <section class="card">
+            <h2>4. Objetivo del laboratorio</h2>
+
+            <p>
+                Explotar una vulnerabilidad de Path Traversal en
+                una aplicación web que utiliza el parámetro
+                <code>filename</code> para cargar imágenes de
+                productos.
+            </p>
+
+            <p>
+                Aunque la aplicación implementa mecanismos de
+                seguridad para bloquear secuencias de retroceso
+                de directorios (<code>../</code>), permite utilizar
+                rutas absolutas sin realizar una validación adecuada.
+            </p>
+
+            <p>
+                El objetivo principal es aprovechar esta debilidad
+                para acceder al archivo <code>/etc/passwd</code>
+                del servidor Linux y recuperar información
+                relacionada con las cuentas de usuario del sistema.
+            </p>
+        </section>
+
+        <!-- SECCIÓN 5 -->
+        <section class="card technical-info">
+            <h2>5. Explicación técnica de la vulnerabilidad</h2>
+
+            <p>
+                La vulnerabilidad <strong>Path Traversal</strong>
+                ocurre cuando una aplicación web permite manipular
+                rutas de archivos proporcionadas por el usuario,
+                facilitando el acceso a recursos ubicados fuera
+                de los directorios autorizados.
+            </p>
+
+            <p>
+                En este laboratorio, la aplicación utiliza el
+                parámetro <code>filename</code> dentro de una
+                petición HTTP GET para recuperar imágenes
+                almacenadas en el servidor.
+            </p>
+
+            <pre><code>GET /image?filename=11.jpg</code></pre>
+
+            <p>
+                Aunque existe un mecanismo que bloquea secuencias
+                como <code>../</code>, la aplicación no restringe
+                correctamente el uso de rutas absolutas.
+            </p>
+
+            <p>
+                Una ruta absoluta comienza con el carácter
+                <code>/</code> y permite especificar directamente
+                la ubicación de un archivo desde la raíz del
+                sistema Linux.
+            </p>
+
+            <pre><code>/etc/passwd</code></pre>
+
+            <p>
+                Al procesar este tipo de rutas sin comprobar que
+                pertenezcan al directorio autorizado, la aplicación
+                puede abrir archivos sensibles del sistema, como
+                <code>/etc/passwd</code>, en lugar de las imágenes
+                solicitadas.
+            </p>
+        </section>
+
+        <!-- SECCIÓN 6 -->
+        <section class="card">
+            <h2>6. Procedimiento paso a paso</h2>
+
+            <ol class="steps">
+
+                <li>
+                    Se ingresó al laboratorio de PortSwigger Web
+                    Security Academy y se verificó que su estado
+                    inicial fuera <strong>"Not solved"</strong>.
+                </li>
+
+                <li>
+                    Se abrió la tienda virtual del laboratorio y
+                    se seleccionó un producto para generar una
+                    petición HTTP relacionada con la carga de
+                    una imagen.
+                </li>
+
+                <li>
+                    Mediante <strong>Burp Suite</strong>, se
+                    identificó la petición correspondiente a
+                    una imagen del producto.
+
+                    <pre><code>GET /image?filename=11.jpg</code></pre>
+                </li>
+
+                <li>
+                    La petición se envió a la herramienta
+                    <strong>Repeater</strong> para analizar
+                    y modificar su contenido.
+                </li>
+
+                <li>
+                    Dentro de Repeater, se reemplazó el valor
+                    original del parámetro <code>filename</code>
+                    por la ruta absoluta <code>/etc/passwd</code>.
+
+                    <pre><code>GET /image?filename=/etc/passwd</code></pre>
+                </li>
+
+                <li>
+                    Se presionó el botón <strong>Send</strong>
+                    para enviar la petición modificada al servidor.
+                </li>
+
+                <li>
+                    El servidor respondió con el código HTTP
+                    <strong>200 OK</strong>, mostrando el contenido
+                    del archivo <code>/etc/passwd</code>, incluyendo
+                    registros de usuarios como <code>root</code>
+                    y <code>daemon</code>.
+                </li>
+
+                <li>
+                    Finalmente, se regresó al navegador y se
+                    verificó que el laboratorio había cambiado
+                    su estado a <strong>"Solved"</strong>,
+                    confirmando que la vulnerabilidad fue
+                    explotada exitosamente.
+                </li>
+
+            </ol>
+        </section>
+
+        <!-- SECCIÓN 7 -->
+        <section class="card" id="evidencias">
+            <h2>7. Evidencias y capturas de pantalla</h2>
+
+            <div class="parcial-section">
+                <h3>Evidencias del laboratorio</h3>
+
+                <!-- CAPTURA 1 -->
+                <article class="evidence-item">
+                    <h4>
+                        Captura 1. Estado inicial del laboratorio
+                    </h4>
+
+                    <p>
+                        En la primera captura se observa la página
+                        del laboratorio en PortSwigger Web Security
+                        Academy, donde aparece el estado
+                        <strong>"Not solved"</strong>.
+                    </p>
+
+                    <p>
+                        Esta evidencia demuestra que el laboratorio
+                        todavía no había sido completado antes de
+                        realizar las pruebas de seguridad y modificar
+                        las peticiones HTTP.
+                    </p>
+
+                    <figure>
+                        <img
+                            src="08Imagen1.png"
+                            alt="Estado inicial del laboratorio Not solved"
+                            loading="lazy">
+
+                        <figcaption>
+                            Figura 1. Laboratorio sin resolver.
+                        </figcaption>
+                    </figure>
+                </article>
+
+                <!-- CAPTURA 2 -->
+                <article class="evidence-item">
+                    <h4>
+                        Captura 2. Identificación de la petición
+                        GET original
+                    </h4>
+
+                    <p>
+                        En la segunda captura se muestra la herramienta
+                        <strong>Burp Suite Repeater</strong>, donde se
+                        encuentra la petición HTTP original
+                        <code>GET /image?filename=11.jpg</code>.
+                    </p>
+
+                    <p>
+                        Esta petición corresponde a la carga legítima
+                        de una imagen de producto y permite identificar
+                        el parámetro <code>filename</code>, que
+                        posteriormente será modificado para realizar
+                        la explotación.
+                    </p>
+
+                    <pre><code>GET /image?filename=11.jpg</code></pre>
+
+                    <figure>
+                        <img
+                            src="08Imagen2.png"
+                            alt="Petición GET original en Burp Suite Repeater"
+                            loading="lazy">
+
+                        <figcaption>
+                            Figura 2. Petición GET original en Burp Suite.
+                        </figcaption>
+                    </figure>
+                </article>
+
+                <!-- CAPTURA 3 -->
+                <article class="evidence-item">
+                    <h4>
+                        Captura 3. Modificación de la petición
+                        y respuesta vulnerable
+                    </h4>
+
+                    <p>
+                        En la tercera captura se observa cómo se
+                        modificó el parámetro <code>filename</code>,
+                        sustituyendo el nombre de la imagen por la
+                        ruta absoluta <code>/etc/passwd</code>.
+                    </p>
+
+                    <pre><code>GET /image?filename=/etc/passwd</code></pre>
+
+                    <p>
+                        Al presionar <strong>Send</strong>, el servidor
+                        devolvió una respuesta HTTP
+                        <strong>200 OK</strong>, mostrando información
+                        de las cuentas del sistema Linux, incluyendo
+                        registros como <code>root</code> y
+                        <code>daemon</code>.
+                    </p>
+
+                    <pre><code>HTTP/2 200 OK
+
+root:x:0:0:root:/root:/bin/bash</code></pre>
+
+                    <p>
+                        Esta respuesta demuestra que la aplicación
+                        permite acceder a archivos fuera del
+                        directorio autorizado mediante el uso de
+                        rutas absolutas, confirmando la existencia
+                        de una vulnerabilidad de Path Traversal.
+                    </p>
+
+                    <figure>
+                        <img
+                            src="08Imagen3.png"
+                            alt="Petición modificada y respuesta vulnerable mostrando el archivo passwd"
+                            loading="lazy">
+
+                        <figcaption>
+                            Figura 3. Petición modificada y respuesta
+                            con el contenido de /etc/passwd.
+                        </figcaption>
+                    </figure>
+                </article>
+
+                <!-- CAPTURA 4 -->
+                <article class="evidence-item">
+                    <h4>
+                        Captura 4. Confirmación del laboratorio resuelto
+                    </h4>
+
+                    <p>
+                        En la cuarta captura se muestra la página
+                        del laboratorio después de realizar la
+                        explotación, donde aparece el mensaje
+                        <strong>
+                            "Congratulations, you solved the lab!"
+                        </strong>
+                        y el estado <strong>"Solved"</strong>.
+                    </p>
+
+                    <p>
+                        Esto confirma que se cumplió el objetivo
+                        establecido y que el laboratorio fue
+                        completado correctamente.
+                    </p>
+
+                    <figure>
+                        <img
+                            src="08Imagen4.png"
+                            alt="Confirmación del laboratorio resuelto en PortSwigger"
+                            loading="lazy">
+
+                        <figcaption>
+                            Figura 4. Laboratorio resuelto exitosamente.
+                        </figcaption>
+                    </figure>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN 8 -->
+        <section class="card technical-info">
+            <h2>8. Explicación del payload</h2>
+
+            <p>El payload utilizado fue:</p>
+
+            <pre><code>filename=/etc/passwd</code></pre>
+
+            <h3 class="subheading">Funcionamiento</h3>
+
+            <ul>
+                <li>
+                    <strong>filename:</strong>
+                    Es el parámetro utilizado por la aplicación
+                    para identificar el archivo que debe recuperar
+                    del servidor.
+                </li>
+
+                <li>
+                    <strong>/:</strong>
+                    Representa la raíz del sistema de archivos Linux
+                    e indica que se está utilizando una ruta absoluta.
+                </li>
+
+                <li>
+                    <strong>/etc/:</strong>
+                    Es un directorio del sistema Linux que contiene
+                    archivos de configuración.
+                </li>
+
+                <li>
+                    <strong>passwd:</strong>
+                    Es el archivo que almacena información sobre
+                    las cuentas de usuario del sistema.
+                </li>
+            </ul>
+
+            <p>
+                A diferencia de otros ataques de Path Traversal,
+                en este laboratorio no fue necesario utilizar
+                secuencias de retroceso como <code>../</code>.
+            </p>
+
+            <p>
+                La explotación fue posible porque la aplicación
+                bloqueaba estas secuencias, pero no verificaba
+                adecuadamente las rutas absolutas.
+            </p>
+
+            <p>
+                Como resultado, el servidor procesó directamente
+                la ruta <code>/etc/passwd</code> y devolvió su
+                contenido mediante una respuesta HTTP, en lugar
+                de limitar el acceso al directorio de imágenes
+                autorizado.
+            </p>
+        </section>
+
+        <!-- SECCIÓN 9 -->
+        <section class="card technical-info" id="mitigacion">
+            <h2>9. Mitigación recomendada</h2>
+
+            <p>
+                Para prevenir vulnerabilidades de Path Traversal
+                mediante rutas absolutas, se recomiendan las
+                siguientes medidas:
+            </p>
+
+            <ol class="mitigation-list">
+
+                <li>
+                    <strong>Validación de entradas:</strong>
+                    Verificar que los parámetros proporcionados
+                    por el usuario no contengan rutas absolutas
+                    ni referencias a directorios no autorizados.
+                </li>
+
+                <li>
+                    <strong>Listas de archivos permitidos:</strong>
+                    Restringir el acceso únicamente a archivos
+                    previamente autorizados, utilizando
+                    identificadores internos en lugar de rutas
+                    proporcionadas directamente por el usuario.
+                </li>
+
+                <li>
+                    <strong>Validación de rutas canónicas:</strong>
+                    Resolver la ruta real del archivo solicitado
+                    y comprobar que permanezca dentro del
+                    directorio base permitido, evitando accesos
+                    mediante rutas absolutas o secuencias
+                    de retroceso.
+                </li>
+
+                <li>
+                    <strong>Control de permisos:</strong>
+                    Aplicar el principio de mínimo privilegio
+                    para limitar los archivos a los que puede
+                    acceder el proceso del servidor web.
+                </li>
+
+                <li>
+                    <strong>Protección de archivos sensibles:</strong>
+                    Configurar adecuadamente los permisos y
+                    controles de acceso para impedir que la
+                    aplicación pueda consultar información
+                    del sistema que no necesita para su
+                    funcionamiento.
+                </li>
+
+            </ol>
+        </section>
+
+        <!-- NAVEGACIÓN FINAL -->
+        <section class="card final-navigation">
+            <h2>Reporte finalizado</h2>
+
+            <p>
+                Utiliza los siguientes enlaces para regresar
+                al índice principal o volver al inicio del reporte.
+            </p>
+
+            <div class="buttons-row">
+                <a class="btn-evidence" href="index.html">
+                    ← Regresar al Index
+                </a>
+
+                <a class="btn-evidence" href="#reporte">
+                    ↑ Volver al inicio del reporte
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <p>
+            Reporte de laboratorio de Seguridad Web —
+            PortSwigger Web Security Academy
+        </p>
+    </footer>
+
 </body>
 </html>
