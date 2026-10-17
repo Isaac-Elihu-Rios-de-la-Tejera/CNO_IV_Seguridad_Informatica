@@ -192,6 +192,33 @@
             text-decoration: underline;
         }
 
+        .descripcion-tecnica {
+            margin-top: 15px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .descripcion-tecnica h4 {
+            font-size: 17px;
+            margin-bottom: 12px;
+        }
+        
+        .descripcion-tecnica ul {
+            list-style-type: disc;
+            padding-left: 22px;
+            margin: 0;
+        }
+        
+        .descripcion-tecnica li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        
+        .descripcion-tecnica li strong {
+            font-weight: bold;
+        }
+
         /* Diseño responsivo para pantallas pequeñas */
         @media screen and (max-width: 768px) {
             .timeline::after {
@@ -209,32 +236,6 @@
                 left: 0%;
             }
             
-            .descripcion-tecnica {
-                margin-top: 15px;
-                margin-bottom: 20px;
-                text-align: left;
-            }
-            
-            .descripcion-tecnica h4 {
-                font-size: 17px;
-                margin-bottom: 12px;
-            }
-            
-            .descripcion-tecnica ul {
-                list-style-type: disc;
-                padding-left: 22px;
-                margin: 0;
-            }
-            
-            .descripcion-tecnica li {
-                margin-bottom: 12px;
-                line-height: 1.6;
-                font-size: 14px;
-            }
-            
-            .descripcion-tecnica li strong {
-                font-weight: bold;
-            }
         }
     </style>
 </head>
@@ -259,7 +260,7 @@
             
             <!-- LABORATORIO 1 -->
             
-            <div class="timeline-item right">
+            <div class="timeline-item left">
                 <div class="content">
                     <img src="07Imagen1.png" alt="Imagen del Laboratorio 02">
             
@@ -315,24 +316,26 @@
                         <ul>
                             <li>
                                 <strong>Procedimiento realizado:</strong>
-                                Se interceptó una petición HTTP y se modificó
-                                el parámetro que contiene la ruta del archivo,
-                                utilizando una ruta absoluta para evitar las
-                                restricciones de acceso implementadas.
+                                En este laboratorio se explotó una vulnerabilidad de Path Traversal con el objetivo de leer el archivo sensible /etc/passwd evadiendo un filtro de seguridad que eliminaba secuencias de navegación (../) de forma no recursiva. Utilizando Burp Suite (a través de su navegador integrado y el módulo Repeater) en el entorno de PortSwigger Web Security Academy, se interceptó una petición HTTP GET legítima destinada a la carga de imágenes y se manipuló su parámetro filename con el payload ....//....//....//....//etc/passwd. Esta técnica anidada engañó al servidor, ya que al eliminar el filtro la secuencia interna, la cadena colapsó en una travesía de directorios efectiva. De esta manera, se cumplieron exitosamente los objetivos de identificar la vulnerabilidad, evadir los controles de seguridad, lograr la lectura de archivos fuera del directorio web raíz y resolver el laboratorio confirmando el acceso no autorizado.
                             </li>
             
                             <li>
                                 <strong>Herramientas utilizadas:</strong>
-                                Burp Suite para interceptar y modificar
-                                las peticiones HTTP, junto con el navegador web
-                                para comprobar los resultados.
+                                <ul>
+                                <li>Burp Suite (Community Edition): Utilizada como proxy de intercepción (Burp Proxy) para el análisis de tráfico, y como entorno de pruebas (Burp Repeater) para la manipulación y envío de los payloads maliciosos.</li>
+                                <li>Navegador Integrado de Burp (Chromium): Utilizado para la navegación segura y aislada dentro del entorno del laboratorio de PortSwigger.</li>
+                                <li>Plataforma PortSwigger Web Security Academy: Entorno virtualizado que aloja la aplicación vulnerable.</li>
+                                </ul> 
                             </li>
             
                             <li>
                                 <strong>Objetivos cumplidos:</strong>
-                                Se logró demostrar cómo una ruta absoluta puede
-                                permitir el acceso a archivos fuera del directorio
-                                previsto por la aplicación.
+                                <ol>
+                                    <li>Identificación de la vulnerabilidad: Se confirmó la presencia de un Path Traversal en el parámetro de carga de archivos.</li>
+                                    <li>Evasión de controles de seguridad: Se logró burlar exitosamente el filtro no recursivo implementado por el servidor.</li>
+                                    <li>Lectura de archivos locales (LFI): Se obtuvo acceso de lectura no autorizado al archivo de cuentas del sistema (/etc/passwd), demostrando el impacto crítico de la vulnerabilidad.</li>
+                                    <li>Resolución del laboratorio: La plataforma validó la explotación exitosa del entorno, marcando el laboratorio como "Solved" (Resuelto).</li>
+                                </ol>
                             </li>
                         </ul>
                     </div>
@@ -347,40 +350,173 @@
             <!-- LABORATORIO 3 -->
             <div class="timeline-item left">
                 <div class="content">
-                    <img src="09Imagen1.png" alt="Imagen del Laboratorio 3">
+                    <img src="09Imagen1.png" alt="Imagen del Laboratorio 02">
+            
                     <h3>Laboratorio 03: TRAVERSAL SEQUENCES STRIPPED NON-RECURSIVELY</h3>
-                    <p><strong>Descripción técnica:</strong> [Aquí redactarás una breve descripción técnica de lo que se realizó en el laboratorio, herramientas utilizadas y objetivos cumplidos].</p>
-                    <a href="Reporte_actividad9.pdf" class="evidencia-link">Ver evidencia completa &rarr;</a>
+            
+                    <div class="descripcion-tecnica">
+                        <h4>Descripción técnica:</h4>
+            
+                        <ul>
+                            <li>
+                                <strong>Procedimiento realizado:</strong>
+                                En este laboratorio se explotó una vulnerabilidad de Path Traversal en una aplicación web que implementaba una mitigación deficiente al bloquear secuencias de retroceso de directorio (como ../). Utilizando Burp Suite para interceptar y modificar el tráfico HTTP, se identificó el parámetro vulnerable filename en la petición GET encargada de cargar las imágenes del sitio. Al inyectar una ruta absoluta (/etc/passwd), se evadió el filtro de seguridad del servidor, forzando al sistema a ignorar su directorio base y devolver el contenido de un archivo crítico del sistema operativo en la respuesta HTTP, demostrando así una lectura arbitraria de archivos.
+                            </li>
+            
+                            <li>
+                                <strong>Herramientas utilizadas:</strong>
+                                <ul>
+                                <li>Burp Suite (Community Edition): Utilizado para la interceptación de la petición y el uso del módulo Repeater para manipular y reenviar el payload.</li>
+                                <li>Navegador Web: Empleado para interactuar con la aplicación vulnerable y verificar el estado del laboratorio.</li>
+                                <li>PortSwigger Web Security Academy: Plataforma que aloja el entorno seguro de pruebas.</li>
+                                </ul> 
+                            </li>
+            
+                            <li>
+                                <strong>Objetivos cumplidos:</strong>
+                                <ol>
+                                    <li>Identificar el punto de entrada vulnerable (parámetro de carga de imágenes).</li>
+                                    <li>Evadir el mecanismo de defensa de la aplicación web (bloqueo de ../).</li>
+                                    <li>Inyectar un payload de ruta absoluta para comprometer el sistema de archivos.</li>
+                                    <li>Exfiltrar información sensible leyendo el archivo /etc/passwd.</li>
+                                    <li>Completar y resolver satisfactoriamente el laboratorio ("Lab Solved").</li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </div>
+            
+                    <a href="Reporte_actividad9.pdf" class="evidencia-link">
+                        Ver evidencia completa &rarr;
+                    </a>
                 </div>
             </div>
 
             <!-- LABORATORIO 4 -->
             <div class="timeline-item right">
                 <div class="content">
-                    <img src="10Imagen1.png" alt="Imagen del Laboratorio 4">
-                    <h3>Laboratorio 04: TRAVERSAL SEQUENCES STRIPPED WITH SUPERFLUOUS URL-DECODE </h3>
-                    <p><strong>Descripción técnica:</strong> [Aquí redactarás una breve descripción técnica de lo que se realizó en el laboratorio, herramientas utilizadas y objetivos cumplidos].</p>
-                    <a href="Reporte_actividad10.pdf" class="evidencia-link">Ver evidencia completa &rarr;</a>
+                    <img src="10Imagen1.png" alt="Imagen del Laboratorio 02">
+            
+                    <h3>Laboratorio 04: TRAVERSAL SEQUENCES STRIPPED WITH SUPERFLUOUS URL-DECODE</h3>
+            
+                    <div class="descripcion-tecnica">
+                        <h4>Descripción técnica:</h4>
+            
+                        <ul>
+                            <li>
+                                <strong>Procedimiento realizado:</strong>
+                                En este laboratorio se explotó una vulnerabilidad de Path Traversal (salto de ruta) en una aplicación web, cuyo objetivo era acceder a archivos sensibles del sistema operativo fuera del directorio raíz del servidor. La aplicación contaba con un filtro de seguridad que intentaba bloquear los ataques eliminando las secuencias de salto de directorio (../), sin embargo, cometía el error de aplicar este filtro antes de decodificar la URL. Para evadir esta protección, se interceptó la petición de carga de una imagen y se manipuló el parámetro filename utilizando una doble codificación URL (..%252f..%252f..%252fetc%252fpasswd). Al enviar el payload, el servidor no reconoció las secuencias maliciosas en la primera revisión, pero al decodificar la URL internamente, se reconstruyó la ruta ../ permitiendo el salto de directorios y la lectura exitosa del archivo de usuarios del sistema (/etc/passwd), demostrando así la falla en el orden de validación de las entradas del servidor.
+                            </li>
+            
+                            <li>
+                                <strong>Herramientas utilizadas:</strong>
+                                <ul>
+                                <li>Burp Suite (Community Edition): Utilizada como proxy de intercepción (Burp Proxy) para el análisis de tráfico, y como entorno de pruebas (Burp Repeater) para la manipulación y envío de los payloads maliciosos.</li>
+                                <li>Navegador Integrado de Burp (Chromium): Utilizado para la navegación segura y aislada dentro del entorno del laboratorio de PortSwigger.</li>
+                                <li>Plataforma PortSwigger Web Security Academy: Entorno virtualizado que aloja la aplicación vulnerable.</li>
+                                </ul> 
+                            </li>
+            
+                            <li>
+                                <strong>Objetivos cumplidos:</strong>
+                                <ol>
+                                    <li>Identificación de una vulnerabilidad de Path Traversal / Local File Inclusion (LFI).</li>
+                                    <li>Evasión exitosa de un filtro de seguridad mediante la técnica de doble codificación URL (Superfluous URL-decode).</li>
+                                    <li>Extracción y lectura no autorizada de un archivo crítico del sistema operativo Linux (/etc/passwd).</li>
+                                    <li>Resolución completa del laboratorio, obteniendo la confirmación de "Lab Solved" en la plataforma.</li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </div>
+            
+                    <a href="Reporte_actividad10.pdf" class="evidencia-link">
+                        Ver evidencia completa &rarr;
+                    </a>
                 </div>
             </div>
 
             <!-- LABORATORIO 5 -->
             <div class="timeline-item left">
                 <div class="content">
-                    <img src="11Imagen1.png" alt="Imagen del Laboratorio 5">
+                    <img src="11Imagen1.png" alt="Imagen del Laboratorio 02">
+            
                     <h3>Laboratorio 05: VALIDATION OF START OF PATH</h3>
-                    <p><strong>Descripción técnica:</strong> [Aquí redactarás una breve descripción técnica de lo que se realizó en el laboratorio, herramientas utilizadas y objetivos cumplidos].</p>
-                    <a href="Reporte_actividad11.pdf" class="evidencia-link">Ver evidencia completa &rarr;</a>
+            
+                    <div class="descripcion-tecnica">
+                        <h4>Descripción técnica:</h4>
+            
+                        <ul>
+                            <li>
+                                <strong>Procedimiento realizado:</strong>
+                                En este laboratorio se realizó la explotación de una vulnerabilidad de Path Traversal (salto de directorio) mediante la manipulación de peticiones HTTP. Para ello, se utilizaron herramientas de intercepción de tráfico (Burp Suite) junto con el navegador web para interactuar con la tienda en línea del entorno. El objetivo principal se cumplió al interceptar la solicitud de carga de una imagen y modificar el parámetro filename, inyectando secuencias de salto (../) que permitieron evadir la validación deficiente del servidor (el cual solo comprobaba el inicio de la ruta). Como resultado, se logró acceder y leer el archivo crítico del sistema /etc/passwd, demostrando la vulnerabilidad y resolviendo exitosamente el laboratorio.
+                            </li>
+            
+                            <li>
+                                <strong>Herramientas utilizadas:</strong>
+                                <ul>
+                                <li>Burp Suite (Community Edition): Utilizado para la interceptación de la petición y el uso del módulo Repeater para manipular y reenviar el payload.</li>
+                                <li>Navegador Web: Empleado para interactuar con la aplicación vulnerable y verificar el estado del laboratorio.</li>
+                                <li>PortSwigger Web Security Academy: Plataforma que aloja el entorno seguro de pruebas.</li>
+                                </ul> 
+                            </li>
+            
+                            <li>
+                                <strong>Objetivos cumplidos:</strong>
+                                <ol>
+                                    <li>Identificar el parámetro vulnerable (filename) en la petición GET.</li>
+                                    <li>Evadir el control de seguridad del servidor (validación del inicio de la ruta).</li>
+                                    <li>Inyectar correctamente el payload (/var/www/images/../../../etc/passwd).</li>
+                                    <li>Leer y exfiltrar el contenido de un archivo sensible del sistema operativo Linux.</li>
+                                    <li>Completar el laboratorio obteniendo la confirmación de "Solved".</li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </div>
+            
+                    <a href="Reporte_actividad11.pdf" class="evidencia-link">
+                        Ver evidencia completa &rarr;
+                    </a>
                 </div>
             </div>
 
             <!-- LABORATORIO 6 -->
             <div class="timeline-item right">
                 <div class="content">
-                    <img src="12Imagen1.png" alt="Imagen del Laboratorio 6">
-                    <h3>Laboratorio 06: VALIDATION OF FILE EXTENSION WITH NULL BYTE BYPASS</h3>
-                    <p><strong>Descripción técnica:</strong> [Aquí redactarás una breve descripción técnica de lo que se realizó en el laboratorio, herramientas utilizadas y objetivos cumplidos].</p>
-                    <a href="Reporte_actividad12.pdf" class="evidencia-link">Ver evidencia completa &rarr;</a>
+                    <img src="12Imagen1.png" alt="Imagen del Laboratorio 02">
+            
+                    <h3>Laboratorio 06: TRAVERSAL SEQUENCES STRIPPED WITH SUPERFLUOUS URL-DECODE</h3>
+            
+                    <div class="descripcion-tecnica">
+                        <h4>Descripción técnica:</h4>
+            
+                        <ul>
+                            <li>
+                                <strong>Procedimiento realizado:</strong>
+                                En el desarrollo de esta práctica se realizó la explotación de una vulnerabilidad de salto de ruta (Path Traversal) combinada con una evasión de filtros mediante la inyección de un byte nulo (Null Byte Bypass) en un entorno controlado. Para llevar a cabo esta prueba de penetración, se utilizaron herramientas de interceptación de tráfico HTTP, específicamente el Proxy y el Repeater de Burp Suite, junto con un navegador web. El objetivo principal fue evadir la validación de la aplicación web que exigía una extensión de imagen (.jpg), logrando comprometer el sistema al leer el archivo sensible /etc/passwd del servidor subyacente y resolviendo el laboratorio de manera exitosa.
+                            </li>
+            
+                            <li>
+                                <strong>Herramientas utilizadas:</strong>
+                                <ul>
+                                <li>Burp Suite (Community Edition): Utilizada como proxy de intercepción (Burp Proxy) para el análisis de tráfico, y como entorno de pruebas (Burp Repeater) para la manipulación y envío de los payloads maliciosos.</li>
+                                <li>Navegador Integrado de Burp (Chromium): Utilizado para la navegación segura y aislada dentro del entorno del laboratorio de PortSwigger.</li>
+                                <li>Plataforma PortSwigger Web Security Academy: Entorno virtualizado que aloja la aplicación vulnerable.</li>
+                                </ul> 
+                            </li>
+            
+                            <li>
+                                <strong>Objetivos cumplidos:</strong>
+                                <ol>
+                                    <li>Evadir el control de seguridad (validación de extensión de archivo).</li>
+                                    <li>ELeer un archivo fuera del directorio raíz web (/etc/passwd).</li>
+                                    <li>Completar el laboratorio obteniendo el mensaje de confirmación "Lab Solved".</li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </div>
+            
+                    <a href="Reporte_actividad12.pdf" class="evidencia-link">
+                        Ver evidencia completa &rarr;
+                    </a>
                 </div>
             </div>
 
