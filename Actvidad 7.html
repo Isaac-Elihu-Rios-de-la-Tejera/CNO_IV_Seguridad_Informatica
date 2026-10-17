@@ -10,25 +10,29 @@
 </head>
 <body>
     <!-- Encabezado y navegación compatibles con el diseño de reportes anterior -->
-    <header class="site-header" id="inicio">
-        <div class="header-content">
-            <div class="header-title">
-                <p class="eyebrow">REPORTE DE LABORATORIO · SEGURIDAD WEB</p>
-                <h1>File Path Traversal</h1>
-                <h2>Simple Case</h2>
-                <p class="header-summary">PortSwigger Web Security Academy</p>
-            </div>
-            <div class="lab-badge">
-                <span>PortSwigger Web Security Academy</span>
-                <strong>Nivel: Apprentice</strong>
-            </div>
-        </div>
-        <nav aria-label="Navegación principal">
+        <header>
+                <div class="header-content">
+                    <div>
+                        <h1>File Path Traversal</h1>
+                        <h2>Simple Case</h2>
+                    </div>
+        
+                    <div class="lab-badge">
+                        <span>PortSwigger Web Security Academy</span>
+                        <strong>Nivel: Apprentice</strong>
+                    </div>
+                </div>
+        
+                <nav aria-label="Navegación principal">
             <ul>
                 <li><a href="index.html">← Regresar al Index</a></li>
-                <li><a class="active" href="#reporte">Reporte</a></li>
+                <li><a href="#reporte" class="active">Reporte</a></li>
                 <li><a href="#evidencias">Evidencias</a></li>
                 <li><a href="#mitigacion">Mitigación</a></li>
+        
+                <li>
+                    <a href="Reporte_actividad7.pdf" target="_blank">📄 Ver reporte PDF</a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -155,16 +159,21 @@
             </ol>
         </section>
 
-        <section class="card final-navigation" aria-label="Navegación final">
+        <section class="card final-navigation">
+            <h2>Reporte finalizado</h2>
+            <p>
+                Utiliza los botones siguientes para regresar al índice principal o volver al inicio del reporte.
+            </p>
+
             <div class="buttons-row">
                 <a class="btn-evidence" href="index.html">← Regresar al Index</a>
-                <a class="btn-evidence" href="#inicio">↑ Volver al inicio del reporte</a>
+                <a class="btn-evidence" href="#reporte">↑ Volver al inicio del reporte</a>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>Reporte de laboratorio de Seguridad Web — PortSwigger Web Security Academy</p>
+        <p>© 2026 Isaac Elihu Rios de la Tejera. Portafolio de Seguridad Informática.</p>
     </footer>
 </body>
 </html>
