@@ -1,11 +1,463 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Actividad 11. Extracción de metadatos GPS para geolocalización mediante ExifTool.">
+    <meta name="theme-color" content="#0f172a">
+
+    <title>Actividad 11 | Análisis de Metadatos con ExifTool</title>
+
+    <!-- Archivo CSS existente -->
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+
+    <!-- ENCABEZADO -->
+    <header class="site-header" id="inicio">
+        <div class="header-content">
+            <div class="header-title">
+                <p class="eyebrow">INFORMÁTICA CRIMINOLÓGICA · ACTIVIDAD 11</p>
+                <h1>La fotografía como testigo</h1>
+                <h2>Extracción de metadatos GPS para geolocalización</h2>
+                <p class="header-summary">
+                    Análisis de archivos mediante ExifTool y línea de comandos de Windows.
+                </p>
+            </div>
+
+            <div class="lab-badge">
+                <span>Herramienta utilizada</span>
+                <strong>ExifTool 12.68</strong>
+            </div>
+        </div>
+
+        <!-- MENÚ DE NAVEGACIÓN -->
+        <nav aria-label="Navegación principal">
+            <ul>
+                <li><a href="index.html">← Regresar al Index</a></li>
+                <li><a class="active" href="#parte-i">Parte I</a></li>
+                <li><a href="#parte-ii">Parte II</a></li>
+                <li><a href="#evidencias">Evidencias</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main id="reporte" class="report-main">
+
+        <!-- ====================================== -->
+        <!-- PARTE I: DOCUMENTO DE INTERPOL         -->
+        <!-- ====================================== -->
+
+        <section class="card" id="parte-i">
+
+            <h2>Parte I. Análisis de metadatos del archivo de INTERPOL</h2>
+
+            <p>
+                Archivo analizado:
+                <strong>WOA database application form.docx</strong>
+            </p>
+
+            <div class="parcial-section">
+
+                <h3>1. ¿Cómo categorizó el archivo INTERPOL?</h3>
+                <p>
+                    En el campo <code>Category</code> figura
+                    <strong>English (inglés)</strong>; en el campo de
+                    clasificación propio de INTERPOL
+                    (<code>InterpolClassification</code>)
+                    aparece <strong>Unclassified (no clasificado)</strong>.
+                </p>
+
+                <h3>2. ¿Qué template fue utilizado para su elaboración?</h3>
+                <p>
+                    <strong>G03 Basic Doc SP.dotx.</strong>
+                </p>
+
+                <h3>3. ¿Cuál fue el tiempo total de edición?</h3>
+                <p>
+                    El tiempo total de edición fue de
+                    <strong>45 minutos</strong>.
+                </p>
+
+                <h3>4. ¿Cuál es la compañía propietaria del fichero?</h3>
+                <p>
+                    <strong>OIPC - INTERPOL.</strong>
+                </p>
+
+                <h3>5. ¿Quién realizó la última modificación?</h3>
+                <p>
+                    <strong>Carolyn Lejeune.</strong>
+                </p>
+
+                <h3>6. ¿Cuál fue la fecha de creación?</h3>
+                <p>
+                    <strong>3 de mayo de 2019, a las 15:35:00 (UTC).</strong>
+                </p>
+
+                <h3>7. ¿Quién es el creador del documento?</h3>
+                <p>
+                    <strong>Carolyn Lejeune.</strong>
+                </p>
+
+            </div>
+
+            <!-- EVIDENCIA 1 -->
+            <article class="evidence-item" id="evidencia-1">
+
+                <h3>Figura 1. Consulta de metadatos del documento DOCX</h3>
+
+                <figure class="evidence-figure">
+
+                    <!-- IMAGEN 1: METADATOS DEL DOCUMENTO -->
+                    <img src="11Imagen1.png"
+                         alt="Metadatos del documento de INTERPOL obtenidos con ExifTool"
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+
+                    <div class="image-placeholder"
+                         style="display:none; min-height:260px; align-items:center; justify-content:center; padding:25px; border:2px dashed #64748b; border-radius:8px; text-align:center;">
+                        AQUÍ VA LA IMAGEN 1<br>
+                        Metadatos del documento de INTERPOL
+                    </div>
+
+                    <figcaption>
+                        <strong>Figura 1.</strong>
+                        La captura registra la ejecución inicial de ExifTool
+                        para listar los metadatos del archivo de INTERPOL.
+                    </figcaption>
+
+                </figure>
+
+                <p><strong>Comando utilizado:</strong></p>
+
+                <pre><code>exiftool.exe -a -G1 -s "infocrim\WOA database application form.docx"</code></pre>
+
+            </article>
+
+        </section>
+
+
+        <!-- ====================================== -->
+        <!-- PARTE II: FOTOGRAFÍA XIAOMI            -->
+        <!-- ====================================== -->
+
+        <section class="card" id="parte-ii">
+
+            <h2>Parte II. Análisis de metadatos de la fotografía Xiaomi</h2>
+
+            <p>
+                Archivo analizado:
+                <strong>XiaomiMiA2Lite.jpg</strong>
+            </p>
+
+            <div class="parcial-section">
+
+                <h3>1. ¿Cuál fue la apertura ISO utilizada?</h3>
+
+                <p>
+                    La sensibilidad fue <strong>ISO 100</strong>;
+                    la apertura del diafragma fue <strong>f/2.2</strong>.
+                </p>
+
+                <h3>2. ¿Cuál es la longitud focal de la cámara?</h3>
+
+                <p>
+                    <strong>3.8 mm.</strong>
+                </p>
+
+                <h3>3. ¿Se utilizó flash?</h3>
+
+                <p>
+                    No. El valor registrado fue
+                    <strong>Off, Did not fire</strong>.
+                </p>
+
+                <h3>4. ¿Cuál fue la fecha de creación del archivo?</h3>
+
+                <p>
+                    <strong>28 de mayo de 2020, a las 18:11:41</strong>,
+                    de acuerdo con los metadatos <code>CreateDate</code>.
+                </p>
+
+            </div>
+
+            <!-- EVIDENCIA 2 -->
+            <article class="evidence-item" id="evidencia-2">
+
+                <h3>Figura 2. Características de captura de la cámara Xiaomi</h3>
+
+                <figure class="evidence-figure">
+
+                    <!-- IMAGEN 2: METADATOS DE LA FOTOGRAFÍA -->
+                    <img src="11Imagen2.png"
+                         alt="Metadatos de la fotografía Xiaomi"
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+
+                    <div class="image-placeholder"
+                         style="display:none; min-height:260px; align-items:center; justify-content:center; padding:25px; border:2px dashed #64748b; border-radius:8px; text-align:center;">
+                        AQUÍ VA LA IMAGEN 2<br>
+                        Características de la cámara Xiaomi
+                    </div>
+
+                    <figcaption>
+                        <strong>Figura 2.</strong>
+                        La salida identifica los campos ISO, FNumber,
+                        FocalLength, Flash y CreateDate de la fotografía.
+                    </figcaption>
+
+                </figure>
+
+                <p><strong>Comando utilizado:</strong></p>
+
+                <pre><code>exiftool.exe -a -G1 -s "infocrim\XiaomiMiA2Lite.jpg"</code></pre>
+
+            </article>
+
+
+            <!-- PREGUNTA 5 -->
+            <div class="parcial-section">
+
+                <h3>5. ¿Cuáles son las coordenadas GPS y en qué lugar fue tomada la fotografía?</h3>
+
+                <p>
+                    La información GPS obtenida mediante ExifTool
+                    corresponde a los siguientes datos:
+                </p>
+
+                <ul>
+                    <li>
+                        <strong>Latitud:</strong>
+                        51.2536096667° N
+                    </li>
+
+                    <li>
+                        <strong>Longitud:</strong>
+                        0.5394256111° O
+                    </li>
+
+                    <li>
+                        <strong>Coordenadas decimales:</strong>
+                        51.253610, -0.539426
+                    </li>
+                </ul>
+
+                <p>
+                    El punto registrado se ubica cerca de
+                    <strong>Hareward Road, en Guildford, Surrey,
+                    Reino Unido</strong>.
+                </p>
+
+            </div>
+
+
+            <!-- EVIDENCIA 3 -->
+            <article class="evidence-item" id="evidencia-3">
+
+                <h3>Figura 3. Extracción de las coordenadas GPS</h3>
+
+                <figure class="evidence-figure">
+
+                    <!-- IMAGEN 3: COORDENADAS GPS -->
+                    <img src="11Imagen3.png"
+                         alt="Coordenadas GPS extraídas de la fotografía"
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+
+                    <div class="image-placeholder"
+                         style="display:none; min-height:260px; align-items:center; justify-content:center; padding:25px; border:2px dashed #64748b; border-radius:8px; text-align:center;">
+                        AQUÍ VA LA IMAGEN 3<br>
+                        Extracción de coordenadas GPS desde CMD
+                    </div>
+
+                    <figcaption>
+                        <strong>Figura 3.</strong>
+                        La consulta muestra las coordenadas en grados,
+                        minutos y segundos y posteriormente en formato decimal.
+                    </figcaption>
+
+                </figure>
+
+                <p><strong>Primer comando utilizado:</strong></p>
+
+                <pre><code>exiftool.exe -GPSLatitude -GPSLongitude -GPSPosition "infocrim\XiaomiMiA2Lite.jpg"</code></pre>
+
+                <p><strong>Segundo comando utilizado:</strong></p>
+
+                <pre><code>exiftool.exe -n -GPSLatitude -GPSLongitude "infocrim\XiaomiMiA2Lite.jpg"</code></pre>
+
+            </article>
+
+
+            <!-- EVIDENCIA 4 -->
+            <article class="evidence-item" id="evidencia-4">
+
+                <h3>Figura 4. Ubicación de la imagen en Google Maps</h3>
+
+                <figure class="evidence-figure">
+
+                    <!-- IMAGEN 4: GOOGLE MAPS -->
+                    <img src="11Imagen4.png"
+                         alt="Ubicación GPS identificada en Google Maps"
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+
+                    <div class="image-placeholder"
+                         style="display:none; min-height:260px; align-items:center; justify-content:center; padding:25px; border:2px dashed #64748b; border-radius:8px; text-align:center;">
+                        AQUÍ VA LA IMAGEN 4<br>
+                        Ubicación geográfica en Google Maps
+                    </div>
+
+                    <figcaption>
+                        <strong>Figura 4.</strong>
+                        Las coordenadas extraídas mediante ExifTool
+                        se introdujeron en Google Maps para ubicar el punto
+                        señalado en Guildford, Reino Unido.
+                    </figcaption>
+
+                </figure>
+
+                <p><strong>Comando utilizado para obtener las coordenadas:</strong></p>
+
+                <pre><code>exiftool.exe -n -GPSLatitude -GPSLongitude "infocrim\XiaomiMiA2Lite.jpg"</code></pre>
+
+                <p>
+                    Posteriormente, las coordenadas obtenidas se ingresaron
+                    en Google Maps para identificar la ubicación.
+                </p>
+
+            </article>
+
+
+            <!-- PREGUNTA 6 -->
+            <div class="parcial-section">
+
+                <h3>6. Elimine todos los metadatos de la muestra que se analiza.</h3>
+
+                <p>
+                    Se creó una copia de la fotografía y se eliminaron
+                    sus metadatos incrustados mediante la opción
+                    <code>-all=</code>.
+                </p>
+
+                <p>
+                    ExifTool confirmó la operación mostrando el mensaje
+                    <strong>1 image files updated</strong>.
+                </p>
+
+                <p>
+                    Al verificar el archivo resultante ya no aparecen
+                    los campos EXIF ni GPS; únicamente se muestran
+                    propiedades técnicas básicas del JPEG.
+                </p>
+
+            </div>
+
+
+            <!-- EVIDENCIA 5 -->
+            <article class="evidence-item" id="evidencia-5">
+
+                <h3>Figura 5. Eliminación y verificación de metadatos</h3>
+
+                <figure class="evidence-figure">
+
+                    <!-- IMAGEN 5: ELIMINACIÓN DE METADATOS -->
+                    <img src="11Imagen5.png"
+                         alt="Eliminación y verificación de metadatos con ExifTool"
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+
+                    <div class="image-placeholder"
+                         style="display:none; min-height:260px; align-items:center; justify-content:center; padding:25px; border:2px dashed #64748b; border-radius:8px; text-align:center;">
+                        AQUÍ VA LA IMAGEN 5<br>
+                        Eliminación y comprobación de metadatos
+                    </div>
+
+                    <figcaption>
+                        <strong>Figura 5.</strong>
+                        La captura confirma la copia del archivo, la eliminación
+                        de sus metadatos y la comprobación posterior.
+                    </figcaption>
+
+                </figure>
+
+                <p><strong>Comando para crear una copia:</strong></p>
+
+                <pre><code>copy "infocrim\XiaomiMiA2Lite.jpg" "infocrim\XiaomiMiA2Lite_sin_metadatos.jpg"</code></pre>
+
+                <p><strong>Comando para eliminar los metadatos:</strong></p>
+
+                <pre><code>exiftool.exe -all= -overwrite_original "infocrim\XiaomiMiA2Lite_sin_metadatos.jpg"</code></pre>
+
+                <p><strong>Comando para verificar el resultado:</strong></p>
+
+                <pre><code>exiftool.exe -a -G1 -s "infocrim\XiaomiMiA2Lite_sin_metadatos.jpg"</code></pre>
+
+            </article>
+
+        </section>
+
+
+        <!-- ====================================== -->
+        <!-- NAVEGACIÓN A LAS EVIDENCIAS            -->
+        <!-- ====================================== -->
+
+        <section class="card" id="evidencias">
+
+            <h2>Evidencias de la actividad</h2>
+
+            <p>
+                Las cinco evidencias se encuentran integradas dentro de
+                las Partes I y II de este reporte, junto con los comandos
+                utilizados durante su obtención.
+            </p>
+
+            <div class="buttons-row">
+                <a href="#evidencia-1" class="btn-evidence">
+                    Documento INTERPOL
+                </a>
+
+                <a href="#evidencia-2" class="btn-evidence">
+                    Metadatos Xiaomi
+                </a>
+
+                <a href="#evidencia-3" class="btn-evidence">
+                    Coordenadas GPS
+                </a>
+
+                <a href="#evidencia-4" class="btn-evidence">
+                    Google Maps
+                </a>
+
+                <a href="#evidencia-5" class="btn-evidence">
+                    Eliminación de metadatos
+                </a>
+            </div>
+
+        </section>
+
+
+        <!-- NAVEGACIÓN FINAL -->
+        <section class="card final-navigation">
+
+            <h2>Actividad 11 completada</h2>
+
+            <div class="buttons-row">
+                <a href="#inicio" class="btn-evidence">
+                    ↑ Volver arriba
+                </a>
+
+                <a href="index.html" class="btn-evidence">
+                    ← Regresar al portafolio
+                </a>
+            </div>
+
+        </section>
+
+    </main>
+
 </body>
 </html>
