@@ -1,11 +1,834 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actividad 16</title>
+
+    <title>Actividad 16 | Adquisición Forense con FTK Imager</title>
+
+    <!-- Hoja de estilos del portafolio -->
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+
+    <!-- ENCABEZADO -->
+    <header class="site-header">
+        <div class="header-content">
+
+            <p class="eyebrow">
+                INFORMÁTICA CRIMINOLÓGICA · ACTIVIDAD 16
+            </p>
+
+            <span class="lab-badge">
+                Informática Forense
+            </span>
+
+            <h1 class="header-title">
+                La verdad en los bits:
+                Adquisición forense con FTK Imager
+            </h1>
+
+            <p>
+                Adquisición de evidencia digital mediante una
+                imagen forense bit a bit, utilizando FTK Imager
+                para verificar la integridad de los datos.
+            </p>
+
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="#introduccion">Introducción</a>
+                <a href="#procedimiento">Procedimiento</a>
+                <a href="#resultados">Resultados</a>
+                <a href="#reporte-pdf">Reporte PDF</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main class="report-main">
+
+        <!-- INFORMACIÓN GENERAL -->
+        <section class="card parcial-section">
+
+            <h2>Información general</h2>
+
+            <p><strong>Actividad:</strong> 16</p>
+
+            <p>
+                <strong>Nombre:</strong>
+                Ríos de la Tejera, Isaac Elihu
+            </p>
+
+            <p><strong>Matrícula:</strong> 184642</p>
+
+            <p>
+                <strong>Fecha de realización:</strong>
+                08 de noviembre de 2026
+            </p>
+
+            <p>
+                <strong>Herramienta:</strong>
+                AccessData FTK Imager 4.3.1.1
+            </p>
+
+            <p>
+                <strong>Dispositivo analizado:</strong>
+                Memoria USB General UDisk de 8 GB
+            </p>
+
+            <p>
+                <strong>Formato de adquisición:</strong>
+                Raw (dd)
+            </p>
+
+        </section>
+
+
+        <!-- INTRODUCCIÓN -->
+        <section id="introduccion" class="card parcial-section">
+
+            <h2>1. Introducción</h2>
+
+            <p>
+                El análisis forense digital permite adquirir,
+                preservar y analizar información almacenada
+                en dispositivos electrónicos para investigar
+                posibles incidentes de seguridad.
+            </p>
+
+            <p>
+                En esta actividad se utilizó FTK Imager para
+                generar una copia bit a bit de una memoria USB,
+                evitando trabajar directamente sobre la
+                evidencia original durante un análisis posterior.
+            </p>
+
+            <h3>Objetivo</h3>
+
+            <p>
+                Realizar una adquisición forense de una memoria
+                USB, generar una imagen en formato Raw (dd)
+                y verificar su integridad mediante los valores
+                hash MD5 y SHA-1.
+            </p>
+
+            <h3>Fases del análisis forense</h3>
+
+            <ol>
+                <li>Adquisición de evidencia.</li>
+                <li>Preservación de los datos.</li>
+                <li>Análisis de información.</li>
+                <li>Documentación del procedimiento.</li>
+                <li>Presentación de resultados.</li>
+            </ol>
+
+            <h3>Herramientas utilizadas</h3>
+
+            <ul>
+                <li>FTK Imager 4.3.1.1</li>
+                <li>Windows 10</li>
+                <li>Memoria USB de 8 GB</li>
+                <li>Explorador de archivos</li>
+                <li>Bloc de notas</li>
+            </ul>
+
+        </section>
+
+
+        <!-- PROCEDIMIENTO -->
+        <section id="procedimiento" class="card parcial-section">
+
+            <h2>2. Procedimiento de adquisición</h2>
+
+            <p>
+                A continuación se muestran los pasos realizados
+                para generar la imagen forense, junto con las
+                evidencias correspondientes.
+            </p>
+
+
+            <!-- PASO 1 -->
+            <div class="evidence-item">
+
+                <h3>Paso 1. Ejecución de FTK Imager</h3>
+
+                <p>
+                    Se ejecutó FTK Imager versión 4.3.1.1
+                    para iniciar el procedimiento de adquisición
+                    de evidencia digital.
+                </p>
+
+                <figure class="evidence-figure">
+                    <div class="image-placeholder">
+                        <img src="16Imagen1.png"
+                             alt="Pantalla principal de FTK Imager"
+                             loading="lazy">
+                        <p class="placeholder-text">
+                            AQUÍ VA LA IMAGEN 1:
+                            Pantalla principal de FTK Imager
+                        </p>
+                    </div>
+
+                    <figcaption>
+                        Figura 1. Pantalla principal de FTK Imager.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+
+            <!-- PASO 2 -->
+            <div class="evidence-item">
+
+                <h3>Paso 2. Selección del origen</h3>
+
+                <p>
+                    Desde el menú File se seleccionó
+                    Create Disk Image y posteriormente
+                    la opción Physical Drive para trabajar
+                    con el dispositivo físico.
+                </p>
+
+                <figure class="evidence-figure">
+                    <div class="image-placeholder">
+                        <img src="16Imagen2.png"
+                             alt="Selección de Physical Drive"
+                             loading="lazy">
+                        <p class="placeholder-text">
+                            AQUÍ VA LA IMAGEN 2:
+                            Selección de Physical Drive
+                        </p>
+                    </div>
+
+                    <figcaption>
+                        Figura 2. Selección del origen físico.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+
+            <!-- PASO 3 -->
+            <div class="evidence-item">
+
+                <h3>Paso 3. Selección de la memoria USB</h3>
+
+                <p>
+                    Se identificó el dispositivo
+                    General UDisk USB Device de 8 GB.
+                    Esta memoria fue seleccionada como
+                    origen de la adquisición.
+                </p>
+
+                <figure class="evidence-figure">
+                    <div class="image-placeholder">
+                        <img src="16Imagen3.png"
+                             alt="Selección de memoria USB"
+                             loading="lazy">
+                        <p class="placeholder-text">
+                            AQUÍ VA LA IMAGEN 3:
+                            Selección de la memoria USB
+                        </p>
+                    </div>
+
+                    <figcaption>
+                        Figura 3. Dispositivo físico seleccionado.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+
+            <!-- PASO 4 -->
+            <div class="evidence-item">
+
+                <h3>Paso 4. Selección del formato</h3>
+
+                <p>
+                    Se seleccionó el formato Raw (dd),
+                    que permite generar una copia bit a bit
+                    del dispositivo sin aplicar compresión.
+                </p>
+
+                <figure class="evidence-figure">
+                    <div class="image-placeholder">
+                        <img src="16Imagen4.png"
+                             alt="Formato Raw dd"
+                             loading="lazy">
+                        <p class="placeholder-text">
+                            AQUÍ VA LA IMAGEN 4:
+                            Selección del formato Raw (dd)
+                        </p>
+                    </div>
+
+                    <figcaption>
+                        Figura 4. Formato de imagen Raw (dd).
+                    </figcaption>
+                </figure>
+
+            </div>
+
+
+            <!-- PASO 5 -->
+            <div class="evidence-item">
+
+                <h3>Paso 5. Información de evidencia</h3>
+
+                <p>
+                    Se introdujeron los datos del caso
+                    para identificar la adquisición.
+                </p>
+
+                <div class="technical-info">
+
+                    <p>
+                        <strong>Case Number:</strong>
+                        InfoCrim-01_21.11.2023
+                    </p>
+
+                    <p>
+                        <strong>Evidence Number:</strong>
+                        00 (Original Adq).
+                    </p>
+
+                    <p>
+                        <strong>Unique Description:</strong>
+                        CNO IV - análisis de incidente
+                        de fraude bancario.
+                    </p>
+
+                    <p>
+                        <strong>Examiner:</strong>
+                        Ríos de la Tejera Isaac Elihu
+                    </p>
+
+                    <p>
+                        <strong>Notes:</strong>
+                        Adquisición realizada en LIF de la UPSLP.
+                    </p>
+
+                </div>
+
+                <figure class="evidence-figure">
+                    <div class="image-placeholder">
+                        <img src="16Imagen5.png"
+                             alt="Información del caso"
+                             loading="lazy">
+                        <p class="placeholder-text">
+                            AQUÍ VA LA IMAGEN 5:
+                            Información del caso
+                        </p>
+                    </div>
+
+                    <figcaption>
+                        Figura 5. Configuración de los datos
+                        de evidencia.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+
+            <!-- PASO 6 -->
+            <div class="evidence-item">
+
+                <h3>Paso 6. Configuración del destino</h3>
+
+                <p>
+                    Se seleccionó la carpeta InfoCrim13
+                    del Escritorio como destino de la imagen.
+                    El archivo se nombró RDIE y se configuró
+                    sin fragmentación.
+                </p>
+
+                <div class="technical-info">
+                    <p>
+                        <strong>Carpeta:</strong>
+                        C:\Users\admin\Desktop\InfoCrim13
+                    </p>
+
+                    <p>
+                        <strong>Nombre:</strong> RDIE
+                    </p>
+
+                    <p>
+                        <strong>Fragmentación:</strong> 0 MB
+                    </p>
+                </div>
+
+                <figure class="evidence-figure">
+                    <div class="image-placeholder">
+                        <img src="16Imagen6.png"
+                             alt="Configuración de destino"
+                             loading="lazy">
+                        <p class="placeholder-text">
+                            AQUÍ VA LA IMAGEN 6:
+                            Configuración del destino
+                        </p>
+                    </div>
+
+                    <figcaption>
+                        Figura 6. Carpeta de destino y nombre
+                        de la imagen forense.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+
+            <!-- PASO 7 -->
+            <div class="evidence-item">
+
+                <h3>Paso 7. Adquisición de la imagen</h3>
+
+                <p>
+                    Se inició la adquisición mediante Start.
+                    FTK Imager realizó la copia del dispositivo
+                    físico y mostró el progreso de la operación.
+                </p>
+
+                <figure class="evidence-figure">
+                    <div class="image-placeholder">
+                        <img src="16Imagen7.png"
+                             alt="Proceso de adquisición"
+                             loading="lazy">
+                        <p class="placeholder-text">
+                            AQUÍ VA LA IMAGEN 7:
+                            Adquisición de la imagen
+                        </p>
+                    </div>
+
+                    <figcaption>
+                        Figura 7. Proceso de adquisición
+                        forense en ejecución.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+        </section>
+
+
+        <!-- PREGUNTAS TEÓRICAS -->
+        <section id="preguntas" class="card parcial-section">
+
+            <h2>3. Preguntas teóricas</h2>
+
+            <h3>8. Marcas de tiempo</h3>
+
+            <p>
+                <strong>Hora de inicio:</strong>
+                aproximadamente 23:21 h.
+            </p>
+
+            <p>
+                <strong>Hora de término:</strong>
+                aproximadamente 23:25 h.
+            </p>
+
+            <p>
+                <strong>Tiempo transcurrido:</strong>
+                aproximadamente 4 minutos.
+            </p>
+
+            <p>
+                <em>
+                    Los horarios son estimaciones basadas
+                    en las capturas del 08/11/2026.
+                </em>
+            </p>
+
+
+            <h3>9. ¿Qué es el formato Raw (dd)?</h3>
+
+            <p>
+                Es un formato de imagen forense que realiza
+                una copia bit a bit de un dispositivo,
+                sin compresión.
+            </p>
+
+
+            <h3>10. ¿Qué es el formato E01?</h3>
+
+            <p>
+                Es un formato de evidencia forense que
+                permite almacenar datos con compresión
+                y metadatos del caso.
+            </p>
+
+
+            <h3>
+                11. ¿Cuál es la diferencia entre
+                SMART y E01?
+            </h3>
+
+            <p>
+                SMART (S01) y E01 utilizan contenedores
+                diferentes para almacenar evidencias.
+                Se distinguen por su estructura interna
+                y compatibilidad con herramientas forenses.
+            </p>
+
+        </section>
+
+
+        <!-- RESULTADOS -->
+        <section id="resultados" class="card parcial-section">
+
+            <h2>4. Resultados de la adquisición</h2>
+
+            <p>
+                FTK Imager completó la adquisición y verificó
+                los valores hash de la imagen generada.
+            </p>
+
+            <div class="technical-info">
+
+                <h3>12. Información obtenida</h3>
+
+                <p>
+                    <strong>Archivo:</strong> RDIE.001
+                </p>
+
+                <p>
+                    <strong>Sectores copiados:</strong>
+                    15,728,640
+                </p>
+
+                <p>
+                    <strong>Bytes por sector:</strong> 512
+                </p>
+
+                <p><strong>Hash MD5:</strong></p>
+
+                <p>
+                    <code>
+                        89bc0f411c2e4b84d4fee9cc951cdc0f
+                    </code>
+                </p>
+
+                <p><strong>Hash SHA-1:</strong></p>
+
+                <p>
+                    <code>
+                        a5299cf49618b90f193e7ae9fbbc84f3af9ae62d
+                    </code>
+                </p>
+
+                <p>
+                    <strong>Verificación MD5:</strong> Match
+                </p>
+
+                <p>
+                    <strong>Verificación SHA-1:</strong> Match
+                </p>
+
+                <p>
+                    <strong>Bloques defectuosos:</strong>
+                    No se encontraron.
+                </p>
+
+            </div>
+
+
+            <!-- RESULTADOS HASH -->
+            <div class="evidence-item">
+
+                <h3>Verificación de integridad</h3>
+
+                <p>
+                    Los valores MD5 y SHA-1 calculados
+                    coincidieron con los valores registrados.
+                    Esto confirma que la verificación de
+                    integridad resultó satisfactoria.
+                </p>
+
+                <figure class="evidence-figure">
+                    <div class="image-placeholder">
+                        <img src="16Imagen8.png"
+                             alt="Resultados MD5 y SHA-1"
+                             loading="lazy">
+                        <p class="placeholder-text">
+                            AQUÍ VA LA IMAGEN 8:
+                            Resultados de verificación hash
+                        </p>
+                    </div>
+
+                    <figcaption>
+                        Figura 8. Verificación de MD5,
+                        SHA-1 y bloques defectuosos.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+
+            <!-- ARCHIVOS -->
+            <div class="evidence-item">
+
+                <h3>13. ¿Cuántos archivos fueron generados?</h3>
+
+                <p>
+                    Se generaron dos archivos:
+                </p>
+
+                <ul>
+                    <li>
+                        <strong>RDIE.001:</strong>
+                        imagen forense Raw.
+                    </li>
+
+                    <li>
+                        <strong>RDIE.001.txt:</strong>
+                        registro de adquisición.
+                    </li>
+                </ul>
+
+                <figure class="evidence-figure">
+                    <div class="image-placeholder">
+                        <img src="16Imagen9.png"
+                             alt="Archivos generados"
+                             loading="lazy">
+                        <p class="placeholder-text">
+                            AQUÍ VA LA IMAGEN 9:
+                            Archivos generados por FTK Imager
+                        </p>
+                    </div>
+
+                    <figcaption>
+                        Figura 9. Archivos almacenados
+                        en la carpeta InfoCrim13.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+
+            <!-- REGISTRO TXT -->
+            <div class="evidence-item">
+
+                <h3>14. Registro de adquisición</h3>
+
+                <p>
+                    Se revisó el archivo RDIE.001.txt,
+                    generado automáticamente por FTK Imager.
+                    Este contiene información del caso,
+                    características del dispositivo y
+                    valores hash calculados.
+                </p>
+
+                <figure class="evidence-figure">
+                    <div class="image-placeholder">
+                        <img src="16Imagen10.png"
+                             alt="Registro de adquisición TXT"
+                             loading="lazy">
+                        <p class="placeholder-text">
+                            AQUÍ VA LA IMAGEN 10:
+                            Registro RDIE.001.txt
+                        </p>
+                    </div>
+
+                    <figcaption>
+                        Figura 10. Registro de adquisición
+                        abierto en Bloc de notas.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+        </section>
+
+
+        <!-- ANÁLISIS -->
+        <section id="analisis" class="card parcial-section">
+
+            <h2>5. Análisis de los resultados</h2>
+
+            <p>
+                La adquisición forense se realizó utilizando
+                el formato Raw (dd), obteniendo una copia
+                bit a bit de una memoria USB de 8 GB.
+            </p>
+
+            <p>
+                Se copiaron 15,728,640 sectores y se verificó
+                la integridad de la imagen mediante MD5
+                y SHA-1. Ambos resultados mostraron
+                coincidencia y no se detectaron bloques
+                defectuosos.
+            </p>
+
+            <p>
+                La imagen obtenida puede utilizarse
+                posteriormente para examinar archivos,
+                metadatos y posibles datos eliminados,
+                sin trabajar directamente sobre la memoria
+                USB original.
+            </p>
+
+            <h3>Posibles líneas de investigación</h3>
+
+            <ul>
+                <li>
+                    Identificar archivos relevantes
+                    dentro de la imagen.
+                </li>
+
+                <li>
+                    Revisar fechas de creación y modificación.
+                </li>
+
+                <li>
+                    Analizar metadatos y archivos eliminados.
+                </li>
+
+                <li>
+                    Relacionar posibles hallazgos con el
+                    incidente planteado.
+                </li>
+            </ul>
+
+        </section>
+
+
+        <!-- DOCUMENTO PDF -->
+        <section id="reporte-pdf" class="card parcial-section">
+
+            <h2>6. Reporte completo en PDF</h2>
+
+            <p>
+                El siguiente documento contiene el
+                procedimiento de adquisición forense,
+                las capturas de pantalla, las respuestas
+                y los resultados obtenidos en la práctica.
+            </p>
+
+            <!--
+                AGREGA EL ARCHIVO PDF EN EL MISMO
+                DIRECTORIO QUE ESTE HTML.
+
+                Nombre:
+                Reporte_actividad16.pdf
+            -->
+
+            <div class="evidence-item">
+
+                <h3>Documento de evidencia</h3>
+
+                <iframe
+                    src="Reporte_actividad16.pdf"
+                    title="Reporte de la Actividad 16"
+                    width="100%"
+                    height="550"
+                    loading="lazy">
+                </iframe>
+
+                <div class="buttons-row">
+
+                    <a href="Reporte_actividad16.pdf"
+                       class="btn-evidence"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        Ver reporte completo
+                    </a>
+
+                    <a href="Reporte_actividad16.pdf"
+                       class="evidencia-link"
+                       download>
+                        Descargar PDF &rarr;
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- NAVEGACIÓN FINAL -->
+        <div class="final-navigation">
+
+            <a href="index.html" class="btn-inicio">
+                &larr; Regresar al portafolio
+            </a>
+
+            <a href="#top" class="evidencia-link">
+                Volver arriba &uarr;
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <p>
+            Informática Criminológica |
+            Actividad 16 - FTK Imager
+        </p>
+        <p>
+            Universidad Politécnica de San Luis Potosí
+        </p>
+    </footer>
+
+
+    <!-- CONTROL DE ESPACIOS PARA IMÁGENES -->
+    <script>
+        document.querySelectorAll(
+            ".image-placeholder img"
+        ).forEach(function (imagen) {
+
+            function verificarImagen() {
+
+                const contenedor = imagen.parentElement;
+
+                const mensaje = contenedor.querySelector(
+                    ".placeholder-text"
+                );
+
+                if (imagen.naturalWidth > 0) {
+
+                    // Mostrar captura completa.
+                    imagen.style.display = "block";
+                    imagen.style.width = "100%";
+                    imagen.style.height = "auto";
+                    imagen.style.objectFit = "contain";
+
+                    if (mensaje) {
+                        mensaje.style.display = "none";
+                    }
+
+                } else {
+
+                    // Mostrar espacio reservado.
+                    imagen.style.display = "none";
+
+                    if (mensaje) {
+                        mensaje.style.display = "block";
+                    }
+
+                }
+            }
+
+            imagen.addEventListener(
+                "load", verificarImagen
+            );
+
+            imagen.addEventListener(
+                "error", verificarImagen
+            );
+
+            if (imagen.complete) {
+                verificarImagen();
+            }
+
+        });
+    </script>
+
 </body>
 </html>
